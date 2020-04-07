@@ -1,0 +1,43 @@
+\section{Network announcement message}
+\label{sec:networkAnnouncementMessage}
+
+The network announcement message is used by a host to discover and connect to devices on the same network.  The message is continuously broadcast by the device on \ac{UDP} port 10000 at a fixed rate of one message per second.  Each message provides the device name, serial number, Wi-Fi and battery status, as well as the device settings required for a host to establish a \ac{TCP} or \ac{UDP} connection.  The message is a single \ac{JSON} object.  The key/value pairs are described in \Fref{tab:networkAnnouncementMessage}.
+
+\customTable
+{l l l}
+{Key & Value type & Description}
+{
+    \enquote{sync} & number or null & Used for synchronisation \\
+    \enquote{name} & string & Device name \\
+    \enquote{serial} & string & Device serial number \\
+    \enquote{ip} & string & Device \acs{IP} address \\
+    \enquote{port} & number & \acs{TCP} port \\
+    \enquote{send} & number & \acs{UDP} send port (device sends to this port) \\
+    \enquote{receive} & number & \acs{UDP} receive port (device receives on this port) \\
+    \enquote{rssi} & number & \acs{RSSI} percentage \\
+    \enquote{battery} & number & Battery percentage (-1 = charging) \\
+    \enquote{power} & true or false & Power connected \\
+}
+{Network announcement message key/value pairs}
+{tab:networkAnnouncementMessage}
+
+\begin{table}[H]
+    \begin{tabular}{l l l}
+        \textbf{Example}*\textbf{:} & \texttt{\{} \\
+        & \texttt{~~"sync":} & \texttt{null,} \\
+        & \texttt{~~"name":} & \texttt{"x-IMU3",} \\
+        & \texttt{~~"serial":} & \texttt{"0123-4567-89AB-CDEF",} \\
+        & \texttt{~~"ip":} & \texttt{"192.168.1.1",} \\
+        & \texttt{~~"port":} & \texttt{7000,} \\
+        & \texttt{~~"send":} & \texttt{8000,} \\
+        & \texttt{~~"receive":} & \texttt{9000,} \\
+        & \texttt{~~"rssi":} & \texttt{100,} \\
+        & \texttt{~~"battery":} & \texttt{100,} \\
+        & \texttt{~~"power":} & \texttt{true} \\
+        & \texttt{\}}
+    \end{tabular} \\
+    \begin{tabular}{l}
+        \\
+        \footnotesize{* The actual \acs{JSON} will not include any whitespace.}
+    \end{tabular}
+\end{table}

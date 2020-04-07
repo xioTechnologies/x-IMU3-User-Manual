@@ -1,0 +1,725 @@
+\section{Communication protocol}
+\label{sec:communicationProtocol}
+
+All communication interfaces use the same communication protocol.  The byte stream is therefore identical for \ac{USB}, serial, \ac{TCP}, \ac{UDP}, and the files created by on-board data logging.  The communication protocol consists of two message types:
+
+\begin{itemize}[nolistsep]
+    \item {Command messages}
+    \item {Data messages}
+\end{itemize}
+
+All messages are terminated by a \ac{LF} control character.  This termination byte will not appear anywhere else in a message and so can be used to divide a byte stream into individual messages.  Some messages are terminated with an additional \ac{CR} control character.  \Fref{tab:controlCharactersLFAndCRrepresentations} describes the different ways that the control characters \ac{LF} and \ac{CR} may be referred to throughout this document.
+
+\customTable
+{l c c c c}
+{Control character & Abbreviation & String & Hex & Decimal}
+{
+    \acl{LF} & \acs{LF} & \enquote{\textbackslash n} & 0x0A & 10\\
+    \acl{CR} & \acs{CR} & \enquote{\textbackslash r} & 0x0D & 13\\
+}
+{Control characters \acs{LF} and \acs{CR} representations}
+{tab:controlCharactersLFAndCRrepresentations}
+
+The first byte of a message indicates the message type.  Command messages start with the character \enquote{\{} (0x7B in hex, 123 in decimal).  Data messages start with either an uppercase character or a byte value greater than 0x80 (128 in decimal) depending on the message.
+
+\subsection{Command messages}
+
+Command messages are sent to the device to read and write settings and execute commands.  All command messages are a \ac{JSON} object containing a single key/value pair, terminated by the control character sequence: \ac{CR}, \ac{LF}.  The control character \ac{LF} must not appear anywhere else in a command message.  The device will acknowledge each received command message by sending a command message with the same key to the host.
+
+The key used by command messages sent to the device is not case sensitive and can use non-alphanumeric characters arbitrarily.  For example, \enquote{serialNumber}, \enquote{Serial Number}, and \enquote{serial\_number} are all valid keys for a command message to read the device serial number.  The key used by the acknowledgement command message sent from the device to the host will always be in camel case. For example, \enquote{serialNumber}.
+
+\subsubsection{Read setting command}
+
+The read setting command is sent to the device to read a setting value.  The key is the setting key and the value is null.  See \Fref{sec:individualSettings} for a complete list of settings.  The device will acknowledge a read setting command by sending a write setting command to the host.
+
+\commandMessageExample{"serialNumber":null}
+
+\subsubsection{Write setting command}
+
+The write setting command is sent to the device to write a setting value.  The key is the setting key and the value is the setting value.  See \Fref{sec:individualSettings} for a complete list of settings.  The device will acknowledge a write setting command by sending a setting write command back to the host, indicating the new settings value.  The device will not apply new settings until two seconds after the most recent write setting command or default command was received.
+
+\commandMessageExample{"deviceName":"x-IMU3"}
+
+\subsubsection{Default command}
+
+The default command is sent to the device to set all settings to default values.  The key is \enquote{default} and the value is null.  The device will not apply new settings until two seconds after the most recent write setting command or default command was received.
+
+\commandMessageExample{"default":null}
+
+\subsubsection{Apply command}
+
+The apply command is sent to the device to apply all settings.  The key is \enquote{apply} and the value is null.  This command can be sent after a write setting or default command to apply settings immediately instead of after a two second delay.
+
+\commandMessageExample{"apply":null}
+
+\subsubsection{Save command}
+
+The save command is sent to the device to save all settings to \ac{NVM}.  The key is \enquote{save} and the value is null.  This command is unnecessary in most applications because the device will automatically save all settings on shutdown.
+% This command can be used to ensure settings are saved in applications that remove power from the device instead of performing a shutdown.
+
+\commandMessageExample{"save":null}
+
+\subsubsection{Read time command}
+
+The read time command is sent to the device to read the date and time of the \ac{RTC}.  The key is \enquote{time} and the value is null.  The device will acknowledge a read time command by sending a write time command to the host.
+
+\commandMessageExample{"time":null}
+
+\subsubsection{Write time command}
+
+The write time command is sent to the device to write the date and time of the \ac{RTC}.  The key is \enquote{time} and the value is a string expressing the date and time in the format \enquote{YYYY-MM-DD hh:mm:ss} where each delimiter can be any non-numerical character.  The device will acknowledge a write time command by sending a write time command back to the host, indicating the new date and time.
+
+\commandMessageExample{"time":"2020-01-01 00:00:00"}
+
+\subsubsection{Ping command}
+
+The ping command is sent to the device to trigger a ping response.  The key is \enquote{ping} and the value is null.  The device will acknowledge a ping command by sending a ping response to the host.
+
+\commandMessageExample{"ping":null}
+
+\subsubsection{Ping response}
+
+The ping response is sent from the device to the host in response to the ping command.  The key is \enquote{ping} and the value is a \ac{JSON} object containing three key/value pairs indicating the communication interface, device name, and device serial number.  The keys are \enquote{interface}, \enquote{deviceName}, and \enquote{serialNumber}, respectively and all values are string types.
+
+\begin{table}[H]
+    \begin{tabular}{l l l}
+        \textbf{Example}*\textbf{:} & \texttt{\{} \\
+        & \texttt{~~"ping":~\{} & \\
+        & \texttt{~~~~"interface":} & \texttt{"USB",} \\
+        & \texttt{~~~~"deviceName":} & \texttt{"x-IMU3",} \\
+        & \texttt{~~~~"serialNumber":} & \texttt{"0123-4567-89AB-CDEF"} \\
+        & \texttt{~~\}} \\
+        & \texttt{\}\textbackslash r\textbackslash n} \\
+    \end{tabular} \\
+    \begin{tabular}{l}
+        \\
+        \footnotesize{* The actual \acs{JSON} will not include any whitespace.}
+    \end{tabular}
+\end{table}
+
+\subsubsection{Reset command}
+\label{sec:resetCommand}
+
+The reset command is sent to the device to reset the device.  The key is \enquote{reset} and the value is null.  A reset is equivalent to switching the device off and then on again.  The device will reset two seconds after receiving this command.
+
+\commandMessageExample{"reset":null}
+
+\subsubsection{Shutdown command}
+\label{sec:shutdownCommand}
+
+The shutdown command is sent to the device to switch the device off.  The key is \enquote{shutdown} and the value is null.  The device will shutdown two seconds after receiving this command.
+
+\commandMessageExample{"shutdown":null}
+
+% \subsubsection{Set heading command}
+
+% ...
+
+% \commandMessageExample{"heading":0}
+
+\subsubsection{Strobe command}
+
+The strobe command is sent to the device to strobe the \ac{LED} bright white for 5 seconds.  The key is \enquote{strobe} and the value is null.
+
+\commandMessageExample{"strobe":null}
+
+% \subsubsection{Colour command}
+
+% The colour command is sent to the device to set the \ac{LED} colour.  The key is \enquote{colour} or \enquote{color} and the value is either null or an \ac{RGB} hex triplet expressed as a string.
+% %
+% If the value is an \ac{RGB} hex triplet then the LED will immediately change to the specified colour.  This action overrides the normal LED behaviour and the LED will no longer provide an indication of the device mode or status.
+% %
+% If the value is null then the LED will revert to its normal behaviour.
+% %
+% The \enquote{\#} character is optional.  For example, \enquote{\#FF0000} for red or \enquote{\#00FFFF} for cyan.
+
+% % {"colour":[255 255 255]}\n
+% % {"strobe":[255 255 255]}\n
+
+% \commandMessageExample{"colour":"\#FFFFFFFF"}
+
+\subsubsection{Serial accessory command}
+
+The serial accessory command is sent to the device to transmit data to a serial accessory when the serial interface is in serial accessory mode.  The key is \enquote{serial} and the value is the data expressed as a string of up to 256 characters.  Longer strings will be truncated to the maximum size.  The string escape sequence \enquote{\textbackslash u} can be used to express any byte value as per the \ac{JSON} specification.
+
+\commandMessageExample{"serial":"hello \textbackslash u0077\textbackslash u006F\textbackslash u0072\textbackslash u006C\textbackslash u0064"}
+
+\subsubsection{Note command}
+
+The note command is sent to the device to generate a timestamped notification message containing a user-defined string.  The key is \enquote{note} and the value is the string of up to 127 characters.  Longer strings will be truncated to the maximum size.  This command can be used to create timestamped notes of events during data logging.
+
+\commandMessageExample{"note":"Something happened."}
+
+\subsubsection{Bootloader command}
+
+The bootloader command is sent to the device to reset the device in bootloader mode.  The key is \enquote{bootloader} and the value is null.  See \Fref{sec:updatingDeviceFirmware} for more information about updating the device firmware.
+
+\commandMessageExample{"bootloader":null}
+
+\subsection{Data messages}
+\label{sec:dataMessages}
+
+Data messages are sent from the device to the host to provide timestamped measurements, serial accessory data, notifications, and error messages.  Data messages will be either \ac{ASCII} or binary, depending on the device settings.
+
+\ac{ASCII} data messages consist of multiple comma-separated values terminated by the control character sequence: \ac{CR}, \ac{LF}.  The first value is a single uppercase character indicating the message type.  The second value is the timestamp in microseconds.  The remaining values are arguments specific to the message type.
+
+Binary data messages are a sequence of bytes terminated by the control character \ac{LF}.  The first byte of the sequence indicates the message type.  The value of this byte is equal to 0x80 plus the first character of the equivalent \ac{ASCII} message.  The next eight bytes are the timestamp in microseconds expressed as a 64-bit unsigned integer.  The remaining bytes are arguments specific to the message type.  Numerical types use little-endian ordering.  Byte stuffing is used to remove all occurrences of the control character \ac{LF} prior to the termination byte.
+
+\subsubsection{Byte stuffing}
+\label{sec:byteStuffing}
+
+Byte stuffing ensures that the termination byte value, 0x0A, only occurs at the end of a message.  This is achieved by replacing all occurrences of the termination byte prior to termination with an escape sequence.  This process is identical to \ac{SLIP} except that the \enquote{END} byte value is defined as 0x0A.  \Fref{tab:valuesUsedByTheByteStuffingProcess} lists the values used by the byte stuffing process.
+
+\customTable
+{l l l l}
+{Hex & Decimal & Name & Description}
+{
+0x0A & 10 & END & Message termination \\
+0xDB & 219 & ESC & Message escape \\
+0xDC & 220 & ESC\_END & Transposed message termination \\
+0xDD & 221 & ESC\_ESC & Transposed message escape \\
+}
+{Values used by the byte stuffing process}
+{tab:valuesUsedByTheByteStuffingProcess}
+
+Byte stuffing is achieved by the following:
+
+\begin{itemize}
+    \item Replace each occurrence of END in the original message with the two byte sequence: ESC, ESC\_END.
+    \item Replace each occurrence of ESC in the original message with the two byte sequence: ESC, ESC\_ESC.
+\end{itemize}
+
+The byte stuffing process will not modify the END that terminates the message.  \Fref{tab:byteStuffingExamples} demonstrates byte stuffing for example byte sequences terminated as binary data messages.
+
+\begingroup
+    \definecolor{colourA}{HTML}{1F77B4} % Tableau colours
+    \definecolor{colourB}{HTML}{FF7F0E}
+    \definecolor{colourC}{HTML}{2CA02C}
+    \customTable
+    {c l l}
+    {Example & Before byte stuffing & After byte stuffing}
+    {
+    1 & \texttt{45 58 41 4D 50 4C 45 \textcolor{colourC}{0A}} & \texttt{45 58 41 4D 50 4C 45 \textcolor{colourC}{0A}} \\
+    2 & \texttt{45 \textcolor{colourA}{0A} 41 4D 50 4C 45 \textcolor{colourC}{0A}} & \texttt{45 \textcolor{colourA}{DB DC} 41 4D 50 4C 45 \textcolor{colourC}{0A}} \\
+    3 & \texttt{45 58 \textcolor{colourB}{DB} 4D 50 4C 45 \textcolor{colourC}{0A}} & \texttt{45 58 \textcolor{colourB}{DB DD} 4D 50 4C 45 \textcolor{colourC}{0A}} \\
+    4 & \texttt{45 58 41 4D 50 \textcolor{colourB}{DB} \textcolor{colourA}{0A} \textcolor{colourC}{0A}} & \texttt{45 58 41 4D 50 \textcolor{colourB}{DB DD} \textcolor{colourA}{DB DC} \textcolor{colourC}{0A}} \\
+    }
+    {Byte stuffing examples}
+    {tab:byteStuffingExamples}
+\endgroup
+
+\subsubsection{Inertial message}
+
+The inertial message provides timestamped gyroscope and accelerometer measurements.  Inertial messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{I} and the arguments are six numerical values expressed to four decimal places.  The first byte of a binary message is C9 (equal to 0x80 + \enquote{I}) and the arguments are six contiguous 32-bit floats.  The message arguments are described in \Fref{tab:inertialMessageArguments}.
+
+\begingroup
+    \def\tempArgumentA{Gyroscope X axis in degrees per second}
+    \def\tempArgumentB{Gyroscope Y axis in degrees per second}
+    \def\tempArgumentC{Gyroscope Z axis in degrees per second}
+    \def\tempArgumentD{Accelerometer X axis in g}
+    \def\tempArgumentE{Accelerometer Y axis in g}
+    \def\tempArgumentF{Accelerometer Z axis in g}
+    \dataMessageTable
+    {Inertial message arguments}
+    {tab:inertialMessageArguments}
+\endgroup
+
+\begingroup
+    \def\tempNameA{Gyroscope X axis}
+    \def\tempNameB{Gyroscope Y axis}
+    \def\tempNameC{Gyroscope Z axis}
+    \def\tempNameD{Accelerometer X axis}
+    \def\tempNameE{Accelerometer Y axis}
+    \def\tempNameF{Accelerometer Z axis}
+    \def\tempValueA{0}
+    \def\tempValueB{0}
+    \def\tempValueC{0}
+    \def\tempValueD{0}
+    \def\tempValueE{0}
+    \def\tempValueF{1}
+    \def\tempAsciiFirst{I}
+    \def\tempAsciiA{0.0000}
+    \def\tempAsciiB{0.0000}
+    \def\tempAsciiC{0.0000}
+    \def\tempAsciiD{0.0000}
+    \def\tempAsciiE{0.0000}
+    \def\tempAsciiF{1.0000}
+    \def\tempBinaryFirst{C9}
+    \def\tempBinaryA{00 00 00 00}
+    \def\tempBinaryB{00 00 00 00}
+    \def\tempBinaryC{00 00 00 00}
+    \def\tempBinaryD{00 00 00 00}
+    \def\tempBinaryE{00 00 00 00}
+    \def\tempBinaryF{00 00 80 3F}
+    \dataMessageExample
+\endgroup
+
+\subsubsection{Magnetometer message}
+
+The magnetometer message provides timestamped magnetometer measurements.  Magnetometer messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{M} and the arguments are three numerical values expressed to four decimal places.  The first byte of a binary message is CD (equal to 0x80 + \enquote{M}) and the arguments are three contiguous 32-bit floats.  The message arguments are described in \Fref{tab:magnetometerMessageArguments}.
+
+\begingroup
+    \def\tempArgumentA{Magnetometer X axis in arbitrary units}
+    \def\tempArgumentB{Magnetometer Y axis in arbitrary units}
+    \def\tempArgumentC{Magnetometer Z axis in arbitrary units}
+    \dataMessageTable
+    {Magnetometer message arguments}
+    {tab:magnetometerMessageArguments}
+\endgroup
+
+\begingroup
+    \def\tempNameA{Magnetometer X axis}
+    \def\tempNameB{Magnetometer Y axis}
+    \def\tempNameC{Magnetometer Z axis}
+    \def\tempValueA{1.0}
+    \def\tempValueB{0.0}
+    \def\tempValueC{0.0}
+    \def\tempAsciiFirst{M}
+    \def\tempAsciiA{1.0000}
+    \def\tempAsciiB{0.0000}
+    \def\tempAsciiC{0.0000}
+    \def\tempBinaryFirst{CD}
+    \def\tempBinaryA{00 00 80 3F}
+    \def\tempBinaryB{00 00 00 00}
+    \def\tempBinaryC{00 00 00 00}
+    \dataMessageExample
+\endgroup
+
+\subsubsection{Quaternion message}
+
+The quaternion message provides timestamped measurement of orientation of the device relative to the Earth.  Quaternion messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{Q} and the arguments are four numerical values expressed to four decimal places.  The first byte of a binary message is D1 (equal to 0x80 + \enquote{Q}) and the arguments are four contiguous 32-bit floats.  The message arguments are described in \Fref{tab:quaternionMessageArguments}.
+
+\begingroup
+    \def\tempArgumentA{Quaternion W element}
+    \def\tempArgumentB{Quaternion X element}
+    \def\tempArgumentC{Quaternion Y element}
+    \def\tempArgumentD{Quaternion Z element}
+    \def\tempCaption{Quaternion message arguments}
+    \def\tempLabel{tab:quaternionMessageArguments}
+    \dataMessageTable
+    {Quaternion message arguments}
+    {tab:quaternionMessageArguments}
+\endgroup
+
+\begingroup
+    \def\tempNameA{Quaternion W element}
+    \def\tempNameB{Quaternion X element}
+    \def\tempNameC{Quaternion Y element}
+    \def\tempNameD{Quaternion Z element}
+    \def\tempValueA{1}
+    \def\tempValueB{0}
+    \def\tempValueC{0}
+    \def\tempValueD{0}
+    \def\tempAsciiFirst{Q}
+    \def\tempAsciiA{1.0000}
+    \def\tempAsciiB{0.0000}
+    \def\tempAsciiC{0.0000}
+    \def\tempAsciiD{0.0000}
+    \def\tempBinaryFirst{D1}
+    \def\tempBinaryA{00 00 80 3F}
+    \def\tempBinaryB{00 00 00 00}
+    \def\tempBinaryC{00 00 00 00}
+    \def\tempBinaryD{00 00 00 00}
+    \dataMessageExample
+\endgroup
+
+\subsubsection{Rotation matrix message}
+
+The rotation matrix message provides timestamped measurement of orientation of the device relative to the Earth.  Rotation matrix messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{R} and the arguments are nine numerical values expressed to four decimal places.  The first byte of a binary message is D2 (equal to 0x80 + \enquote{R}) and the arguments are nine contiguous 32-bit floats.  The message arguments are described in \Fref{tab:rotationMatrixMessageArguments}.
+
+\begingroup
+    \def\tempArgumentA{Rotation matrix XX element}
+    \def\tempArgumentB{Rotation matrix XY element}
+    \def\tempArgumentC{Rotation matrix XZ element}
+    \def\tempArgumentD{Rotation matrix YX element}
+    \def\tempArgumentE{Rotation matrix YY element}
+    \def\tempArgumentF{Rotation matrix YZ element}
+    \def\tempArgumentG{Rotation matrix ZX element}
+    \def\tempArgumentH{Rotation matrix ZY element}
+    \def\tempArgumentI{Rotation matrix ZZ element}
+    \dataMessageTable
+    {Rotation matrix message arguments}
+    {tab:rotationMatrixMessageArguments}
+\endgroup
+
+\begingroup
+    \def\tempNameA{Rotation matrix XX element}
+    \def\tempNameB{Rotation matrix XY element}
+    \def\tempNameC{Rotation matrix XZ element}
+    \def\tempNameD{Rotation matrix YX element}
+    \def\tempNameE{Rotation matrix YY element}
+    \def\tempNameF{Rotation matrix YZ element}
+    \def\tempNameG{Rotation matrix ZX element}
+    \def\tempNameH{Rotation matrix ZY element}
+    \def\tempNameI{Rotation matrix ZZ element}
+    \def\tempValueA{1}
+    \def\tempValueB{0}
+    \def\tempValueC{0}
+    \def\tempValueD{0}
+    \def\tempValueE{1}
+    \def\tempValueF{0}
+    \def\tempValueG{0}
+    \def\tempValueH{0}
+    \def\tempValueI{1}
+    \def\tempAsciiFirst{R}
+    \def\tempAsciiA{1.0000}
+    \def\tempAsciiB{0.0000}
+    \def\tempAsciiC{0.0000}
+    \def\tempAsciiD{0.0000}
+    \def\tempAsciiE{1.0000}
+    \def\tempAsciiF{0.0000}
+    \def\tempAsciiG{0.0000}
+    \def\tempAsciiH{0.0000}
+    \def\tempAsciiI{1.\linebreak0000} % \texttt will not line break
+    \def\tempBinaryFirst{D2}
+    \def\tempBinaryA{00 00 80 3F}
+    \def\tempBinaryB{00 00 00 00}
+    \def\tempBinaryC{00 00 00 00}
+    \def\tempBinaryD{00 00 00 00}
+    \def\tempBinaryE{00 00 80 3F}
+    \def\tempBinaryF{00 00 00 00}
+    \def\tempBinaryG{00 00 00 00}
+    \def\tempBinaryH{00 00 00 00}
+    \def\tempBinaryI{00 00 80 3F}
+    \dataMessageExample
+\endgroup
+
+\subsubsection{Euler angles message}
+
+The Euler angles message provides timestamped measurement of orientation of the device relative to the Earth.  Euler angles messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{E} and the arguments are three numerical values expressed to four decimal places.  The first byte of a binary message is C5 (equal to 0x80 + \enquote{E}) and the arguments are three contiguous 32-bit floats.  The message arguments are described in \Fref{tab:eulerAnglesMessageArguments}.
+
+\begingroup
+    \def\tempArgumentA{Roll angle in degrees}
+    \def\tempArgumentB{Pitch angle in degrees}
+    \def\tempArgumentC{Yaw angle in degrees}
+    \dataMessageTable
+    {Euler angles message arguments}
+    {tab:eulerAnglesMessageArguments}
+\endgroup
+
+\begingroup
+    \def\tempNameA{Roll angle}
+    \def\tempNameB{Pitch angle}
+    \def\tempNameC{Yaw angle}
+    \def\tempValueA{0.0}
+    \def\tempValueB{0.0}
+    \def\tempValueC{0.0}
+    \def\tempAsciiFirst{E}
+    \def\tempAsciiA{0.0000}
+    \def\tempAsciiB{0.0000}
+    \def\tempAsciiC{0.0000}
+    \def\tempBinaryFirst{C5}
+    \def\tempBinaryA{00 00 00 00}
+    \def\tempBinaryB{00 00 00 00}
+    \def\tempBinaryC{00 00 00 00}
+    \dataMessageExample
+\endgroup
+
+\subsubsection{Pressure message}
+
+The pressure message provides timestamped barometric pressure and altitude measurements.  Pressure messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{P} and the arguments are two numerical values expressed to four decimal places.  The first byte of a binary message is D0 (equal to 0x80 + \enquote{P}) and the arguments are two contiguous 32-bit floats.  The message arguments are described in \Fref{tab:pressureMessageArguments}.
+
+\begingroup
+    \def\tempArgumentA{Barometric air pressure in millibars}
+    \def\tempArgumentB{Altitude in metres}
+    \dataMessageTable
+    {Pressure message arguments}
+    {tab:pressureMessageArguments}
+\endgroup
+
+\begingroup
+    \def\tempNameA{Pressure}
+    \def\tempNameB{Altitude}
+    \def\tempValueA{1023.14}
+    \def\tempValueB{0.0}
+    \def\tempAsciiFirst{P}
+    \def\tempAsciiA{1023.1400}
+    \def\tempAsciiB{0.0000}
+    \def\tempBinaryFirst{D0}
+    \def\tempBinaryA{00 50 7D 44}
+    \def\tempBinaryB{00 00 00 00}
+    \dataMessageExample
+\endgroup
+
+\subsubsection{Temperature message}
+
+The temperature message provides timestamped temperature measurements.  Temperature messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{T} and the argument is a numerical value expressed to four decimal places.  The first byte of a binary message is D4 (equal to 0x80 + \enquote{T}) and the argument is a 32-bit float.  The message arguments are described in \Fref{tab:temperatureMessageArguments}.
+
+\begingroup
+    \def\tempArgumentA{Temperature in degrees Celsius}
+    \dataMessageTable
+    {Temperature message arguments}
+    {tab:temperatureMessageArguments}
+\endgroup
+
+\begingroup
+    \def\tempNameA{Temperature}
+    \def\tempValueA{25}
+    \def\tempAsciiFirst{T}
+    \def\tempAsciiA{25.0000}
+    \def\tempBinaryFirst{D4}
+    \def\tempBinaryA{00 00 41 C8}
+    \dataMessageExample
+\endgroup
+
+\subsubsection{High-g message}
+
+The High-g message provides timestamped high-g accelerometer measurements.  High-g messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{H} and the arguments are three numerical values expressed to four decimal places.  The first byte of a binary message is C8 (equal to 0x80 + \enquote{H}) and the arguments are three contiguous 32-bit floats.  The message arguments are described in \Fref{tab:highGMessageArguments}.
+
+\begingroup
+    \def\tempArgumentA{High-g accelerometer X axis in g}
+    \def\tempArgumentB{High-g accelerometer Y axis in g}
+    \def\tempArgumentC{High-g accelerometer Z axis in g}
+    \dataMessageTable
+    {High-g message arguments}
+    {tab:highGMessageArguments}
+\endgroup
+
+\begingroup
+    \def\tempNameA{High-g accelerometer X axis}
+    \def\tempNameB{High-g accelerometer Y axis}
+    \def\tempNameC{High-g accelerometer Z axis}
+    \def\tempValueA{0.0}
+    \def\tempValueB{0.0}
+    \def\tempValueC{1.0}
+    \def\tempAsciiFirst{H}
+    \def\tempAsciiA{0.0000}
+    \def\tempAsciiB{0.0000}
+    \def\tempAsciiC{1.0000}
+    \def\tempBinaryFirst{C8}
+    \def\tempBinaryA{00 00 00 00}
+    \def\tempBinaryB{00 00 00 00}
+    \def\tempBinaryC{00 00 80 3F}
+    \dataMessageExample
+\endgroup
+
+\subsubsection{Battery message}
+
+The battery message message provides timestamped measurements of the battery level, voltage, and charger status.  Battery message messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{B} and the arguments are four numerical values expressed to four decimal places.  The first byte of a binary message is C2 (equal to 0x80 + \enquote{B}) and the arguments are four contiguous 32-bit floats.  The message arguments are described in \Fref{tab:batteryMessageArguments}.
+
+\begingroup
+    \def\tempArgumentA{Battery percentage}
+    \def\tempArgumentB{Battery voltage in volts}
+    \def\tempArgumentC{Charger connected (0 = not connected, 1 = connected)}
+    \def\tempArgumentD{Charger status (0 = not charging, 1 = charging)}
+    \dataMessageTable
+    {Battery message arguments}
+    {tab:batteryMessageArguments}
+\endgroup
+
+\begingroup
+    \def\tempNameA{Percentage}
+    \def\tempNameB{Voltage}
+    \def\tempNameC{Charger connected}
+    \def\tempNameD{Charger status}
+    \def\tempValueA{100}
+    \def\tempValueB{4.2}
+    \def\tempValueC{1}
+    \def\tempValueD{0}
+    \def\tempAsciiFirst{B}
+    \def\tempAsciiA{100.0000}
+    \def\tempAsciiB{4.2000}
+    \def\tempAsciiC{1.0000}
+    \def\tempAsciiD{0.0000}
+    \def\tempBinaryFirst{C2}
+    \def\tempBinaryA{00 00 C8 42}
+    \def\tempBinaryB{66 66 86 40}
+    \def\tempBinaryC{00 00 80 3F}
+    \def\tempBinaryD{00 00 00 00}
+    \dataMessageExample
+\endgroup
+
+\subsubsection{Wi-Fi \acs{RSSI} message}
+
+The Wi-Fi \ac{RSSI} message provides timestamped Wi-Fi \ac{RSSI} measurements.  Wi-Fi \ac{RSSI} messages are sent continuously at the message rate configured in the device settings.  Wi-Fi \ac{RSSI} messages will only be sent if the device is configured as a Wi-Fi client.  The first value of an \ac{ASCII} message is the character \enquote{W} and the arguments are two numerical values expressed to four decimal places.  The first byte of a binary message is D7 (equal to 0x80 + \enquote{W}) and the arguments are two contiguous 32-bit floats.  The message arguments are described in \Fref{tab:wiFiRssiMessageArguments}.
+
+\begingroup
+    \def\tempArgumentA{\acs{RSSI} percentage}
+    \def\tempArgumentB{\acs{RSSI} power in dBm}
+    \dataMessageTable
+    {Wi-Fi \acs{RSSI} message arguments}
+    {tab:wiFiRssiMessageArguments}
+\endgroup
+
+\begingroup
+    \def\tempNameA{\acs{RSSI} percentage}
+    \def\tempNameB{\acs{RSSI} power}
+    \def\tempValueA{100.0}
+    \def\tempValueB{-50.0}
+    \def\tempAsciiFirst{W}
+    \def\tempAsciiA{100.000}
+    \def\tempAsciiB{-50.0000}
+    \def\tempBinaryFirst{D7}
+    \def\tempBinaryA{00 00 C8 42}
+    \def\tempBinaryB{00 00 48 C2}
+    \dataMessageExample
+\endgroup
+
+\subsubsection{Serial accessory message}
+
+The serial accessory message provides timestamped received serial accessory data.  Serial accessory messages are sent as serial accessory data is received according to the device settings.  The first value of an \ac{ASCII} message is the character \enquote{S} and the argument is the received data.  Received byte values less than 0x20 or greater than 0x7E will be replaced with the character \enquote{?} so that the argument is a string of printable characters.  The string is not null-terminated.  The first byte of a binary message is D3 (equal to 0x80 + \enquote{S}) and the argument is the unmodified received data.  The message arguments are described in \Fref{tab:serialAccessoryMessageArguments}.
+
+\begingroup
+    \def\tempArgumentA{Received serial accessory data}
+    \dataMessageTable
+    {Serial accessory message arguments}
+    {tab:serialAccessoryMessageArguments}
+\endgroup
+
+\begingroup
+    \def\tempNameA{Data}
+    \def\tempValueA{0x61 0x62 0x63 0x31 0x32 0x33 0xF1 0xF2 0xF3}
+    \def\tempAsciiFirst{S}
+    \def\tempAsciiA{abc123???}
+    \def\tempBinaryFirst{D3}
+    \def\tempBinaryA{61 62 63 31 32 33 F1 F2 F3}
+    \dataMessageExample
+\endgroup
+
+\subsubsection{Notification message}
+
+The notification message provides timestamped notifications of system events.  Notification messages may be sent by the device at any time and cannot be disabled.  The first value of an \ac{ASCII} message is the character \enquote{N}.  The first byte of a binary message is 0xCE (equal to 0x80 + \enquote{N}).  The argument of both \ac{ASCII} and binary messages is a string of printable characters.  The string is not null-terminated.  The message arguments are described in \Fref{tab:notificationMessageArguments}.
+
+\begingroup
+    \def\tempArgumentA{Notification string}
+    \dataMessageTable
+    {Notification message arguments}
+    {tab:notificationMessageArguments}
+\endgroup
+
+\begingroup
+    \def\tempNameA{String}
+    \def\tempValueA{This is a notification message.}
+    \def\tempAsciiFirst{N}
+    \def\tempAsciiA{This is a notification message.}
+    \def\tempBinaryFirst{CE}
+    \def\tempBinaryA{54 68 69 73 20 69 73 20 61 20 6E 6F 74 69 66 69 63 61 74 69 6F 6E 20 6D 65 73 73 61 67 65 2E}
+    \dataMessageExample
+\endgroup
+
+\subsubsection{Error message}
+
+The error message provides timestamped notifications of errors.  Error messages may be sent by the device at any time and cannot be disabled.  The first value of an \ac{ASCII} message is the character \enquote{F}.  The first byte of a binary message is 0xC6 (equal to 0x80 + \enquote{F}).  The argument of both \ac{ASCII} and binary messages is a string of printable characters.  The string is not null-terminated.  The message arguments are described in \Fref{tab:errorMessageArguments}.
+
+\begingroup
+    \def\tempArgumentA{Error string}
+    \dataMessageTable
+    {Notification message arguments}
+    {tab:errorMessageArguments}
+\endgroup
+
+\begingroup
+    \def\tempNameA{String}
+    \def\tempValueA{This is an error message.}
+    \def\tempAsciiFirst{F}
+    \def\tempAsciiA{This is an error message.}
+    \def\tempBinaryFirst{C6}
+    \def\tempBinaryA{54 68 69 73 20 69 73 20 61 6E 20 65 72 72 6F 72 20 6D 65 73 73 61 67 65 2E}
+    \dataMessageExample
+\endgroup
+
+% \subsection{Hints for implementation}
+
+% \subsubsection{Separating individual messages}
+
+% All messages are terminated by the byte 0x0A (character \enquote{\textbackslash n}).  A host processing data received from the device must use this termination byte to divide the incoming byte stream into individual messages.
+% %
+% % Many communication libraries have built-in support for a termination byte which may
+% %
+% % The termination byte 0x0A may be referred to as: \enquote{line feed}, \enquote{LF}, or decimal value 10.
+% %
+% For example, the MATLAB Instrument Connection and Communication toolbox allows the \enquote{Terminator} to be specified for serial, \ac{TCP}, and \ac{UDP}.
+% %
+% Similarly, LabVIEW allows the \enquote{TermChar} to be specified for \ac{VISA} resource types.
+% %
+% Serial libraries such as Python's pySerial and the .NET Framework's SerialPort class provide
+% the method \enquote{ReadLine()} for the same purpose.
+
+% \begin{figure}[H]
+%     \begin{lstlisting}
+% unsigned char buffer[512];
+% int bufferIndex = 0;
+
+% void processByte(unsigned char byte) {
+%     buffer[bufferIndex] = byte;
+%     if (byte == 0x0A) {
+
+%         /* buffer contains complete message,
+%           insert code to process message here */
+
+%         bufferIndex = 0;
+%     } else {
+%         bufferIndex++;
+%         if (bufferIndex >= sizeof(buffer)) {
+%             bufferIndex = 0; // index overflow
+%         }
+%     }
+% }
+%     \end{lstlisting}
+%     \caption{Example C code for undoing byte stuffing}
+%     \label{fig:exampleCCodeForUndoingByteStuffing}
+% \end{figure}
+
+% \subsubsection{Determining message type}
+
+% ...
+
+% A host may expect to receive command messages, \ac{ASCII} data messages, or binary data messages from the device.  Each of these message types must be processed differently.  It is therefore necessary for the host to determine the message type before attempting to process the message.
+% %
+% A host receiving a byte stream should store each byte to buffer.  Upon receiving the termination byte, 0x0A, the host may then check the value of the first byte in the buffer to determine the message type.
+
+% % All message types are a variable number of bytes terminated by the value, 0x0A (character \enquote{\textbackslash n}).
+
+% % ...should store each received byte to a buffer until the termination byte, 0x0A, is received.  Once this byte is received, the message type can be determined from the first byte stored in the buffer.  A byte value of \enquote{\{} indicates a command message, a value of \enquote{A} to \enquote{Z} indicates contains an \ac{ASCII} data message, and a value of 0x80 to 0xFF indicates a binary data message.  The host may then process the received data accordingly before clearing the buffer.
+
+
+% % as described in \Fref{tab:messageTypeAsIndicatedByFirstByte}.
+
+% \customTable
+% {c c c l}
+% {ASCII & Hex & Decimal & Message type}
+% {
+%     \enquote{\{} & 0x7B & 123 & Command message \\
+%     \enquote{A} to \enquote{Z} & 0x41 to 0x5A & 65 to 90 & \acs{ASCII} data message \\
+%     N/A & 0x80 to 0xFF & 128 to 255 &  Binary data message \\
+% }
+% {Message type as indicated by first byte}
+% {tab:messageTypeAsIndicatedByFirstByte}
+
+% \subsubsection{Undoing byte stuffing}
+% \label{sec:undoingByteStuffing}
+
+% Binary data messages are encoded using byte stuffing as described in \Fref{sec:byteStuffing}.  A host must undo the byte stuffing process for each received binary data message before the message can be interpreted.  \Fref{fig:exampleCCodeForUndoingByteStuffing} demonstrates how to undo byte stuffing using C code.  This code requires that \enquote{\texttt{src}} points to a terminated binary data message and that \enquote{\texttt{des}} points to a destination of sufficient size.  The function \enquote{\texttt{undoByteStuffing}} will return zero if successful.
+
+% \begin{figure}[H]
+%     \begin{lstlisting}
+% #define END     0x0A
+% #define ESC     0xDB
+% #define ESC_END 0xDC
+% #define ESC_ESC 0xDD
+
+% int undoByteStuffing(unsigned char* src, unsigned char* des) {
+%     int srcIndex = 0;
+%     int desIndex = 0;
+%     while (src[srcIndex] != END) {
+%         if (src[srcIndex] == ESC) {
+%             srcIndex++;
+%             if (src[srcIndex] == ESC_END) {
+%                 des[desIndex] = END;
+%             } else if (src[srcIndex] == ESC_ESC) {
+%                 des[desIndex] = ESC;
+%             } else {
+%                 return 1; // invalid escape sequence
+%             }
+%         } else {
+%             des[desIndex] = src[srcIndex];
+%         }
+%         srcIndex++;
+%         desIndex++;
+%     }
+%     return 0;
+% }
+%     \end{lstlisting}
+%     \caption{Example C code for undoing byte stuffing}
+%     \label{fig:exampleCCodeForUndoingByteStuffing}
+% \end{figure}
