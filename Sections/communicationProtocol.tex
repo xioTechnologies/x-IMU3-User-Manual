@@ -4,8 +4,8 @@
 All communication interfaces use the same communication protocol.  The byte stream is therefore identical for \ac{USB}, serial, \ac{TCP}, \ac{UDP}, and the files created by on-board data logging.  The communication protocol consists of two message types:
 
 \begin{itemize}[nolistsep]
-    \item {Command messages}
-    \item {Data messages}
+    \item Command messages
+    \item Data messages
 \end{itemize}
 
 All messages are terminated by a \ac{LF} control character.  This termination byte will not appear anywhere else in a message and so can be used to divide a byte stream into individual messages.  Some messages are terminated with an additional \ac{CR} control character.  \Fref{tab:controlCharactersLFAndCRrepresentations} describes the different ways that the control characters \ac{LF} and \ac{CR} may be referred to throughout this document.
@@ -152,7 +152,7 @@ The note command is sent to the device to generate a timestamped notification me
 
 \subsubsection{Bootloader command}
 
-The bootloader command is sent to the device to reset the device in bootloader mode.  The key is \enquote{bootloader} and the value is null.  See \Fref{sec:updatingDeviceFirmware} for more information about updating the device firmware.
+The bootloader command is sent to the device to put the device in bootloader mode.  The key is \enquote{bootloader} and the value is null.  The device will enter bootloader mode two seconds after receiving this command.  See \Fref{sec:updatingDeviceFirmware} for more information about updating the device firmware.
 
 \commandMessageExample{"bootloader":null}
 
@@ -168,7 +168,7 @@ Binary data messages are a sequence of bytes terminated by the control character
 \subsubsection{Byte stuffing}
 \label{sec:byteStuffing}
 
-Byte stuffing ensures that the termination byte value, 0x0A, only occurs at the end of a message.  This is achieved by replacing all occurrences of the termination byte prior to termination with an escape sequence.  This process is identical to \ac{SLIP} except that the \enquote{END} byte value is defined as 0x0A.  \Fref{tab:valuesUsedByTheByteStuffingProcess} lists the values used by the byte stuffing process.
+Byte stuffing ensures that the termination byte value, 0x0A, only occurs at the end of a binary data message.  This is achieved by replacing all occurrences of the termination byte prior to termination with an escape sequence.  This process is identical to \ac{SLIP} except that the \enquote{END} byte value is defined as 0x0A.  \Fref{tab:valuesUsedByTheByteStuffingProcess} lists the values used by the byte stuffing process.
 
 \customTable
 {l l l l}

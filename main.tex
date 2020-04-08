@@ -17,11 +17,6 @@
 \usepackage{longtable}
 \usepackage{macros} % project specific macros
 
-\author{x-io Technologies}
-\title{x-IMU3 User Manual}
-\newcommand{\version}{v0.0}
-\date{\today}
-
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\thetitle{} \version \\ \thedate}
@@ -31,24 +26,32 @@
 \renewcommand{\headrulewidth}{0.5pt}
 \renewcommand{\footrulewidth}{0.5pt}
 
+\renewcommand\labelitemi{\boldmath$\cdot$} % bullet point
+\renewcommand\labelitemii{-} % nested bullet point
+
+\author{x-io Technologies}
+\title{x-IMU3 User Manual}
+\newcommand{\version}{v0.0}
+\date{\today}
+
 \begin{document}
     \input{titlePage}
-    \clearpage
 
+    \clearpage
     \tableofcontents
-    \clearpage
 
-    \input{documentVersionHistory}
     \clearpage
-
-    \input{disclaimer}
-    \clearpage
-
-    \input{glossary}
-    \clearpage
-
     \input{Sections/communicationProtocol}
     \input{Sections/networkAnnouncementMessage}
     \input{Sections/deviceSettings}
     \input{Sections/updatingDeviceFirmware}
+
+    \clearpage
+    \input{glossary}
+
+    \clearpage
+    \input{documentVersionHistory}
+
+    \clearpage
+    \input{disclaimer}
 \end{document}
