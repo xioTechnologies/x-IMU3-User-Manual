@@ -521,53 +521,6 @@ The Earth acceleration message provides timestamped measurements of Earth accele
     \dataMessageExample
 \endgroup
 
-\subsubsection{Pressure message}
-
-The pressure message provides timestamped barometric pressure and altitude measurements.  Pressure messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{P} and the arguments are two numerical values expressed to four decimal places.  The first byte of a binary message is 0xD0 (equal to 0x80 + \enquote{P}) and the arguments are two contiguous 32-bit floats.  The message arguments are described in \Fref{tab:pressureMessageArguments}.
-
-\begingroup
-    \def\tempArgumentA{Barometric air pressure in millibars}
-    \def\tempArgumentB{Altitude in metres}
-    \dataMessageTable
-    {Pressure message arguments}
-    {tab:pressureMessageArguments}
-\endgroup
-
-\begingroup
-    \def\tempNameA{Pressure}
-    \def\tempNameB{Altitude}
-    \def\tempValueA{1023.14}
-    \def\tempValueB{0.0}
-    \def\tempAsciiFirst{P}
-    \def\tempAsciiA{1023.1400}
-    \def\tempAsciiB{0.0000}
-    \def\tempBinaryFirst{D0}
-    \def\tempBinaryA{00 50 7D 44}
-    \def\tempBinaryB{00 00 00 00}
-    \dataMessageExample
-\endgroup
-
-\subsubsection{Temperature message}
-
-The temperature message provides timestamped temperature measurements.  Temperature messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{T} and the argument is a numerical value expressed to four decimal places.  The first byte of a binary message is 0xD4 (equal to 0x80 + \enquote{T}) and the argument is a 32-bit float.  The message arguments are described in \Fref{tab:temperatureMessageArguments}.
-
-\begingroup
-    \def\tempArgumentA{Temperature in degrees Celsius}
-    \dataMessageTable
-    {Temperature message arguments}
-    {tab:temperatureMessageArguments}
-\endgroup
-
-\begingroup
-    \def\tempNameA{Temperature}
-    \def\tempValueA{25}
-    \def\tempAsciiFirst{T}
-    \def\tempAsciiA{25.0000}
-    \def\tempBinaryFirst{D4}
-    \def\tempBinaryA{00 00 41 C8}
-    \dataMessageExample
-\endgroup
-
 \subsubsection{High-g message}
 
 The High-g message provides timestamped high-g accelerometer measurements.  High-g messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{H} and the arguments are three numerical values expressed to four decimal places.  The first byte of a binary message is 0xC8 (equal to 0x80 + \enquote{H}) and the arguments are three contiguous 32-bit floats.  The message arguments are described in \Fref{tab:highGMessageArguments}.
@@ -596,6 +549,27 @@ The High-g message provides timestamped high-g accelerometer measurements.  High
     \def\tempBinaryA{00 00 00 00}
     \def\tempBinaryB{00 00 00 00}
     \def\tempBinaryC{00 00 80 3F}
+    \dataMessageExample
+\endgroup
+
+\subsubsection{Temperature message}
+
+The temperature message provides timestamped temperature measurements.  Temperature messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{T} and the argument is a numerical value expressed to four decimal places.  The first byte of a binary message is 0xD4 (equal to 0x80 + \enquote{T}) and the argument is a 32-bit float.  The message arguments are described in \Fref{tab:temperatureMessageArguments}.
+
+\begingroup
+    \def\tempArgumentA{Temperature in degrees Celsius}
+    \dataMessageTable
+    {Temperature message arguments}
+    {tab:temperatureMessageArguments}
+\endgroup
+
+\begingroup
+    \def\tempNameA{Temperature}
+    \def\tempValueA{25}
+    \def\tempAsciiFirst{T}
+    \def\tempAsciiA{25.0000}
+    \def\tempBinaryFirst{D4}
+    \def\tempBinaryA{00 00 41 C8}
     \dataMessageExample
 \endgroup
 
