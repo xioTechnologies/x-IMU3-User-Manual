@@ -11,11 +11,13 @@
 \usepackage[printonlyused,withpage]{acronym}
 \usepackage{tabularx}
 \usepackage[table]{xcolor}
-\usepackage[hidelinks]{hyperref}
+\usepackage[hidelinks]{hyperref}\hypersetup{ colorlinks, allcolors=., urlcolor=teal}
 \usepackage[skins]{tcolorbox}
 \usepackage{fancyhdr}
 \usepackage{titling} % \thetitle, \theauthor
 \usepackage{longtable}
+\usepackage{multicol}
+\usepackage{textcomp} % symbols, e.g. \textdegree
 \usepackage{macros} % project specific macros
 
 \pagestyle{fancy}
@@ -32,7 +34,7 @@
 
 \author{x-io Technologies}
 \title{x-IMU3 User Manual}
-\newcommand{\version}{v0.0}
+\newcommand{\version}{v0.1}
 \date{\today}
 
 \begin{document}
@@ -42,6 +44,8 @@
     \tableofcontents
 
     \clearpage
+    \input{Sections/overview}
+    \input{Sections/hardware}
     \input{Sections/communicationProtocol}
     \input{Sections/networkAnnouncementMessage}
     \input{Sections/deviceSettings}

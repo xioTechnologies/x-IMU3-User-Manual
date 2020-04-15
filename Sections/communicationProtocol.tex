@@ -259,9 +259,9 @@ The inertial message provides timestamped gyroscope and accelerometer measuremen
 The magnetometer message provides timestamped magnetometer measurements.  Magnetometer messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{M} and the arguments are three numerical values expressed to four decimal places.  The first byte of a binary message is CD (equal to 0x80 + \enquote{M}) and the arguments are three contiguous 32-bit floats.  The message arguments are described in \Fref{tab:magnetometerMessageArguments}.
 
 \begingroup
-    \def\tempArgumentA{Magnetometer X axis in arbitrary units}
-    \def\tempArgumentB{Magnetometer Y axis in arbitrary units}
-    \def\tempArgumentC{Magnetometer Z axis in arbitrary units}
+    \def\tempArgumentA{Magnetometer X axis in \acs{a.u.}}
+    \def\tempArgumentB{Magnetometer Y axis in \acs{a.u.}}
+    \def\tempArgumentC{Magnetometer Z axis in \acs{a.u.}}
     \dataMessageTable
     {Magnetometer message arguments}
     {tab:magnetometerMessageArguments}

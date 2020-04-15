@@ -1,0 +1,104 @@
+\section{Overview}
+
+\begin{multicols}{2}
+
+The x-IMU3 is x-io technologies' third generation \ac{IMU}.  It is a high-performance and versatile measurement device designed to accommodate a wide range of data logging and real-time applications including biomechanics, motion-capture, virtual reality, drones, robotics, and industrial.
+
+\acs{USB} and Wi-Fi provide connectivity for mobile and desktop devices while serial communication supports embedded and industrial systems.  An on-board micro \acs{SD} card allows the x-IMU3 to function as a stand-alone data logger with the ability to download files by USB and Wi-Fi.  Multiple x-IMU3s operating together on the same wireless network will automatically synchronise to stream or log synchronised measurements.
+
+\textbf{Sensors}
+\begin{itemize}[nolistsep]
+    \item Gyroscope, \textpm{}2000\textdegree{}/s, 400 Hz
+    \item Accelerometer, \textpm{}16 g, 400 Hz
+    \item Magnetometer, \textpm{}2.5 uT, 20 Hz
+    \item High-g accelerometer, \textpm{}200 g, 1600 Hz
+    \item Temperature sensor\footnote{The temperature sensor is used for calibration and is not intended to provide an accurate measurement of ambient temperature.}
+\end{itemize}
+
+\textbf{Calibration}
+\begin{itemize}[nolistsep]
+    \item 12-parameter calibration for: axis sensitivity, axis bias, inter-axis misalignment, and package misalignment.
+    \item Hard-iron and soft-iron calibration
+    \item On-board gyroscope bias correction algorithm
+\end{itemize}
+
+\textbf{\acs{AHRS}}
+\begin{itemize}[nolistsep]
+    \item Algorithm outputs:
+    \begin{itemize}
+        \item Quaternion
+        \item Rotation matrix
+        \item Euler angles
+        \item Linear acceleration
+        \item Earth acceleration
+    \end{itemize}
+    \item Linear acceleration rejection
+    \item Magnetic distortion rejection
+    \item Static accuracy:
+        \begin{itemize}
+            \item 1\textdegree{} \acs{RMS} inclination
+            \item 2\textdegree{} \acs{RMS} heading
+        \end{itemize}
+\end{itemize}
+
+\textbf{Communication}
+\begin{itemize}[nolistsep]
+    \item \acs{USB}
+    \item Serial, 3.3V \acs{UART}
+    \item \acs{TCP} (Wi-Fi)
+    \item \acs{UDP} (Wi-Fi)
+\end{itemize}
+
+\textbf{Wi-Fi}
+\begin{itemize}[nolistsep]
+    \item Client and \acs{AP} mode
+    \item Dual band (2.4 GHz, 5 GHz)
+    \item WPA/WPA2-Personal
+    \item WPA/WPA2-Enterprise\footnote{WPA/WPA2-Enterprise security is only supported in client mode.} (TBC)
+\end{itemize}
+
+\textbf{Data logging}
+\begin{itemize}[nolistsep]
+    \item Supports \acs{SD} cards up to 32 GB\footnote{The product is supplied with an 8 GB \acs{SD} card that can be upgraded by the user.}
+    \item Start/stop logging remotely
+    \item USB download
+    \item Wi-Fi download
+    \item \acs{CSV} output
+\end{itemize}
+
+\textbf{Serial accessories}
+\begin{itemize}[nolistsep]
+    \item Receive data from external sensors and user electronics, e.g. \acs{GPS}, analogue/digital inputs, application-specific sensors.
+    \item 3.3 V output to power external electronics
+\end{itemize}
+
+\textbf{Battery}
+\begin{itemize}[nolistsep]
+    \item Internal battery charged by \acs{USB}
+    \item 15 hours data logging
+    \item 6 hours Wi-Fi client 5 GHz
+\end{itemize}
+
+\textbf{Housing}
+\begin{itemize}[nolistsep]
+    \item IPXX (TBC)
+    \item Wearable strap or chassis mount
+\end{itemize}
+
+\textbf{Software \acs{GUI}}
+\begin{itemize}[nolistsep]
+    \item Real-time data plots and 3D view
+    \item Log real-time data to \acs{CSV}
+    \item Forward real-time data to other applications
+    \item Windows and OSX
+\end{itemize}
+
+\textbf{Software \acs{API}}
+\begin{itemize}[nolistsep]
+    \item Rust, C, C++, Python
+    \item Code examples for other languages available
+\end{itemize}
+
+\end{multicols}
+
+\clearpage
