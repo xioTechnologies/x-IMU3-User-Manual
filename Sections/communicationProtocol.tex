@@ -210,7 +210,7 @@ The byte stuffing process will not modify the END that terminates the message.  
 
 \subsubsection{Inertial message}
 
-The inertial message provides timestamped gyroscope and accelerometer measurements.  Inertial messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{I} and the arguments are six numerical values expressed to four decimal places.  The first byte of a binary message is C9 (equal to 0x80 + \enquote{I}) and the arguments are six contiguous 32-bit floats.  The message arguments are described in \Fref{tab:inertialMessageArguments}.
+The inertial message provides timestamped gyroscope and accelerometer measurements.  Inertial messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{I} and the arguments are six numerical values expressed to four decimal places.  The first byte of a binary message is 0xC9 (equal to 0x80 + \enquote{I}) and the arguments are six contiguous 32-bit floats.  The message arguments are described in \Fref{tab:inertialMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{Gyroscope X axis in degrees per second}
@@ -256,7 +256,7 @@ The inertial message provides timestamped gyroscope and accelerometer measuremen
 
 \subsubsection{Magnetometer message}
 
-The magnetometer message provides timestamped magnetometer measurements.  Magnetometer messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{M} and the arguments are three numerical values expressed to four decimal places.  The first byte of a binary message is CD (equal to 0x80 + \enquote{M}) and the arguments are three contiguous 32-bit floats.  The message arguments are described in \Fref{tab:magnetometerMessageArguments}.
+The magnetometer message provides timestamped magnetometer measurements.  Magnetometer messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{M} and the arguments are three numerical values expressed to four decimal places.  The first byte of a binary message is 0xCD (equal to 0x80 + \enquote{M}) and the arguments are three contiguous 32-bit floats.  The message arguments are described in \Fref{tab:magnetometerMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{Magnetometer X axis in \acs{a.u.}}
@@ -287,7 +287,7 @@ The magnetometer message provides timestamped magnetometer measurements.  Magnet
 
 \subsubsection{Quaternion message}
 
-The quaternion message provides timestamped measurement of orientation of the device relative to the Earth.  Quaternion messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{Q} and the arguments are four numerical values expressed to four decimal places.  The first byte of a binary message is D1 (equal to 0x80 + \enquote{Q}) and the arguments are four contiguous 32-bit floats.  The message arguments are described in \Fref{tab:quaternionMessageArguments}.
+The quaternion message provides timestamped measurements of the orientation of the device relative to the Earth.  Quaternion messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{Q} and the arguments are four numerical values expressed to four decimal places.  The first byte of a binary message is 0xD1 (equal to 0x80 + \enquote{Q}) and the arguments are four contiguous 32-bit floats.  The message arguments are described in \Fref{tab:quaternionMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{Quaternion W element}
@@ -325,7 +325,7 @@ The quaternion message provides timestamped measurement of orientation of the de
 
 \subsubsection{Rotation matrix message}
 
-The rotation matrix message provides timestamped measurement of orientation of the device relative to the Earth.  Rotation matrix messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{R} and the arguments are nine numerical values expressed to four decimal places.  The first byte of a binary message is D2 (equal to 0x80 + \enquote{R}) and the arguments are nine contiguous 32-bit floats.  The message arguments are described in \Fref{tab:rotationMatrixMessageArguments}.
+The rotation matrix message provides timestamped measurements of the orientation of the device relative to the Earth.  Rotation matrix messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{R} and the arguments are nine numerical values expressed to four decimal places.  The first byte of a binary message is 0xD2 (equal to 0x80 + \enquote{R}) and the arguments are nine contiguous 32-bit floats.  The message arguments are described in \Fref{tab:rotationMatrixMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{Rotation matrix XX element}
@@ -386,7 +386,7 @@ The rotation matrix message provides timestamped measurement of orientation of t
 
 \subsubsection{Euler angles message}
 
-The Euler angles message provides timestamped measurement of orientation of the device relative to the Earth.  Euler angles messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{E} and the arguments are three numerical values expressed to four decimal places.  The first byte of a binary message is C5 (equal to 0x80 + \enquote{E}) and the arguments are three contiguous 32-bit floats.  The message arguments are described in \Fref{tab:eulerAnglesMessageArguments}.
+The Euler angles message provides timestamped measurements of the orientation of the device relative to the Earth.  Euler angles messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{E} and the arguments are three numerical values expressed to four decimal places.  The first byte of a binary message is 0xC5 (equal to 0x80 + \enquote{E}) and the arguments are three contiguous 32-bit floats.  The message arguments are described in \Fref{tab:eulerAnglesMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{Roll angle in degrees}
@@ -417,7 +417,7 @@ The Euler angles message provides timestamped measurement of orientation of the 
 
 \subsubsection{Pressure message}
 
-The pressure message provides timestamped barometric pressure and altitude measurements.  Pressure messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{P} and the arguments are two numerical values expressed to four decimal places.  The first byte of a binary message is D0 (equal to 0x80 + \enquote{P}) and the arguments are two contiguous 32-bit floats.  The message arguments are described in \Fref{tab:pressureMessageArguments}.
+The pressure message provides timestamped barometric pressure and altitude measurements.  Pressure messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{P} and the arguments are two numerical values expressed to four decimal places.  The first byte of a binary message is 0xD0 (equal to 0x80 + \enquote{P}) and the arguments are two contiguous 32-bit floats.  The message arguments are described in \Fref{tab:pressureMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{Barometric air pressure in millibars}
@@ -443,7 +443,7 @@ The pressure message provides timestamped barometric pressure and altitude measu
 
 \subsubsection{Temperature message}
 
-The temperature message provides timestamped temperature measurements.  Temperature messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{T} and the argument is a numerical value expressed to four decimal places.  The first byte of a binary message is D4 (equal to 0x80 + \enquote{T}) and the argument is a 32-bit float.  The message arguments are described in \Fref{tab:temperatureMessageArguments}.
+The temperature message provides timestamped temperature measurements.  Temperature messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{T} and the argument is a numerical value expressed to four decimal places.  The first byte of a binary message is 0xD4 (equal to 0x80 + \enquote{T}) and the argument is a 32-bit float.  The message arguments are described in \Fref{tab:temperatureMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{Temperature in degrees Celsius}
@@ -464,7 +464,7 @@ The temperature message provides timestamped temperature measurements.  Temperat
 
 \subsubsection{High-g message}
 
-The High-g message provides timestamped high-g accelerometer measurements.  High-g messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{H} and the arguments are three numerical values expressed to four decimal places.  The first byte of a binary message is C8 (equal to 0x80 + \enquote{H}) and the arguments are three contiguous 32-bit floats.  The message arguments are described in \Fref{tab:highGMessageArguments}.
+The High-g message provides timestamped high-g accelerometer measurements.  High-g messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{H} and the arguments are three numerical values expressed to four decimal places.  The first byte of a binary message is 0xC8 (equal to 0x80 + \enquote{H}) and the arguments are three contiguous 32-bit floats.  The message arguments are described in \Fref{tab:highGMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{High-g accelerometer X axis in g}
@@ -495,7 +495,7 @@ The High-g message provides timestamped high-g accelerometer measurements.  High
 
 \subsubsection{Battery message}
 
-The battery message message provides timestamped measurements of the battery level, voltage, and charger status.  Battery message messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{B} and the arguments are four numerical values expressed to four decimal places.  The first byte of a binary message is C2 (equal to 0x80 + \enquote{B}) and the arguments are four contiguous 32-bit floats.  The message arguments are described in \Fref{tab:batteryMessageArguments}.
+The battery message message provides timestamped measurements of the battery level, voltage, and charger status.  Battery message messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{B} and the arguments are four numerical values expressed to four decimal places.  The first byte of a binary message is 0xC2 (equal to 0x80 + \enquote{B}) and the arguments are four contiguous 32-bit floats.  The message arguments are described in \Fref{tab:batteryMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{Battery percentage}
@@ -531,7 +531,7 @@ The battery message message provides timestamped measurements of the battery lev
 
 \subsubsection{Wi-Fi \acs{RSSI} message}
 
-The Wi-Fi \ac{RSSI} message provides timestamped Wi-Fi \ac{RSSI} measurements.  Wi-Fi \ac{RSSI} messages are sent continuously at the message rate configured in the device settings.  Wi-Fi \ac{RSSI} messages will only be sent if the device is configured as a Wi-Fi client.  The first value of an \ac{ASCII} message is the character \enquote{W} and the arguments are two numerical values expressed to four decimal places.  The first byte of a binary message is D7 (equal to 0x80 + \enquote{W}) and the arguments are two contiguous 32-bit floats.  The message arguments are described in \Fref{tab:wiFiRssiMessageArguments}.
+The Wi-Fi \ac{RSSI} message provides timestamped Wi-Fi \ac{RSSI} measurements.  Wi-Fi \ac{RSSI} messages are sent continuously at the message rate configured in the device settings.  Wi-Fi \ac{RSSI} messages will only be sent if the device is configured as a Wi-Fi client.  The first value of an \ac{ASCII} message is the character \enquote{W} and the arguments are two numerical values expressed to four decimal places.  The first byte of a binary message is 0xD7 (equal to 0x80 + \enquote{W}) and the arguments are two contiguous 32-bit floats.  The message arguments are described in \Fref{tab:wiFiRssiMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{\acs{RSSI} percentage}
@@ -557,7 +557,7 @@ The Wi-Fi \ac{RSSI} message provides timestamped Wi-Fi \ac{RSSI} measurements.  
 
 \subsubsection{Serial accessory message}
 
-The serial accessory message provides timestamped received serial accessory data.  Serial accessory messages are sent as serial accessory data is received according to the device settings.  The first value of an \ac{ASCII} message is the character \enquote{S} and the argument is the received data.  Received byte values less than 0x20 or greater than 0x7E will be replaced with the character \enquote{?} so that the argument is a string of printable characters.  The string is not null-terminated.  The first byte of a binary message is D3 (equal to 0x80 + \enquote{S}) and the argument is the unmodified received data.  The message arguments are described in \Fref{tab:serialAccessoryMessageArguments}.
+The serial accessory message provides timestamped received serial accessory data.  Serial accessory messages are sent as serial accessory data is received according to the device settings.  The first value of an \ac{ASCII} message is the character \enquote{S} and the argument is the received data.  Received byte values less than 0x20 or greater than 0x7E will be replaced with the character \enquote{?} so that the argument is a string of printable characters.  The string is not null-terminated.  The first byte of a binary message is 0xD3 (equal to 0x80 + \enquote{S}) and the argument is the unmodified received data.  The message arguments are described in \Fref{tab:serialAccessoryMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{Received serial accessory data}
