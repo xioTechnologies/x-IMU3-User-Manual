@@ -415,6 +415,112 @@ The Euler angles message provides timestamped measurements of the orientation of
     \dataMessageExample
 \endgroup
 
+\subsubsection{Linear acceleration message}
+
+The linear acceleration message provides timestamped measurements of linear acceleration and the orientation of the device relative to the Earth.  Linear acceleration messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{L} and the arguments are seven numerical values expressed to four decimal places.  The first byte of a binary message is 0xCC (equal to 0x80 + \enquote{L}) and the arguments are seven contiguous 32-bit floats.  The message arguments are described in \Fref{tab:linearAccelerationMessageArguments}.
+
+\begingroup
+    \def\tempArgumentA{Quaternion W element}
+    \def\tempArgumentB{Quaternion X element}
+    \def\tempArgumentC{Quaternion Y element}
+    \def\tempArgumentD{Quaternion Z element}
+    \def\tempArgumentE{Linear acceleration X axis in g}
+    \def\tempArgumentF{Linear acceleration Y axis in g}
+    \def\tempArgumentG{Linear acceleration Z axis in g}
+    \def\tempCaption{Linear acceleration message arguments}
+    \def\tempLabel{tab:linearAccelerationMessageArguments}
+    \dataMessageTable
+    {Linear acceleration message arguments}
+    {tab:linearAccelerationMessageArguments}
+\endgroup
+
+\begingroup
+    \def\tempNameA{Quaternion W element}
+    \def\tempNameB{Quaternion X element}
+    \def\tempNameC{Quaternion Y element}
+    \def\tempNameD{Quaternion Z element}
+    \def\tempNameE{Linear acceleration X axis}
+    \def\tempNameF{Linear acceleration Y axis}
+    \def\tempNameG{Linear acceleration Z axis}
+    \def\tempValueA{1}
+    \def\tempValueB{0}
+    \def\tempValueC{0}
+    \def\tempValueD{0}
+    \def\tempValueE{0}
+    \def\tempValueF{0}
+    \def\tempValueG{0}
+    \def\tempAsciiFirst{L}
+    \def\tempAsciiA{1.0000}
+    \def\tempAsciiB{0.0000}
+    \def\tempAsciiC{0.0000}
+    \def\tempAsciiD{0.0000}
+    \def\tempAsciiE{0.0000}
+    \def\tempAsciiF{0.0000}
+    \def\tempAsciiG{0.0000}
+    \def\tempBinaryFirst{CC}
+    \def\tempBinaryA{00 00 80 3F}
+    \def\tempBinaryB{00 00 00 00}
+    \def\tempBinaryC{00 00 00 00}
+    \def\tempBinaryD{00 00 00 00}
+    \def\tempBinaryE{00 00 00 00}
+    \def\tempBinaryF{00 00 00 00}
+    \def\tempBinaryG{00 00 00 00}
+    \dataMessageExample
+\endgroup
+
+\subsubsection{Earth acceleration message}
+
+The Earth acceleration message provides timestamped measurements of Earth acceleration and the orientation of the device relative to the Earth.  Earth acceleration messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{E} and the arguments are seven numerical values expressed to four decimal places.  The first byte of a binary message is 0xC5 (equal to 0x80 + \enquote{E}) and the arguments are seven contiguous 32-bit floats.  The message arguments are described in \Fref{tab:earthAccelerationMessageArguments}.
+
+\begingroup
+    \def\tempArgumentA{Quaternion W element}
+    \def\tempArgumentB{Quaternion X element}
+    \def\tempArgumentC{Quaternion Y element}
+    \def\tempArgumentD{Quaternion Z element}
+    \def\tempArgumentE{Earth acceleration X axis in g}
+    \def\tempArgumentF{Earth acceleration Y axis in g}
+    \def\tempArgumentG{Earth acceleration Z axis in g}
+    \def\tempCaption{Earth acceleration message arguments}
+    \def\tempLabel{tab:earthAccelerationMessageArguments}
+    \dataMessageTable
+    {Earth acceleration message arguments}
+    {tab:earthAccelerationMessageArguments}
+\endgroup
+
+\begingroup
+    \def\tempNameA{Quaternion W element}
+    \def\tempNameB{Quaternion X element}
+    \def\tempNameC{Quaternion Y element}
+    \def\tempNameD{Quaternion Z element}
+    \def\tempNameE{Earth acceleration X axis}
+    \def\tempNameF{Earth acceleration Y axis}
+    \def\tempNameG{Earth acceleration Z axis}
+    \def\tempValueA{1}
+    \def\tempValueB{0}
+    \def\tempValueC{0}
+    \def\tempValueD{0}
+    \def\tempValueE{0}
+    \def\tempValueF{0}
+    \def\tempValueG{0}
+    \def\tempAsciiFirst{E}
+    \def\tempAsciiA{1.0000}
+    \def\tempAsciiB{0.0000}
+    \def\tempAsciiC{0.0000}
+    \def\tempAsciiD{0.0000}
+    \def\tempAsciiE{0.0000}
+    \def\tempAsciiF{0.0000}
+    \def\tempAsciiG{0.0000}
+    \def\tempBinaryFirst{C5}
+    \def\tempBinaryA{00 00 80 3F}
+    \def\tempBinaryB{00 00 00 00}
+    \def\tempBinaryC{00 00 00 00}
+    \def\tempBinaryD{00 00 00 00}
+    \def\tempBinaryE{00 00 00 00}
+    \def\tempBinaryF{00 00 00 00}
+    \def\tempBinaryG{00 00 00 00}
+    \dataMessageExample
+\endgroup
+
 \subsubsection{Pressure message}
 
 The pressure message provides timestamped barometric pressure and altitude measurements.  Pressure messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{P} and the arguments are two numerical values expressed to four decimal places.  The first byte of a binary message is 0xD0 (equal to 0x80 + \enquote{P}) and the arguments are two contiguous 32-bit floats.  The message arguments are described in \Fref{tab:pressureMessageArguments}.
