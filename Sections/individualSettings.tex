@@ -196,28 +196,114 @@
 {Enables (true) or disables (false) the sending of data messages for the on-board data logging.  The sending of notification and error messages cannot be disabled.}
 
 \newcommand{\ahrsMessageTypeDescription}
-{\ac{AHRS} message type.}
+{
+Configures the \ac{AHRS} message type.  The possible values are listed in \Fref{tab:ahrsMessageTypes}.
+
+    \begin{minipage}{\linewidth}
+        \customTable
+        {c l}
+        {Value & Message type}
+        {
+            0 & Quaternion\\
+            1 & Rotation matrix\\
+            2 & Euler angles\\
+            3 & Linear acceleration\\
+            4 & Earth acceleration\\
+        }
+        {\acs{AHRS} message types}
+        {tab:ahrsMessageTypes}
+    \end{minipage}
+    \hfill
+}
+
+\newcommand{\messageRateDivisorDescription}[6]
+{
+    Configures the #1 message rate as the fixed sample of #2 Hz divided by the the message rate divisor.  A message rate divisor of zero will disable the messages.  Example message rates are listed in \Fref{#6}.
+    %See \Fref{sec:messageRates} for more information about messages rates.
+
+    \begin{minipage}{\linewidth}
+        \customTable
+        {c c}
+        {Divisor & Message rate}
+        {
+            0 & Disabled\\
+            1 & #2 messages/s\\
+            2 & #3 messages/s\\
+            3 & #4 messages/s\\
+            4 & #5 messages/s\\
+            ... & ... \\
+        }
+        {Example #1 message rates}
+        {#6}
+    \end{minipage}
+    \hfill
+}
 
 \newcommand{\inertialMessageRateDivisorDescription}
-{Inertial message rate divisor.}
+{
+    \messageRateDivisorDescription
+    {inertial}
+    {400}
+    {200}
+    {133.33}
+    {100}
+    {tab:exampleInertialMessageRates}
+}
 
 \newcommand{\magnetometerMessageRateDivisorDescription}
-{Magnetometer message rate divisor.}
+{
+    \messageRateDivisorDescription
+    {magnetometer}
+    {20}
+    {10}
+    {6.67}
+    {5}
+    {tab:exampleMagnetometerMessageRates}
+}
 
 \newcommand{\ahrsMessageRateDivisorDescription}
-{\ac{AHRS} message rate divisor.}
-
-\newcommand{\pressureMessageRateDivisorDescription}
-{Pressure message rate divisor.}
-
-\newcommand{\temperatureMessageRateDivisorDescription}
-{Temperature message rate divisor.}
+{
+    \messageRateDivisorDescription
+    {\acs{AHRS}}
+    {400}
+    {200}
+    {133.33}
+    {100}
+    {tab:exampleAhrsrMessageRates}
+}
 
 \newcommand{\highGMessageRateDivisorDescription}
-{High-g message rate divisor.}
+{
+    \messageRateDivisorDescription
+    {high-g accelerometer}
+    {1600}
+    {800}
+    {533.33}
+    {400}
+    {tab:exampleHighGAccelerometerMessageRates}
+}
+
+\newcommand{\temperatureMessageRateDivisorDescription}
+{
+    \messageRateDivisorDescription
+    {temperature}
+    {5}
+    {2.5}
+    {1.67}
+    {1.25}
+    {tab:exampleTemperatureMessageRates}
+}
 
 \newcommand{\batteryMessageRateDivisorDescription}
-{Battery message rate divisor.}
+{
+    \messageRateDivisorDescription
+    {battery}
+    {5}
+    {2.5}
+    {1.67}
+    {1.25}
+    {tab:exampleBatteryMessageRates}
+}
 
 \newcommand{\serialAccessoryRateDivisorDescription}
 {Serial accessory rate divisor.}
@@ -907,16 +993,6 @@
     \def\tempLabel{sec:ahrsMessageRateDivisor}
     \def\tempDescription{\ahrsMessageRateDivisorDescription}
     \def\tempKey{ahrsMessageRateDivisor}
-    \def\tempType{number}
-    \def\tempDefault{1}
-    \deviceSetting
-\endgroup
-
-\begingroup
-    \def\tempSection{Pressure message rate divisor}
-    \def\tempLabel{sec:pressureMessageRateDivisor}
-    \def\tempDescription{\pressureMessageRateDivisorDescription}
-    \def\tempKey{pressureMessageRateDivisor}
     \def\tempType{number}
     \def\tempDefault{1}
     \deviceSetting
