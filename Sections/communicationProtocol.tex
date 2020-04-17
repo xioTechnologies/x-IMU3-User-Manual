@@ -36,7 +36,7 @@ The read setting command is sent to the device to read a setting value.  The key
 
 \subsubsection{Write setting command}
 
-The write setting command is sent to the device to write a setting value.  The key is the setting key and the value is the setting value.  See \Fref{sec:individualSettings} for a complete list of settings.  The device will acknowledge a write setting command by sending a setting write command back to the host, indicating the new settings value.  The device will not apply new settings until two seconds after the most recent write setting command or default command was received.
+The write setting command is sent to the device to write a setting value, or sent from the device to the host in response to a read setting command.  The key is the setting key and the value is the setting value.  See \Fref{sec:individualSettings} for a complete list of settings.  The device will acknowledge a write setting command by sending a setting write command back to the host, indicating the new settings value.  The device will not apply new settings until two seconds after the most recent write setting command or default command was received.
 
 \commandMessageExample{"deviceName":"x-IMU3"}
 
@@ -67,7 +67,7 @@ The read time command is sent to the device to read the date and time of the \ac
 
 \subsubsection{Write time command}
 
-The write time command is sent to the device to write the date and time of the \ac{RTC}.  The key is \enquote{time} and the value is a string expressing the date and time in the format \enquote{YYYY-MM-DD hh:mm:ss} where each delimiter can be any non-numerical character.  The device will acknowledge a write time command by sending a write time command back to the host, indicating the new date and time.
+The write time command is sent to the device to write the date and time of the \ac{RTC}, or sent from the device to the host in response to a read time command.  The key is \enquote{time} and the value is a string expressing the date and time in the format \enquote{YYYY-MM-DD hh:mm:ss} where each delimiter can be any non-numerical character.  The device will acknowledge a write time command by sending a write time command back to the host, indicating the new date and time.
 
 \commandMessageExample{"time":"2020-01-01 00:00:00"}
 
@@ -149,6 +149,38 @@ The serial accessory command is sent to the device to transmit data to a serial 
 The note command is sent to the device to generate a timestamped notification message containing a user-defined string.  The key is \enquote{note} and the value is the string of up to 127 characters.  Longer strings will be truncated to the maximum size.  This command can be used to create timestamped notes of events during data logging.
 
 \commandMessageExample{"note":"Something happened."}
+
+\subsubsection{Self-test command}
+
+The self-test command is sent to the device to perform a self-test.  The key is \enquote{test} and the value is null.  The result of the self-test is obtained using the result command.  The device must be stationary during the self-test.
+
+\commandMessageExample{"test":null}
+
+\subsubsection{Result command}
+
+The result command is sent to the device to obtain the result of the most recent self-test.  The key is \enquote{result} and the value is null.  The device will acknowledge a result command by sending a result response to the host.
+
+\commandMessageExample{"result":null}
+
+\subsubsection{Result response}
+
+The result response is sent from the device to the host in response to the result command.  The key is \enquote{result} and the value is a \ac{JSON} object containing multiple key/value pairs.  Each key/value pair indicates the result of a component test.  Each key is the component name and the value is the string "Passed" if the test was passed.  The \ac{JSON} object will be empty if the self-test is in progress or if a self-test has not been performed.
+
+\begin{table}[H]
+    \begin{tabular}{l l l}
+        \textbf{Example}*\textbf{:} & \texttt{\{} \\
+        & \texttt{~~"result":~\{} & \\
+        & \texttt{~~~~"Component A":} & \texttt{"Passed",} \\
+        & \texttt{~~~~"Component B":} & \texttt{"Passed",} \\
+        & \texttt{~~~~"Component C":} & \texttt{"Passed"} \\
+        & \texttt{~~\}} \\
+        & \texttt{\}\textbackslash r\textbackslash n} \\
+    \end{tabular} \\
+    \begin{tabular}{l}
+        \\
+        \footnotesize{* The actual \acs{JSON} will not include any whitespace.}
+    \end{tabular}
+\end{table}
 
 \subsubsection{Bootloader command}
 
