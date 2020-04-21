@@ -199,44 +199,38 @@
 {
 Configures the \ac{AHRS} message type.  The possible values are listed in \Fref{tab:ahrsMessageTypes}.
 
-    \begin{minipage}{\linewidth}
-        \customTable
-        {c l}
-        {Value & Message type}
-        {
-            0 & Quaternion\\
-            1 & Rotation matrix\\
-            2 & Euler angles\\
-            3 & Linear acceleration\\
-            4 & Earth acceleration\\
-        }
-        {\acs{AHRS} message types}
-        {tab:ahrsMessageTypes}
-    \end{minipage}
-    \hfill
+    \customTable
+    {c l}
+    {Value & Message type}
+    {
+        0 & Quaternion\\
+        1 & Rotation matrix\\
+        2 & Euler angles\\
+        3 & Linear acceleration\\
+        4 & Earth acceleration\\
+    }
+    {\acs{AHRS} message types}
+    {tab:ahrsMessageTypes}
 }
 
 \newcommand{\messageRateDivisorDescription}[6]
 {
     Configures the #1 message rate as the fixed sample of #2 Hz divided by the the message rate divisor.  A message rate divisor of zero will disable the messages.  Example message rates are listed in \Fref{#6}.
-    %See \Fref{sec:messageRates} for more information about messages rates.
+	%See \Fref{sec:messageRates} for more information about messages rates.
 
-    \begin{minipage}{\linewidth}
-        \customTable
-        {c c}
-        {Divisor & Message rate}
-        {
-            0 & Disabled\\
-            1 & #2 messages/s\\
-            2 & #3 messages/s\\
-            3 & #4 messages/s\\
-            4 & #5 messages/s\\
-            ... & ... \\
-        }
-        {Example #1 message rates}
-        {#6}
-    \end{minipage}
-    \hfill
+    \customTable
+    {c c}
+    {Divisor & Message rate}
+    {
+        0 & Disabled\\
+        1 & #2 messages/s\\
+        2 & #3 messages/s\\
+        3 & #4 messages/s\\
+        4 & #5 messages/s\\
+        ... & ... \\
+    }
+    {Example #1 message rates}
+    {#6}
 }
 
 \newcommand{\inertialMessageRateDivisorDescription}

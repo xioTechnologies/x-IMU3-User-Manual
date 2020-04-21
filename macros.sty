@@ -122,10 +122,17 @@
     \begin{table}[H]
         \def\arraystretch{1.5}
         \begin{tabularx}{\textwidth}{l X}
-            \textbf{Description:} & \tempDescription \\
+            \textbf{Description:} &
+            \begin{minipage}[t]{\linewidth}
+                \tempDescription
+            \end{minipage} \\
             \textbf{\acs{JSON} key:} & \texttt{"\tempKey "} \\
             \textbf{\acs{JSON} value type:} & \tempType \\
             \ifdefined\tempDefault \textbf{Default value:} & \tempDefault \\ \fi
         \end{tabularx}
     \end{table}
 }
+
+% TODO: Remove spacing after mini page when minipage is >1 line. [b] does this but [t] is needed for "Description" to be top aligned.
+% https://tex.stackexchange.com/questions/349178/vertical-space-after-minipage-edit-in-an-environment
+
