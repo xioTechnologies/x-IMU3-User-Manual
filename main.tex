@@ -1,8 +1,9 @@
 \documentclass[10pt,a4paper]{article}
 
-\usepackage[scaled]{helvet}\renewcommand\familydefault{\sfdefault}
+\usepackage[scaled]{helvet}
 \usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
 \usepackage{parskip} % don't indent first line of paragraph
+\usepackage[utf8x]{inputenc} % e.g. √
 \usepackage[none]{hyphenat}\sloppy  % don't hyphenate
 \usepackage{float} % [H]
 \usepackage{fancyref} % \Fref
@@ -19,7 +20,10 @@
 \usepackage{array} % \arraybackslash
 \usepackage{multicol}
 \usepackage{textcomp} % symbols, e.g. \textdegree
+\usepackage{textgreek} % greek letters, e.g. \textmu
 \usepackage{macros} % project specific macros
+
+\renewcommand\familydefault{\sfdefault}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -47,6 +51,8 @@
     \clearpage
     \input{Sections/overview}
     \input{Sections/hardware}
+    \input{Sections/technicalSpecification}
+    \input{Sections/messageRates}
     \input{Sections/communicationProtocol}
     \input{Sections/networkAnnouncementMessage}
     \input{Sections/deviceSettings}

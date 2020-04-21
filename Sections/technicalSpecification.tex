@@ -1,0 +1,111 @@
+\section{Technical specification}
+
+\subsection{Sensors}
+
+\newcommand{\sensorTable}[4]{
+    \customTable
+    {l c c}
+    {Characteristic & Value & Notes}
+    {
+        #1
+    }
+    {#2}
+    {#3}
+    \textbf{Notes}
+    \begin{enumerate}[nolistsep]
+        #4
+    \end{enumerate}
+}
+
+\newcommand{\noteSampleRate}{Each sample includes a timestamp for a reliable measurement of time independent of the sample rate tolerance.  See \Fref{sec:messageRates} for more information.}
+
+\newcommand{\noteBandwidth}{The maximum bandwidth is achieved when the message rate is equal to the sample rate.  If the message rate is less than the sample rate then samples are averaged.  See \Fref{sec:messageRates} for more information.}
+
+\newcommand{\noteAccuracy}[3]{The accuracy at 1 #1 is evaluated as the deviation of the measured magnitude of #2 for a 360\textdegree{} rotation around the X, Y, and Z axis aligned to the #3 axis.}
+
+\subsubsection{Gyroscope}
+
+\sensorTable
+{
+    Range & \textpm{}2000\textdegree{}/s & \\
+    Resolution & 16-bit, 0.061\textdegree{}/s & -\\
+    Sample rate & 400 Hz \textpm{}TBC & \ref{itm:gyroscope1}\\
+    Bandwidth & TBC & \ref{itm:gyroscope2}\\
+    Noise & TBC & -\\
+}
+{Gyroscope specification}
+{tab:gyroscopeSpecification}
+{
+    \item \label{itm:gyroscope1} \noteSampleRate
+    \item \label{itm:gyroscope2} \noteBandwidth
+}
+
+\subsubsection{Accelerometer}
+
+\sensorTable
+{
+    Range & \textpm{}16 g & -\\
+    Resolution & 16-bit, 488 \textmugreek{}g & -\\
+    Sample rate & 400 Hz \textpm{}TBC\% & \ref{itm:accelerometer1}\\
+    Bandwidth & TBC & \ref{itm:accelerometer2}\\
+    Noise & TBC & -\\
+    Accuracy at 1 g & TBC & \ref{itm:accelerometer3}\\
+}
+{Accelerometer specification}
+{tab:accelerometerSpecification}
+{
+    \item \label{itm:accelerometer1} \noteSampleRate
+    \item \label{itm:accelerometer2} \noteBandwidth
+    \item \label{itm:accelerometer3} \noteAccuracy{g}{gravity}{horizontal}
+}
+
+\subsubsection{Magnetometer}
+
+\sensorTable
+{
+    Range & \textpm{}1300 \textmugreek{}T (X, Y), \textpm{}2500 \textmugreek{}T (Z) & -\\
+    Sample rate & 20 Hz \textpm{}TBC & \ref{itm:magnetometer1}\\
+    Noise & 0.3 \textmugreek{}T & -\\
+    Accuracy at 1 \acs{a.u.} & TBC & \ref{itm:magnetometer2}, \ref{itm:magnetometer3}\\
+}
+{Magnetometer specification}
+{tab:magnetometerSpecification}
+{
+    \item \label{itm:magnetometer1} \noteSampleRate
+    \item \label{itm:magnetometer2} The calibrated magnetometer units are \ac{a.u.}.  1 \ac{a.u.} is equal to the magnitude of the ambient magnetic during calibration, approximately 500 \textmugreek{}T.
+    \item \label{itm:magnetometer3} \noteAccuracy{\ac{a.u.}}{the ambient magnetic field}{vertical}
+}
+
+\subsubsection{High-g accelerometer}
+
+\sensorTable
+{
+    Range & \textpm{}200 g & -\\
+    Resolution & 16-bit, 6.1 mg & -\\
+    Sample rate & 1600 Hz \textpm{}TBC & -\\
+    Bandwidth & 800 Hz & \ref{itm:highGAccelerometer1}, \ref{itm:highGAccelerometer2}\\
+    Noise & 5 mg/√Hz & -\\
+    Accuracy at 1 g & TBC & \ref{itm:highGAccelerometer3}\\
+}
+{High-g Accelerometer specification}
+{tab:highGAccelerometerSpecification}
+{
+    \item \label{itm:highGAccelerometer1} \noteSampleRate
+    \item \label{itm:highGAccelerometer2} \noteBandwidth
+    \item \label{itm:highGAccelerometer3} \noteAccuracy{g}{gravity}{horizontal}
+}
+
+\subsubsection{Temperature sensor}
+
+\sensorTable
+{
+    Range & TBC & -\\
+    Sample rate & 5 Hz \textpm{}TBC & \ref{itm:temperatureSensor1}, \ref{itm:temperatureSensor2}\\
+    Accuracy & TBC & -\\
+}
+{Temperature sensor specification}
+{tab:temperatureSensor}
+{
+    \item \label{itm:temperatureSensor1} \noteSampleRate
+    \item \label{itm:temperatureSensor2} The temperature sensor is oversampled and the result decimated to the specified sample rate.
+}
