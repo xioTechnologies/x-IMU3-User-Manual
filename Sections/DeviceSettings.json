@@ -126,7 +126,7 @@
     {
         "name": "Serial baud rate",
         "declaration": "uint32_t name",
-        "default": "{3000000}"
+        "default": "{115200}"
     },
     {
         "name": "Serial RTS/CTS enabled",
@@ -297,7 +297,7 @@
         "default": "{0}"
     },
     {
-        "name": "Axis alignment",
+        "name": "Axes alignment",
         "declaration": "FusionAxesAlignment name",
         "default": "{FusionAxesAlignmentPXPYPZ}"
     },
@@ -367,17 +367,17 @@
         "default": "{1}"
     },
     {
+        "name": "High-g message rate divisor",
+        "declaration": "uint32_t name",
+        "default": "{1}"
+    },
+    {
         "name": "Pressure message rate divisor",
         "declaration": "uint32_t name",
         "default": "{1}"
     },
     {
         "name": "Temperature message rate divisor",
-        "declaration": "uint32_t name",
-        "default": "{1}"
-    },
-    {
-        "name": "High-g message rate divisor",
         "declaration": "uint32_t name",
         "default": "{1}"
     },

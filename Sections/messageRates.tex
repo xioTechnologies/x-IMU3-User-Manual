@@ -2,3 +2,46 @@
 \label{sec:messageRates}
 
 \sectionUnavailable
+
+% Data messages as sent continuously at the message rates configured in the device settings.  The message rate of each data message type is configured by a separate message rate divisor.  A message rate divisor is an positive integer that a sample rate is divided by to obtain the message rate.  For example, a sample rate rate of 400 Hz with a message rate divisor of 2 will result in a message rate of 200 messages per second.  A message rate divisor of 0 will disable the sending of that data message type.
+% %
+% The fixed samples rates for each data message type are listed in \Fref{tab:fixedSampleRatesForEachDataMessageType}.
+% %
+% See section \Fref{sec:dataMessages} for a description of each data message type.
+
+% \customTable
+% {l c}
+% {Data message type & Sample rate}
+% {
+%     Inertial & 400 Hz\\
+%     Magnetometer & 20 Hz\\
+%     \acs{AHRS} & 400 Hz\\
+%     High-g accelerometer & 1600 Hz\\
+%     Temperature & 5 Hz\\
+%     Battery & 5 Hz\\
+%     \acs{RSSI} & 1 Hz\\
+% }
+% {Fixed sample rates for each data message type}
+% {tab:fixedSampleRatesForEachDataMessageType}
+
+% % If the message rate is less than the sample rate then samples will be averaged
+
+
+
+% \subsection{Timestamps}
+
+% The timestamp of a data message indicates the time at which a measurement was physically obtained.  For example, when an \ac{ADC} conversion completes.  Timestamps are therefore not affected by the sample rate tolerance or the latency of a communication channel.
+% %
+% A timestamp is the time since device start up with a resolution of 1 microsecond.
+% %
+% Applications that involve time-critical calculations such as numerical integration or interpolation should never infer timing from the nominal sample rate and should instead use the timestamp of each measurement.
+
+% \subsection{Sample averaging}
+
+% If a message rate divisor is greater than 1 then the measurements in each data message will be the average of $n$ samples where $n$ is the message rate divisor.  The timestamp will of the most recent sample.  For example, the inertial sample rate is 400 Hz, if the inertial message rate divisor is set to 8 then each inertial data message rate will be 50 messages/s and each data message will be the average of 8 samples with a timestamp of the 8th sample.
+
+% Quaternion, rotation matrix, and Euler angle will not be averaged.
+
+% \subsection{Synchronisation}
+
+% Timestamp indicate the time since the device switched on longest ago.
