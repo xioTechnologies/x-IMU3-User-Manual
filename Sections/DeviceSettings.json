@@ -25,67 +25,67 @@
     },
     {
         "name": "Gyroscope misalignment",
-        "declaration": "FusionRotationMatrix name",
+        "declaration": "FusionMatrix name",
         "default": "{{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}}",
         "calibration": false
     },
     {
         "name": "Gyroscope sensitivity",
-        "declaration": "FusionVector3 name",
+        "declaration": "FusionVector name",
         "default": "{{1.0f, 1.0f, 1.0f}}",
         "calibration": false
     },
     {
         "name": "Gyroscope offset",
-        "declaration": "FusionVector3 name",
+        "declaration": "FusionVector name",
         "default": "{{0.0f, 0.0f, 0.0f}}",
         "calibration": false
     },
     {
         "name": "Accelerometer misalignment",
-        "declaration": "FusionRotationMatrix name",
+        "declaration": "FusionMatrix name",
         "default": "{{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}}",
         "calibration": false
     },
     {
         "name": "Accelerometer sensitivity",
-        "declaration": "FusionVector3 name",
+        "declaration": "FusionVector name",
         "default": "{{1.0f, 1.0f, 1.0f}}",
         "calibration": false
     },
     {
         "name": "Accelerometer offset",
-        "declaration": "FusionVector3 name",
+        "declaration": "FusionVector name",
         "default": "{{0.0f, 0.0f, 0.0f}}",
         "calibration": false
     },
     {
         "name": "Soft iron matrix",
-        "declaration": "FusionRotationMatrix name",
+        "declaration": "FusionMatrix name",
         "default": "{{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}}",
         "calibration": false
     },
     {
         "name": "Hard iron offset",
-        "declaration": "FusionVector3 name",
+        "declaration": "FusionVector name",
         "default": "{{0.0f, 0.0f, 0.0f}}",
         "calibration": false
     },
     {
         "name": "High-g misalignment",
-        "declaration": "FusionRotationMatrix name",
+        "declaration": "FusionMatrix name",
         "default": "{{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}}",
         "calibration": false
     },
     {
         "name": "High-g sensitivity",
-        "declaration": "FusionVector3 name",
+        "declaration": "FusionVector name",
         "default": "{{1.0f, 1.0f, 1.0f}}",
         "calibration": false
     },
     {
         "name": "High-g offset",
-        "declaration": "FusionVector3 name",
+        "declaration": "FusionVector name",
         "default": "{{0.0f, 0.0f, 0.0f}}",
         "calibration": false
     },
@@ -171,8 +171,8 @@
     },
     {
         "name": "Wi-Fi region",
-        "declaration": "int32_t name",
-        "default": "{2}"
+        "declaration": "RS9116WlanCommandRegion name",
+        "default": "{RS9116WlanCommandRegionEurope}"
     },
     {
         "name": "Wi-Fi MAC address",
@@ -198,8 +198,8 @@
     },
     {
         "name": "Wi-Fi client channel",
-        "declaration": "uint32_t name",
-        "default": "{44}"
+        "declaration": "WirelessWlanClientChannel name",
+        "default": "{WirelessWlanClientChannel44}"
     },
     {
         "name": "Wi-Fi client DHCP enabled",
@@ -233,8 +233,8 @@
     },
     {
         "name": "Wi-Fi AP channel",
-        "declaration": "uint32_t name",
-        "default": "{1}"
+        "declaration": "WirelessWlanAPChannel name",
+        "default": "{WirelessWlanAPChannel1}"
     },
     {
         "name": "TCP port",
@@ -267,32 +267,32 @@
         "default": "{0}"
     },
     {
-        "name": "Data logging enabled",
+        "name": "Data logger enabled",
         "declaration": "bool name",
         "default": "{true}"
     },
     {
-        "name": "Data logging file name prefix",
+        "name": "Data logger file name prefix",
         "declaration": "char name[32]",
         "default": "{\"File Name Prefix\"}"
     },
     {
-        "name": "Data logging file name number",
+        "name": "Data logger file name number",
         "declaration": "uint32_t name",
         "default": "{0}"
     },
     {
-        "name": "Data logging file name is time",
+        "name": "Data logger file name is time",
         "declaration": "bool name",
         "default": "{true}"
     },
     {
-        "name": "Data logging maximum file size",
+        "name": "Data logger maximum file size",
         "declaration": "uint32_t name",
         "default": "{0}"
     },
     {
-        "name": "Data logging maximum file period",
+        "name": "Data logger maximum file period",
         "declaration": "uint32_t name",
         "default": "{0}"
     },

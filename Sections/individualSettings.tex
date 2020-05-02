@@ -46,13 +46,19 @@
 {High-g offset.}
 
 \newcommand{\deviceNameDescription}
-{User-defined device name up to 31 characters long.}
+{
+    User-defined device name up to 31 characters long.
+}
 
 \newcommand{\serialNumberDescription}
-{Unique 64-bit serial number expressed as a string of 16 hexadecimal digits in the format \enquote{XXXX-XXXX-XXXX-XXXX}.}
+{
+    Unique 64-bit serial number expressed as a string of 16 hexadecimal digits in the format \enquote{XXXX-XXXX-XXXX-XXXX}.
+}
 
 \newcommand{\firmwareVersionDescription}
-{Current firmware version.  See \Fref{sec:updatingDeviceFirmware} for more information about updating the device firmware.}
+{
+    Current firmware version.  See \Fref{sec:updatingDeviceFirmware} for more information about updating the device firmware.
+}
 
 \newcommand{\bootloaderVersionDescription}
 {Bootloader version.}
@@ -82,52 +88,136 @@
 {Serial accessory transmit enabled.}
 
 \newcommand{\wirelessModeDescription}
-{Wireless mode.}
+{
+    Configures the wireless mode.  The possible values are listed in \Fref{tab:wirelessModes}.  The current wireless mode is indicated by the \ac{LED} colour.  See \Fref{sec:led} for more information.
+
+    \customTable
+    {c l}
+    {Value & Mode}
+    {
+        0 & Disabled \\
+        1 & Wi-Fi client \\
+        2 & Wi-Fi \acs{AP} \\
+    }
+    {Wireless modes}
+    {tab:wirelessModes}
+}
 
 \newcommand{\wirelessFirmwareVersionDescription}
-{Wireless firmware version.}
+{
+    Current wireless firmware version.  See \Fref{sec:updatingDeviceFirmware} for more information about updating the device firmware.
+}
 
 \newcommand{\externalAntennaeEnabledDescription}
-{External antennae enabled.}
+{
+    Enables (true) or disables (false) the external antennae.  An antennae must be connected to the U.FL connector if the external antennae is enabled.  The internal antennae will be used if the external antennae is disabled.
+}
 
 \newcommand{\wiFiRegionDescription}
-{Wi-Fi region.}
+{
+    Configures the region for Wi-Fi operation.  The device will operate according to the regulations of the selected region.  See \Fref{sec:wiFiClientSsid} for a list of channels available in each region.  The possible values are listed in \Fref{tab:wiFiRegions}.
+
+    \customTable
+    {c l}
+    {Value & Region}
+    {
+        1 & \ac{US} \\
+        2 & \ac{EU} \\
+        3 & \ac{JP} \\
+    }
+    {Wi-Fi regions}
+    {tab:wiFiRegions}
+}
 
 \newcommand{\wiFiMacAddressDescription}
-{Wi-Fi \ac{MAC} address.}
+{
+    Wi-Fi \ac{MAC} address.
+}
 
 \newcommand{\wiFiIPAddressDescription}
-{Wi-Fi \ac{IP} address.}
+{
+    Current \ac{IP} address of the device.  A value of 0.0.0.0 indicates that the device does not yet have an \ac{IP} address.
+}
 
 \newcommand{\wiFiClientSsidDescription}
-{Wi-Fi client \ac{SSID}.}
+{
+    Configures the \ac{SSID} in Wi-Fi client mode.  This is the name of the router that the device will connect to.  The \ac{SSID} may be up to 31 characters long.
+}
 
 \newcommand{\wiFiClientKeyDescription}
-{Wi-Fi client key.}
+{
+    Configures the security key in Wi-Fi client mode.  This is the password for the router that the device will connect to.  If the router does not require a password then this setting will be ignored.  The key may be up to 31 characters long.
+}
 
 \newcommand{\wiFiClientChannelDescription}
-{Wi-Fi client channel.}
+{
+    Configures the channel in Wi-Fi client mode.  This is the channel of the router that the device will connect to.  Setting the correct channel will decrease the time taken to connect.  If the channel is incorrect then the device will search all channels and then update this setting for the correct channel.  The possible channels are listed in \Fref{tab:wiFiClientChannels}.
+
+    \customTable
+    {c c l}
+    {Channel & Band & Notes}
+    {
+        0 & - & All channels \\
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 & 2.4 GHz & - \\
+        12, 13 & 2.4 GHz & Invalid for \acs{US} \\
+        14 & 2.4 GHz & Invalid for \acs{US} and \acs{EU} \\
+        36, 40, 44, 48 & 5 GHz & - \\
+        52, 56, 60, 64, 100, 104, 108, 112, 116 & 5 GHz, \acs{DFS} & - \\
+        120, 124, 128 & 5 GHz, \acs{DFS} & Invalid for \acs{US} \\
+        132, 136, 140 & 5 GHz, \acs{DFS} & - \\
+        149, 153, 157, 161, 165 & 5 GHz & Invalid for \acs{EU} and \acs{JP} \\
+    }
+    {Wi-Fi client channels}
+    {tab:wiFiClientChannels}
+}
 
 \newcommand{\wiFiClientDhcpEnabledDescription}
-{Wi-Fi client \ac{DHCP} enabled.}
+{
+    Enables (true) or disables (false) \ac{DHCP} in Wi-Fi client mode.  If \ac{DHCP} is enabled then the device will be assigned an \ac{IP} address by the router.  This is an automatic process and the recommend mode of operation.  If \ac{DHCP} is disabled then the \ac{IP} address, netmask, and gateway must be configured by the user.
+}
 
 \newcommand{\wiFiClientIPAddressDescription}
-{Wi-Fi client \ac{IP} address.}
+{
+    Configures the device \ac{IP} address in Wi-Fi client mode when \ac{DHCP} is disabled.  This setting will be ignored if \ac{DHCP} is enabled.
+}
 
 \newcommand{\wiFiClientNetmaskDescription}
-{Wi-Fi client netmask.}
+{
+    Configures the netmask in Wi-Fi client mode when \ac{DHCP} is disabled.  This setting will be ignored if \ac{DHCP} is enabled.
+}
 
 \newcommand{\wiFiClientGatewayDescription}
-{Wi-Fi client gateway.}
+{
+    Configures the gateway in Wi-Fi client mode when \ac{DHCP} is disabled.  This setting will be ignored if \ac{DHCP} is enabled.
+}
 
 \newcommand{\wiFiAPSsidDescription}
-{Wi-Fi \ac{AP} \ac{SSID}.}
+{
+    Configures the \ac{SSID} of the device in Wi-Fi \ac{AP} mode.  This is the name of the network created by the device.  The \ac{SSID} may be up to 31 characters long.  If the \ac{SSID} is left blank then the device will use an \ac{SSID} made up of the product name and the serial number in the format \enquote{x-IMU3\_XXXX-XXXX-XXXX-XXXX}.
+}
 
 \newcommand{\wiFiAPKeyDescription}
-{Wi-Fi \ac{AP} key.}
+{
+    Configures the security key in Wi-Fi \ac{AP} mode.  This is the password required to connect to the network created by the device.  The key may be up to 31 characters long.  If the key is left blank then the network will not use security and a password would not be required to connect to the device.
+}
 
 \newcommand{\wiFiAPChannelDescription}
-{Wi-Fi \ac{AP} channel.}
+{
+    Configures the channel of the device in Wi-Fi \ac{AP} mode.  This is the channel of the network created by the device.  The possible channels are listed in \Fref{tab:wiFiAPChannels}.
+
+    \customTable
+    {c c l}
+    {Channel & Band & Notes}
+    {
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 & 2.4 GHz & - \\
+        12, 13 & 2.4 GHz & Invalid for \acs{US} \\
+        14 & 2.4 GHz & Invalid for \acs{US} and \acs{EU} \\
+        36, 40, 44, 48 & 5 GHz & - \\
+        149, 153, 157, 161, 165 & 5 GHz & Invalid for \acs{EU} and \acs{JP} \\
+    }
+    {Wi-Fi \acs{AP} channels}
+    {tab:wiFiAPChannels}
+}
 
 \newcommand{\tcpPortDescription}
 {\ac{TCP} port.}
@@ -147,23 +237,23 @@
 \newcommand{\synchronisationNetworkLatencyDescription}
 {Synchronisation network latency.}
 
-\newcommand{\dataLoggingEnabledDescription}
-{Data logging enabled.}
+\newcommand{\dataLoggerEnabledDescription}
+{Data logger enabled.}
 
-\newcommand{\dataLoggingFileNamePrefixDescription}
-{Data logging file name prefix.}
+\newcommand{\dataLoggerFileNamePrefixDescription}
+{Data logger file name prefix.}
 
-\newcommand{\dataLoggingFileNameNumberDescription}
-{Data logging file name number.}
+\newcommand{\dataLoggerFileNameNumberDescription}
+{Data logger file name number.}
 
-\newcommand{\dataLoggingFileNameIsTimeDescription}
-{Data logging file name is time.}
+\newcommand{\dataLoggerFileNameIsTimeDescription}
+{Data logger file name is time.}
 
-\newcommand{\dataLoggingMaximumFileSizeDescription}
-{Data logging maximum file size.}
+\newcommand{\dataLoggerMaximumFileSizeDescription}
+{Data logger maximum file size.}
 
-\newcommand{\dataLoggingMaximumFilePeriodDescription}
-{Data logging maximum file period.}
+\newcommand{\dataLoggerMaximumFilePeriodDescription}
+{Data logger maximum file period.}
 
 \newcommand{\axesAlignmentDescription}
 {
@@ -641,7 +731,7 @@ Configures the \ac{AHRS} message type.  The possible values are listed in \Fref{
     \def\tempDescription{\wiFiRegionDescription}
     \def\tempKey{wiFiRegion}
     \def\tempType{number}
-    \def\tempDefault{2}
+    \def\tempDefault{RS9116WlanCommandRegionEurope}
     \deviceSetting
 \endgroup
 
@@ -691,7 +781,7 @@ Configures the \ac{AHRS} message type.  The possible values are listed in \Fref{
     \def\tempDescription{\wiFiClientChannelDescription}
     \def\tempKey{wiFiClientChannel}
     \def\tempType{number}
-    \def\tempDefault{44}
+    \def\tempDefault{WirelessWlanClientChannel44}
     \deviceSetting
 \endgroup
 
@@ -761,7 +851,7 @@ Configures the \ac{AHRS} message type.  The possible values are listed in \Fref{
     \def\tempDescription{\wiFiAPChannelDescription}
     \def\tempKey{wiFiAPChannel}
     \def\tempType{number}
-    \def\tempDefault{1}
+    \def\tempDefault{WirelessWlanAPChannel1}
     \deviceSetting
 \endgroup
 
@@ -826,60 +916,60 @@ Configures the \ac{AHRS} message type.  The possible values are listed in \Fref{
 \endgroup
 
 \begingroup
-    \def\tempSection{Data logging enabled}
-    \def\tempLabel{sec:dataLoggingEnabled}
-    \def\tempDescription{\dataLoggingEnabledDescription}
-    \def\tempKey{dataLoggingEnabled}
+    \def\tempSection{Data logger enabled}
+    \def\tempLabel{sec:dataLoggerEnabled}
+    \def\tempDescription{\dataLoggerEnabledDescription}
+    \def\tempKey{dataLoggerEnabled}
     \def\tempType{true or false}
     \def\tempDefault{true}
     \deviceSetting
 \endgroup
 
 \begingroup
-    \def\tempSection{Data logging file name prefix}
-    \def\tempLabel{sec:dataLoggingFileNamePrefix}
-    \def\tempDescription{\dataLoggingFileNamePrefixDescription}
-    \def\tempKey{dataLoggingFileNamePrefix}
+    \def\tempSection{Data logger file name prefix}
+    \def\tempLabel{sec:dataLoggerFileNamePrefix}
+    \def\tempDescription{\dataLoggerFileNamePrefixDescription}
+    \def\tempKey{dataLoggerFileNamePrefix}
     \def\tempType{string}
     \def\tempDefault{\enquote{File Name Prefix}}
     \deviceSetting
 \endgroup
 
 \begingroup
-    \def\tempSection{Data logging file name number}
-    \def\tempLabel{sec:dataLoggingFileNameNumber}
-    \def\tempDescription{\dataLoggingFileNameNumberDescription}
-    \def\tempKey{dataLoggingFileNameNumber}
+    \def\tempSection{Data logger file name number}
+    \def\tempLabel{sec:dataLoggerFileNameNumber}
+    \def\tempDescription{\dataLoggerFileNameNumberDescription}
+    \def\tempKey{dataLoggerFileNameNumber}
     \def\tempType{number}
     \def\tempDefault{0}
     \deviceSetting
 \endgroup
 
 \begingroup
-    \def\tempSection{Data logging file name is time}
-    \def\tempLabel{sec:dataLoggingFileNameIsTime}
-    \def\tempDescription{\dataLoggingFileNameIsTimeDescription}
-    \def\tempKey{dataLoggingFileNameIsTime}
+    \def\tempSection{Data logger file name is time}
+    \def\tempLabel{sec:dataLoggerFileNameIsTime}
+    \def\tempDescription{\dataLoggerFileNameIsTimeDescription}
+    \def\tempKey{dataLoggerFileNameIsTime}
     \def\tempType{true or false}
     \def\tempDefault{true}
     \deviceSetting
 \endgroup
 
 \begingroup
-    \def\tempSection{Data logging maximum file size}
-    \def\tempLabel{sec:dataLoggingMaximumFileSize}
-    \def\tempDescription{\dataLoggingMaximumFileSizeDescription}
-    \def\tempKey{dataLoggingMaximumFileSize}
+    \def\tempSection{Data logger maximum file size}
+    \def\tempLabel{sec:dataLoggerMaximumFileSize}
+    \def\tempDescription{\dataLoggerMaximumFileSizeDescription}
+    \def\tempKey{dataLoggerMaximumFileSize}
     \def\tempType{number}
     \def\tempDefault{0}
     \deviceSetting
 \endgroup
 
 \begingroup
-    \def\tempSection{Data logging maximum file period}
-    \def\tempLabel{sec:dataLoggingMaximumFilePeriod}
-    \def\tempDescription{\dataLoggingMaximumFilePeriodDescription}
-    \def\tempKey{dataLoggingMaximumFilePeriod}
+    \def\tempSection{Data logger maximum file period}
+    \def\tempLabel{sec:dataLoggerMaximumFilePeriod}
+    \def\tempDescription{\dataLoggerMaximumFilePeriodDescription}
+    \def\tempKey{dataLoggerMaximumFilePeriod}
     \def\tempType{number}
     \def\tempDefault{0}
     \deviceSetting
