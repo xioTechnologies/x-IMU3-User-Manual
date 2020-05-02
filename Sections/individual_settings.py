@@ -5,7 +5,7 @@ import re
 
 def to_camel_case(string):
     result = ""
-    for word in re.sub('[^0-9a-zA-Z]+', ' ', string).split():
+    for word in re.sub("[^0-9a-zA-Z]", " ", string).split():
         if result == "":
             result += word.lower()
         elif len(word) == 2 and word == word.upper():  # if two letter acronym
@@ -20,6 +20,13 @@ code = ""
 with open("DeviceSettings.json") as json_file:
     json_array = json.load(json_file)
     for json_object in json_array:
+
+        # Section
+        temp_section = json_object["name"]
+
+        for word in re.sub("[^0-9a-zA-Z]", " ", temp_section).split():
+            if word.isupper():
+                temp_section = temp_section.replace(word, "\\acs{" + word + "}")
 
         # Type
         temp_type = "number"
@@ -56,9 +63,9 @@ with open("DeviceSettings.json") as json_file:
         camel_case_name = to_camel_case(json_object["name"])
 
         code += "\n\\begingroup\n"
-        code += "    \\def\\tempSection{" + json_object["name"] + read_only_string + "}\n"
+        code += "    \\def\\tempSection{" + temp_section + read_only_string + "}\n"
         code += "    \\def\\tempLabel{sec:" + camel_case_name + "}\n"
-        code += "    \\def\\tempDescription\n    {\n        " + json_object["name"] + ".\n    }\n"
+        code += "    \\def\\tempDescription\n    {\n        " + temp_section.replace("\\acs", "\\ac") + ".\n    }\n"
         code += "    \\def\\tempKey{" + camel_case_name + "}\n"
         code += "    \\def\\tempType{" + temp_type + "}\n"
         code += "    \\def\\tempDefault{" + temp_default + "}\n"
