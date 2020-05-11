@@ -2,92 +2,92 @@
     {
         "name": "Calibration date",
         "declaration": "char name[32]",
-        "default": "{\"N/A\"}",
-        "calibration": false
+        "default": "{\"Unknown\"}",
+        "calibration": true
     },
     {
         "name": "System clock calibration",
         "declaration": "float name",
         "default": "{0.0f}",
-        "calibration": false
+        "calibration": true
     },
     {
         "name": "RTC calibration",
         "declaration": "float name",
         "default": "{0.0f}",
-        "calibration": false
+        "calibration": true
     },
     {
         "name": "Battery measurement sensitivity",
         "declaration": "float name",
         "default": "{1.0f}",
-        "calibration": false
+        "calibration": true
     },
     {
         "name": "Gyroscope misalignment",
         "declaration": "FusionMatrix name",
         "default": "{{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}}",
-        "calibration": false
+        "calibration": true
     },
     {
         "name": "Gyroscope sensitivity",
         "declaration": "FusionVector name",
         "default": "{{1.0f, 1.0f, 1.0f}}",
-        "calibration": false
+        "calibration": true
     },
     {
         "name": "Gyroscope offset",
         "declaration": "FusionVector name",
         "default": "{{0.0f, 0.0f, 0.0f}}",
-        "calibration": false
+        "calibration": true
     },
     {
         "name": "Accelerometer misalignment",
         "declaration": "FusionMatrix name",
         "default": "{{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}}",
-        "calibration": false
+        "calibration": true
     },
     {
         "name": "Accelerometer sensitivity",
         "declaration": "FusionVector name",
         "default": "{{1.0f, 1.0f, 1.0f}}",
-        "calibration": false
+        "calibration": true
     },
     {
         "name": "Accelerometer offset",
         "declaration": "FusionVector name",
         "default": "{{0.0f, 0.0f, 0.0f}}",
-        "calibration": false
+        "calibration": true
     },
     {
         "name": "Soft iron matrix",
         "declaration": "FusionMatrix name",
         "default": "{{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}}",
-        "calibration": false
+        "calibration": true
     },
     {
         "name": "Hard iron offset",
         "declaration": "FusionVector name",
         "default": "{{0.0f, 0.0f, 0.0f}}",
-        "calibration": false
+        "calibration": true
     },
     {
         "name": "High-g misalignment",
         "declaration": "FusionMatrix name",
         "default": "{{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}}",
-        "calibration": false
+        "calibration": true
     },
     {
         "name": "High-g sensitivity",
         "declaration": "FusionVector name",
         "default": "{{1.0f, 1.0f, 1.0f}}",
-        "calibration": false
+        "calibration": true
     },
     {
         "name": "High-g offset",
         "declaration": "FusionVector name",
         "default": "{{0.0f, 0.0f, 0.0f}}",
-        "calibration": false
+        "calibration": true
     },
     {
         "name": "Device name",
@@ -97,31 +97,31 @@
     {
         "name": "Serial number",
         "declaration": "char name[32]",
-        "default": "{\"N/A\"}",
+        "default": "{\"Unknown\"}",
         "read only": true
     },
     {
         "name": "Firmware version",
         "declaration": "char name[32]",
-        "default": "{\"N/A\"}",
+        "default": "{\"Unknown\"}",
         "read only": true
     },
     {
         "name": "Bootloader version",
         "declaration": "char name[32]",
-        "default": "{\"N/A\"}",
+        "default": "{\"Unknown\"}",
         "read only": true
     },
     {
         "name": "Hardware version",
         "declaration": "char name[32]",
-        "default": "{\"N/A\"}",
+        "default": "{\"Unknown\"}",
         "read only": true
     },
     {
         "name": "Serial mode",
         "declaration": "SerialMode name",
-        "default": "{SerialModeNormal}"
+        "default": "{SerialModeDisabled}"
     },
     {
         "name": "Serial baud rate",
@@ -155,13 +155,13 @@
     },
     {
         "name": "Wireless mode",
-        "declaration": "int32_t name",
-        "default": "{1}"
+        "declaration": "WirelessMode name",
+        "default": "{WirelessModeWlanAP}"
     },
     {
         "name": "Wireless firmware version",
         "declaration": "char name[32]",
-        "default": "{\"N/A\"}",
+        "default": "{\"Unknown\"}",
         "read only": true
     },
     {
@@ -189,17 +189,17 @@
     {
         "name": "Wi-Fi client SSID",
         "declaration": "char name[32]",
-        "default": "{\"NETGEAR70-5G-1\"}"
+        "default": "{\"x-IMU3 Network\"}"
     },
     {
         "name": "Wi-Fi client key",
-        "declaration": "char name[32]",
-        "default": "{\"luckypond986\"}"
+        "declaration": "char name[64]",
+        "default": "{\"xiotechnologies\"}"
     },
     {
         "name": "Wi-Fi client channel",
         "declaration": "WirelessWlanClientChannel name",
-        "default": "{WirelessWlanClientChannel44}"
+        "default": "{WirelessWlanClientChannelAll}"
     },
     {
         "name": "Wi-Fi client DHCP enabled",
@@ -224,17 +224,17 @@
     {
         "name": "Wi-Fi AP SSID",
         "declaration": "char name[32]",
-        "default": "{\"AP SSID\"}"
+        "default": "{\"\"}"
     },
     {
         "name": "Wi-Fi AP key",
-        "declaration": "char name[32]",
-        "default": "{\"password\"}"
+        "declaration": "char name[64]",
+        "default": "{\"\"}"
     },
     {
         "name": "Wi-Fi AP channel",
         "declaration": "WirelessWlanAPChannel name",
-        "default": "{WirelessWlanAPChannel1}"
+        "default": "{WirelessWlanAPChannel36}"
     },
     {
         "name": "TCP port",
@@ -269,7 +269,7 @@
     {
         "name": "Data logger enabled",
         "declaration": "bool name",
-        "default": "{true}"
+        "default": "{false}"
     },
     {
         "name": "Data logger file name prefix",
@@ -304,7 +304,7 @@
     {
         "name": "Gyroscope offset correction enabled",
         "declaration": "bool name",
-        "default": "{false}"
+        "default": "{true}"
     },
     {
         "name": "AHRS gain",
@@ -319,7 +319,7 @@
     {
         "name": "Binary mode",
         "declaration": "bool name",
-        "default": "{false}"
+        "default": "{true}"
     },
     {
         "name": "USB data messages enabled",
@@ -354,7 +354,7 @@
     {
         "name": "Inertial message rate divisor",
         "declaration": "uint32_t name",
-        "default": "{1}"
+        "default": "{8}"
     },
     {
         "name": "Magnetometer message rate divisor",
@@ -364,27 +364,27 @@
     {
         "name": "AHRS message rate divisor",
         "declaration": "uint32_t name",
-        "default": "{1}"
+        "default": "{8}"
     },
     {
         "name": "High-g message rate divisor",
         "declaration": "uint32_t name",
-        "default": "{1}"
+        "default": "{32}"
     },
     {
         "name": "Pressure message rate divisor",
         "declaration": "uint32_t name",
-        "default": "{1}"
+        "default": "{0}"
     },
     {
         "name": "Temperature message rate divisor",
         "declaration": "uint32_t name",
-        "default": "{1}"
+        "default": "{5}"
     },
     {
         "name": "Battery message rate divisor",
         "declaration": "uint32_t name",
-        "default": "{1}"
+        "default": "{5}"
     },
     {
         "name": "Serial accessory rate divisor",

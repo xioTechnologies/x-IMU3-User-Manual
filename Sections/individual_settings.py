@@ -28,22 +28,6 @@ with open("DeviceSettings.json") as json_file:
             if word.isupper():
                 temp_section = temp_section.replace(word, "\\acs{" + word + "}")
 
-        # Type
-        temp_type = "number"
-
-        for declaration in {"char name[", "RS9116IPAddress", "RS9116MacAddress"}:
-            if declaration in json_object["declaration"]:
-                temp_type = "string"
-
-        if "bool" in json_object["declaration"]:
-            temp_type = "true or false"
-
-        # Default
-        temp_default = json_object["default"].replace("{", "").replace("}", "")
-
-        if "\"" in temp_default:
-            temp_default = "\\enquote{" + temp_default.replace("\"", "") + "}"
-
         # Read-only
         try:
             calibration = json_object["calibration"]
@@ -58,6 +42,52 @@ with open("DeviceSettings.json") as json_file:
             read_only_string = " (read-only)"
         else:
             read_only_string = ""
+
+        # Type
+        temp_type = "number"
+
+        for declaration in {"char name[", "RS9116IPAddress", "RS9116MacAddress"}:
+            if declaration in json_object["declaration"]:
+                temp_type = "string"
+
+        if "bool" in json_object["declaration"]:
+            temp_type = "true or false"
+
+        # Default
+        temp_default = json_object["default"].replace("{", "").replace("}", "")
+
+        if temp_default == "SerialModeDisabled":
+            temp_default = "0"
+
+        if temp_default == "WirelessModeWlanAP":
+            temp_default = "2"
+
+        if temp_default == "RS9116WlanCommandRegionEurope":
+            temp_default = "2"
+
+        if temp_default == "WirelessWlanClientChannelAll":
+            temp_default = "0"
+
+        if temp_default == "0x0201A8C0":
+            temp_default = "\\enquote{192.168.1.2}"
+
+        if temp_default == "0x00FFFFFF":
+            temp_default = "\\enquote{255.255.255.0}"
+
+        if temp_default == "0x0101A8C0":
+            temp_default = "\\enquote{192.168.1.1}"
+
+        if temp_default == "WirelessWlanAPChannel36":
+            temp_default = "36"
+
+        if temp_default == "FusionAxesAlignmentPXPYPZ":
+            temp_default = "0"
+
+        if temp_default == "SendAhrsMessageTypeQuaternion":
+            temp_default = "0"
+
+        if "\"" in temp_default:
+            temp_default = "\\enquote{" + temp_default.replace("\"", "") + "}"
 
         # Create TEX
         camel_case_name = to_camel_case(json_object["name"])
