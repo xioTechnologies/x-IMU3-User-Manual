@@ -694,6 +694,95 @@
 \endgroup
 
 \begingroup
+    \def\tempSection{Bluetooth address (read-only)}
+    \def\tempLabel{sec:bluetoothAddress}
+    \def\tempDescription
+    {
+        Device Bluetooth address.
+    }
+    \def\tempKey{bluetoothAddress}
+    \def\tempType{number}
+    \def\tempDefault{0}
+    \deviceSetting
+\endgroup
+
+\begingroup
+    \def\tempSection{Bluetooth name}
+    \def\tempLabel{sec:bluetoothName}
+    \def\tempDescription
+    {
+        Configures the name of the device in Bluetooth mode. The name may be up to 31 characters long. If the name is left blank then the device will use a name made up of the product name and the serial number in the format “x-IMU3\_XXXX-XXXX-XXXX-XXXX”.
+    }
+    \def\tempKey{bluetoothName}
+    \def\tempType{string}
+    \def\tempDefault{\enquote{}}
+    \deviceSetting
+\endgroup
+
+\begingroup
+    \def\tempSection{Bluetooth pin code}
+    \def\tempLabel{sec:bluetoothPinCode}
+    \def\tempDescription
+    {
+        Configures the Bluetooth pin code.  The pin code must be between 1 and 7 characters long.  See \Fref{sec:bluetooth} for more information about Bluetooth pairing.
+    }
+    \def\tempKey{bluetoothPinCode}
+    \def\tempType{string}
+    \def\tempDefault{\enquote{1234}}
+    \deviceSetting
+\endgroup
+
+\begingroup
+    \def\tempSection{Bluetooth discovery mode}
+    \def\tempLabel{sec:bluetoothDiscoveryMode}
+    \def\tempDescription
+    {
+        Configures the Bluetooth discovery mode.  The possible values are listed in \Fref{tab:bluetoothDiscoveryModes}.  See \Fref{sec:bluetooth} for more information about Bluetooth discovery.
+
+        \customTable
+        {c l}
+        {Value & Mode}
+        {
+            0 & Disabled \\
+            1 & Enabled \\
+            2 & Limited \\
+        }
+        {Bluetooth discovery modes}
+        {tab:bluetoothDiscoveryModes}
+    }
+    \def\tempKey{bluetoothDiscoveryMode}
+    \def\tempType{number}
+    \def\tempDefault{2}
+    \deviceSetting
+\endgroup
+
+\begingroup
+    \def\tempSection{Bluetooth paired address (read-only)}
+    \def\tempLabel{sec:bluetoothPairedAddress}
+    \def\tempDescription
+    {
+        Bluetooth address of the paired device.
+    }
+    \def\tempKey{bluetoothPairedAddress}
+    \def\tempType{number}
+    \def\tempDefault{0}
+    \deviceSetting
+\endgroup
+
+\begingroup
+    \def\tempSection{Bluetooth paired link key (read-only)}
+    \def\tempLabel{sec:bluetoothPairedLinkKey}
+    \def\tempDescription
+    {
+        Bluetooth link key of the paired device.
+    }
+    \def\tempKey{bluetoothPairedLinkKey}
+    \def\tempType{number}
+    \def\tempDefault{0}
+    \deviceSetting
+\endgroup
+
+\begingroup
     \def\tempSection{Data logger enabled}
     \def\tempLabel{sec:dataLoggerEnabled}
     \def\tempDescription
@@ -915,6 +1004,19 @@
         Enables (true) or disables (false) the sending of data messages for the \ac{UDP} communication interface.  The sending of notification and error messages cannot be disabled.
     }
     \def\tempKey{udpDataMessagesEnabled}
+    \def\tempType{true or false}
+    \def\tempDefault{true}
+    \deviceSetting
+\endgroup
+
+\begingroup
+    \def\tempSection{Bluetooth data messages enabled}
+    \def\tempLabel{sec:bluetoothDataMessagesEnabled}
+    \def\tempDescription
+    {
+        Bluetooth data messages enabled.
+    }
+    \def\tempKey{bluetoothDataMessagesEnabled}
     \def\tempType{true or false}
     \def\tempDefault{true}
     \deviceSetting

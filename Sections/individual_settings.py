@@ -80,6 +80,9 @@ with open("DeviceSettings.json") as json_file:
         if temp_default == "WirelessWlanAPChannel36":
             temp_default = "36"
 
+        if temp_default == "WirelessBTDiscoveryModeLimited":
+            temp_default = "2"
+
         if temp_default == "FusionAxesAlignmentPXPYPZ":
             temp_default = "0"
 

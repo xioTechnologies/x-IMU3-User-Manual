@@ -1,7 +1,7 @@
 \section{Communication protocol}
 \label{sec:communicationProtocol}
 
-All communication interfaces use the same communication protocol.  The byte stream is therefore identical for \ac{USB}, serial, \ac{TCP}, \ac{UDP}, and the files created by on-board data logging.  The communication protocol consists of two message types:
+All communication interfaces use the same communication protocol.  The byte stream is therefore identical for \ac{USB}, serial, \ac{TCP}, \ac{UDP}, Bluetooth, and the files created by on-board data logging.  The communication protocol consists of two message types:
 
 \begin{itemize}[nolistsep]
     \item Command messages
@@ -125,11 +125,11 @@ The strobe command is sent to the device to strobe the \ac{LED} bright white for
 
 % \subsubsection{Colour command}
 
-% The colour command is sent to the device to set the \ac{LED} colour.  The key is \enquote{colour} or \enquote{color} and the value is either null or an \ac{RGB} hex triplet expressed as a string.
+% The colour command is sent to the device to set the \ac{LED} colour.  The key is \enquote{colour} or \enquote{color} and the value is either an \ac{RGB} hex triplet expressed as a string, or null.
 % %
-% If the value is an \ac{RGB} hex triplet then the LED will immediately change to the specified colour.  This action overrides the normal LED behaviour and the LED will no longer provide an indication of the device mode or status.
+% Setting the colour will override the normal \ac{LED} behaviour.
 % %
-% If the value is null then the LED will revert to its normal behaviour.
+% A value of null will restore the normal behaviour.
 % %
 % The \enquote{\#} character is optional.  For example, \enquote{\#FF0000} for red or \enquote{\#00FFFF} for cyan.
 
@@ -187,6 +187,12 @@ The result response is sent from the device to the host in response to the resul
 The bootloader command is sent to the device to put the device in bootloader mode.  The key is \enquote{bootloader} and the value is null.  The device will enter bootloader mode two seconds after receiving this command.  See \Fref{sec:updatingDeviceFirmware} for more information about updating the device firmware.
 
 \commandMessageExample{"bootloader":null}
+
+% \subsubsection{Factory command}
+
+% The factory command is sent to the device to enable factory mode.  The key is \enquote{factory} and the value is null.  In factory mode, read-only settings can be written using the write setting command, the default command will set all calibration settings to their default values, and the save command will succeed when the \ac{EEPROM} \ac{CRC} has failed.
+
+% \commandMessageExample{"factory":null}
 
 \subsection{Data messages}
 \label{sec:dataMessages}

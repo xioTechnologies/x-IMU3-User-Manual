@@ -267,6 +267,39 @@
         "default": "{0}"
     },
     {
+        "name": "Bluetooth address",
+        "declaration": "RS9116BDAddress name",
+        "default": "{0}",
+        "read only": true
+    },
+    {
+        "name": "Bluetooth name",
+        "declaration": "char name[32]",
+        "default": "{\"\"}"
+    },
+    {
+        "name": "Bluetooth pin code",
+        "declaration": "char name[16]",
+        "default": "{\"1234\"}"
+    },
+    {
+        "name": "Bluetooth discovery mode",
+        "declaration": "WirelessBTDiscoveryMode name",
+        "default": "{WirelessBTDiscoveryModeLimited}"
+    },
+    {
+        "name": "Bluetooth paired address",
+        "declaration": "RS9116BDAddress name",
+        "default": "{0}",
+        "read only": true
+    },
+    {
+        "name": "Bluetooth paired link key",
+        "declaration": "RS9116LinkKey name",
+        "default": "{0}",
+        "read only": true
+    },
+    {
         "name": "Data logger enabled",
         "declaration": "bool name",
         "default": "{false}"
@@ -338,6 +371,11 @@
     },
     {
         "name": "UDP data messages enabled",
+        "declaration": "bool name",
+        "default": "{true}"
+    },
+    {
+        "name": "Bluetooth data messages enabled",
         "declaration": "bool name",
         "default": "{true}"
     },
