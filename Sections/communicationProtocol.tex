@@ -188,11 +188,31 @@ The bootloader command is sent to the device to put the device in bootloader mod
 
 \commandMessageExample{"bootloader":null}
 
-% \subsubsection{Factory command}
+\subsubsection{Factory command}
 
-% The factory command is sent to the device to enable factory mode.  The key is \enquote{factory} and the value is null.  In factory mode, read-only settings can be written using the write setting command, the default command will set all calibration settings to their default values, and the save command will succeed when the \ac{EEPROM} \ac{CRC} has failed.
+The factory command is sent to the device to enable factory mode.  The key is \enquote{factory} and the value is null.  In factory mode, read-only settings can be written using the write setting command, the default command will set all calibration settings to their default values, the save command will succeed when the \ac{EEPROM} \ac{CRC} has failed, and the erase command will be enabled.
 
-% \commandMessageExample{"factory":null}
+\commandMessageExample{"factory":null}
+
+\newcommand{\warning}{
+    \begin{center}
+        \begin{tabular}{ | m{0.06\linewidth} m{0.7\linewidth} | }
+            \hline
+            \includegraphics[scale=0.06]{Images/warning.png} & \textbf{Warning} - Incorrect use of this command may permanently damage the device.  Do not use this command unless instructed by customer support.\\
+            \hline
+        \end{tabular}
+    \end{center}
+}
+
+\warning
+
+\subsubsection{Erase command}
+
+The erase command is sent to the device to erase the \ac{EEPROM}.  The key is \enquote{erase} and the value is null.  This command can only be used after the factory command.
+
+\commandMessageExample{"erase":null}
+
+\warning
 
 \subsection{Data messages}
 \label{sec:dataMessages}
