@@ -83,14 +83,14 @@ The ping response is sent from the device to the host in response to the ping co
 
 \begin{table}[H]
     \begin{tabular}{l l l}
-        \textbf{Example}*\textbf{:} & \texttt{\{} \\
-        & \texttt{~~"ping":~\{} & \\
-        & \texttt{~~~~"interface":} & \texttt{"USB",} \\
-        & \texttt{~~~~"deviceName":} & \texttt{"x-IMU3",} \\
-        & \texttt{~~~~"serialNumber":} & \texttt{"0123-4567-89AB-CDEF"} \\
-        & \texttt{~~\}} \\
-        & \texttt{\}\textbackslash r\textbackslash n} \\
-    \end{tabular} \\
+        \textbf{Example}*\textbf{:} & \texttt{\{}\\
+        & \texttt{~~"ping":~\{} &\\
+        & \texttt{~~~~"interface":} & \texttt{"USB",}\\
+        & \texttt{~~~~"deviceName":} & \texttt{"x-IMU3",}\\
+        & \texttt{~~~~"serialNumber":} & \texttt{"0123-4567-89AB-CDEF"}\\
+        & \texttt{~~\}}\\
+        & \texttt{\}\textbackslash r\textbackslash n}\\
+    \end{tabular}\\
     \begin{tabular}{l}
         \\
         \footnotesize{* The actual \acs{JSON} will not include any whitespace.}
@@ -168,14 +168,14 @@ The result response is sent from the device to the host in response to the resul
 
 \begin{table}[H]
     \begin{tabular}{l l l}
-        \textbf{Example}*\textbf{:} & \texttt{\{} \\
-        & \texttt{~~"result":~\{} & \\
-        & \texttt{~~~~"Test A":} & \texttt{"Passed",} \\
-        & \texttt{~~~~"Test B":} & \texttt{"Passed",} \\
-        & \texttt{~~~~"Test C":} & \texttt{"Passed"} \\
-        & \texttt{~~\}} \\
-        & \texttt{\}\textbackslash r\textbackslash n} \\
-    \end{tabular} \\
+        \textbf{Example}*\textbf{:} & \texttt{\{}\\
+        & \texttt{~~"result":~\{} &\\
+        & \texttt{~~~~"Test A":} & \texttt{"Passed",}\\
+        & \texttt{~~~~"Test B":} & \texttt{"Passed",}\\
+        & \texttt{~~~~"Test C":} & \texttt{"Passed"}\\
+        & \texttt{~~\}}\\
+        & \texttt{\}\textbackslash r\textbackslash n}\\
+    \end{tabular}\\
     \begin{tabular}{l}
         \\
         \footnotesize{* The actual \acs{JSON} will not include any whitespace.}
@@ -212,10 +212,10 @@ Byte stuffing ensures that the termination byte value, 0x0A, only occurs at the 
 {l l l l}
 {Hex & Decimal & Name & Description}
 {
-0x0A & 10 & END & Message termination \\
-0xDB & 219 & ESC & Message escape \\
-0xDC & 220 & ESC\_END & Transposed message termination \\
-0xDD & 221 & ESC\_ESC & Transposed message escape \\
+0x0A & 10 & END & Message termination\\
+0xDB & 219 & ESC & Message escape\\
+0xDC & 220 & ESC\_END & Transposed message termination\\
+0xDD & 221 & ESC\_ESC & Transposed message escape\\
 }
 {Values used by the byte stuffing process}
 {tab:valuesUsedByTheByteStuffingProcess}
@@ -237,10 +237,10 @@ The byte stuffing process will not modify the END that terminates the message.  
     {c l l}
     {Example & Before byte stuffing & After byte stuffing}
     {
-    1 & \texttt{45 58 41 4D 50 4C 45 \textcolor{colourC}{0A}} & \texttt{45 58 41 4D 50 4C 45 \textcolor{colourC}{0A}} \\
-    2 & \texttt{45 \textcolor{colourA}{0A} 41 4D 50 4C 45 \textcolor{colourC}{0A}} & \texttt{45 \textcolor{colourA}{DB DC} 41 4D 50 4C 45 \textcolor{colourC}{0A}} \\
-    3 & \texttt{45 58 \textcolor{colourB}{DB} 4D 50 4C 45 \textcolor{colourC}{0A}} & \texttt{45 58 \textcolor{colourB}{DB DD} 4D 50 4C 45 \textcolor{colourC}{0A}} \\
-    4 & \texttt{45 58 41 4D 50 \textcolor{colourB}{DB} \textcolor{colourA}{0A} \textcolor{colourC}{0A}} & \texttt{45 58 41 4D 50 \textcolor{colourB}{DB DD} \textcolor{colourA}{DB DC} \textcolor{colourC}{0A}} \\
+    1 & \texttt{45 58 41 4D 50 4C 45 \textcolor{colourC}{0A}} & \texttt{45 58 41 4D 50 4C 45 \textcolor{colourC}{0A}}\\
+    2 & \texttt{45 \textcolor{colourA}{0A} 41 4D 50 4C 45 \textcolor{colourC}{0A}} & \texttt{45 \textcolor{colourA}{DB DC} 41 4D 50 4C 45 \textcolor{colourC}{0A}}\\
+    3 & \texttt{45 58 \textcolor{colourB}{DB} 4D 50 4C 45 \textcolor{colourC}{0A}} & \texttt{45 58 \textcolor{colourB}{DB DD} 4D 50 4C 45 \textcolor{colourC}{0A}}\\
+    4 & \texttt{45 58 41 4D 50 \textcolor{colourB}{DB} \textcolor{colourA}{0A} \textcolor{colourC}{0A}} & \texttt{45 58 41 4D 50 \textcolor{colourB}{DB DD} \textcolor{colourA}{DB DC} \textcolor{colourC}{0A}}\\
     }
     {Byte stuffing examples}
     {tab:byteStuffingExamples}
