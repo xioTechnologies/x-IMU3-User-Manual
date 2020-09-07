@@ -11,6 +11,7 @@
 \usepackage{enumitem} % [nolistsep]
 \usepackage[printonlyused,withpage]{acronym}
 \usepackage{tabularx}
+\usepackage{makecell}
 \usepackage[table]{xcolor}
 \usepackage[hidelinks]{hyperref}\hypersetup{ colorlinks, allcolors=., urlcolor=teal}
 \usepackage[skins]{tcolorbox}
@@ -21,6 +22,7 @@
 \usepackage{multicol}
 \usepackage{textcomp} % symbols, e.g. \textdegree
 \usepackage{textgreek} % greek letters, e.g. \textmu
+\usepackage[super]{nth}
 \usepackage{macros} % project specific macros
 
 \renewcommand\familydefault{\sfdefault}
@@ -39,7 +41,7 @@
 
 \author{x-io Technologies}
 \title{x-IMU3 User Manual}
-\newcommand{\version}{vX.X}
+\newcommand{\version}{v0.6}
 \date{\today}
 
 \begin{document}
@@ -54,8 +56,8 @@
     \input{Sections/technicalSpecification}
     \input{Sections/led}
     \input{Sections/bluetooth}
-    \input{Sections/messageRates}
     \input{Sections/communicationProtocol}
+    \input{Sections/sampleRatesMessageRatesAndTimestamps}
     \input{Sections/networkAnnouncementMessage}
     \input{Sections/deviceSettings}
     \input{Sections/updatingDeviceFirmware}

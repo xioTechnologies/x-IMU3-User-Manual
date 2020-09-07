@@ -1,0 +1,37 @@
+\section{Sample rates, message rates, and timestamps}
+\label{sec:sampleRatesMessageRatesAndTimestamps}
+
+This section describes the relationship between sample rates and message rates, and the role of timestamps in synchronisation.
+
+\subsection{Sample rates}
+
+The sample rate is the rate at which measurements are sampled by a measurement source.  For example, an \ac{ADC}.  All sample rates are fixed and cannot be adjusted by the user.  Each measurement source has an independent sample clock.  The sample rate and associated data messages for each measurement source are listed in \Fref{tab:fixedSampleRatesForEachDataMessageType}.
+
+\customTable
+{l c c c}
+{Measurement source & Sample rate & Sample rate error & Data messages}
+{
+    Inertial sensor & 400 Hz & \textpm{}0.3\% & \makecell{Inertial, Quaternion, Rotation matrix\\ Euler angles, Linear acceleration,\\ Earth acceleration, Temperature}\\
+    Magnetometer & 20 Hz & \textpm{}8\% & Magnetometer\\
+    High-g accelerometer & 1600 Hz & \textpm{}2\% & High-g\\
+    Battery voltage & 5 Hz & - & Battery\\
+    \acs{RSSI} & 1 Hz & - & \acs{RSSI}\\
+}
+{Sample rate and associated data messages for each measurement source}
+{tab:fixedSampleRatesForEachDataMessageType}
+
+\subsection{Message rates}
+
+The message rate is the rate at which a data message is sent.  The message rate of each data message type is configured by a separate message rate divisor in the device settings.  A message rate divisor is a positive integer that a fixed sample rate is divided by to obtain the message rate.  For example, the inertial sensor sample rate is 400 Hz, if the inertial message rate divisor is 4 then the inertial message rate will be 100 messages/s.  A message rate divisor of 0 will disable the sending of that data message type.  See \Fref{sec:inertialMessageRateDivisor} to \Fref{sec:serialAccessoryRateDivisor} for a detailed description and examples for each message rate divisor setting.
+
+\subsection{Sample averaging}
+
+If a message rate divisor is greater than 1 then the measurements in each data message will be the average of a number of samples equal to the message rate divisor.  The timestamp of the data message will be that of the most recent sample.  For example, if the inertial message rate divisor is 8 then the measurements in each inertial message will be the average of 8 samples and the timestamp of the message will be that of the \nth{8} sample.
+
+\subsection{Timestamps}
+
+The timestamp of a data message indicates the time at which a measurement was obtained.  For example, when an \ac{ADC} conversion completes.  Timestamps are therefore not affected by the sample rate error or the latency of a communication channel.  Applications that involve time-dependent calculations such as numerical integration or interpolation should not infer timing from the nominal sample rate and should instead use the timestamp of each measurement.  A timestamp is the number of microseconds since device start up with a resolution of one microsecond.
+
+\subsection{Synchronisation}
+
+Multiple devices operating on the same Wi-Fi network will automatically synchronise so that the timestamps from all devices become the number of microseconds since the device start up of the device that was switched on first.  The sample clocks of synchronised devices will remain asynchronous.  If an application requires synchronous sampling then this must be achieved in post-processing through interpolation and resampling.

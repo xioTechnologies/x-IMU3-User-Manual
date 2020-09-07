@@ -695,7 +695,7 @@ The \ac{RSSI} message provides timestamped Wi-Fi \ac{RSSI} measurements.  \ac{RS
 
 \subsubsection{Serial accessory message}
 
-The serial accessory message provides timestamped received serial accessory data.  Serial accessory messages are sent as serial accessory data is received according to the device settings.  The first value of an \ac{ASCII} message is the character \enquote{S} and the argument is the received data.  Received byte values less than 0x20 or greater than 0x7E will be replaced with the character \enquote{?} so that the argument is a string of printable characters.  The string is not null-terminated.  The first byte of a binary message is 0xD3 (equal to 0x80 + \enquote{S}) and the argument is the unmodified received data.  The message arguments are described in \Fref{tab:serialAccessoryMessageArguments}.
+The serial accessory message provides timestamped received serial accessory data.  Serial accessory messages are sent as serial accessory data is received as configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{S} and the argument is the received data.  Received byte values less than 0x20 or greater than 0x7E will be replaced with the character \enquote{?} so that the argument is a string of printable characters.  The string is not null-terminated.  The first byte of a binary message is 0xD3 (equal to 0x80 + \enquote{S}) and the argument is the unmodified received data.  The message arguments are described in \Fref{tab:serialAccessoryMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{Received serial accessory data}
