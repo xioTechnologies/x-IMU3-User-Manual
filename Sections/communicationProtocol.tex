@@ -638,32 +638,38 @@ The battery message message provides timestamped measurements of the battery lev
 \begingroup
     \def\tempArgumentA{Battery percentage}
     \def\tempArgumentB{Battery voltage in volts}
-    \def\tempArgumentC{Charger connected (0 = not connected, 1 = connected)}
-    \def\tempArgumentD{Charger status (0 = not charging, 1 = charging)}
+    \def\tempArgumentC{Charging status (See \Fref{tab:chargingStatusEnumeration})}
     \dataMessageTable
     {Battery message arguments}
     {tab:batteryMessageArguments}
 \endgroup
 
+\customTable
+{c l}
+{Charging status & Description}
+{
+    0 & Not connected\\
+    1 & Charging\\
+    2 & Charging complete\\
+}
+{Charging status enumeration}
+{tab:chargingStatusEnumeration}
+
 \begingroup
     \def\tempNameA{Percentage}
     \def\tempNameB{Voltage}
-    \def\tempNameC{Charger connected}
-    \def\tempNameD{Charger status}
+    \def\tempNameC{Charging status}
     \def\tempValueA{100}
     \def\tempValueB{4.2}
-    \def\tempValueC{1}
-    \def\tempValueD{0}
+    \def\tempValueC{2}
     \def\tempAsciiFirst{B}
     \def\tempAsciiA{100.0000}
     \def\tempAsciiB{4.2000}
-    \def\tempAsciiC{1.0000}
-    \def\tempAsciiD{0.0000}
+    \def\tempAsciiC{2.0000}
     \def\tempBinaryFirst{C2}
     \def\tempBinaryA{00 00 C8 42}
     \def\tempBinaryB{66 66 86 40}
-    \def\tempBinaryC{00 00 80 3F}
-    \def\tempBinaryD{00 00 00 00}
+    \def\tempBinaryC{00 00 00 40}
     \dataMessageExample
 \endgroup
 

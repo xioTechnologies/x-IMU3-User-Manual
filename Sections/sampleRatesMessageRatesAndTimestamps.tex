@@ -30,7 +30,7 @@ If a message rate divisor is greater than 1 then the measurements in each data m
 
 \subsection{Timestamps}
 
-The timestamp of a data message indicates the time at which a measurement was obtained.  For example, when an \ac{ADC} conversion completes.  Timestamps are therefore not affected by the sample rate error or the latency of a communication channel.  Applications that involve time-dependent calculations such as numerical integration or interpolation should not infer timing from the nominal sample rate and should instead use the timestamp of each measurement.  A timestamp is the number of microseconds since device start up with a resolution of one microsecond.
+The timestamp of a data message indicates the time at which a measurement was obtained.  For example, when an \ac{ADC} conversion completes.  Timestamps are therefore not affected by the sample rate error or the latency of a communication interface.  Applications that involve time-dependent calculations such as numerical integration or interpolation should not infer timing from the nominal sample rate and should instead use the timestamp of each measurement.  A timestamp is the number of microseconds since device start up with a resolution of one microsecond.
 
 \subsection{Synchronisation}
 
