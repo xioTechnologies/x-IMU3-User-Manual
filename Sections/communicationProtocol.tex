@@ -150,6 +150,12 @@ The note command is sent to the device to generate a timestamped notification me
 
 \commandMessageExample{"note":"Something happened."}
 
+\subsubsection{Format command}
+
+The format command is sent to the device to format the SD card.  The key is \enquote{format} and the value is null.  Formatting will erase all data on the SD card.
+
+\commandMessageExample{"format":null}
+
 \subsubsection{Self-test command}
 
 The self-test command is sent to the device to perform a self-test.  The key is \enquote{test} and the value is null.  The result of the self-test is obtained using the result command.  The device must be stationary during the self-test.
