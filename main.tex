@@ -24,6 +24,7 @@
 \usepackage{textcomp} % symbols, e.g. \textdegree
 \usepackage{textgreek} % greek letters, e.g. \textmu
 \usepackage[super]{nth}
+\usepackage{svg}
 \usepackage{macros} % project specific macros
 
 \renewcommand\familydefault{\sfdefault}
@@ -33,7 +34,7 @@
 \fancyhead[L]{\thetitle{} \version\\ \thedate}
 \fancyfoot[R]{\thepage}
 \setlength{\headheight}{29pt} % must be large enough for image
-\rhead{\includegraphics[width=1.5cm]{Images/xioLogo.png}}
+\rhead{\includesvg[width=1.5cm]{Images/xioLogo.svg}}
 \renewcommand{\headrulewidth}{0.5pt}
 \renewcommand{\footrulewidth}{0.5pt}
 
