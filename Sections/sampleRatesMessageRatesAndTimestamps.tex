@@ -22,11 +22,11 @@ The sample rate is the rate at which measurements are sampled by a measurement s
 
 \subsection{Message rates}
 
-The message rate is the rate at which a data message is sent.  The message rate of each data message type is configured by a separate message rate divisor in the device settings.  A message rate divisor is a positive integer that a fixed sample rate is divided by to obtain the message rate.  For example, if the inertial message rate divisor is 4 then the inertial message rate will be 100 messages/s.  A message rate divisor of 0 will disable the sending of that data message type.  See \Fref{sec:inertialMessageRateDivisor} to \Fref{sec:serialAccessoryRateDivisor} for a detailed description and examples for each message rate divisor setting.
+The message rate is the rate at which a data message is sent.  The message rate of each data message type is configured by a separate message rate divisor in the device settings.  A message rate divisor is a positive integer that a fixed sample rate is divided by to obtain the message rate.  For example, if the inertial message rate divisor is 4 then the inertial message rate will be 100 messages per second.  A message rate divisor of 0 will disable the sending of that data message type.  See \Fref{sec:inertialMessageRateDivisor} to \Fref{sec:serialAccessoryRateDivisor} for a detailed description and examples for each message rate divisor setting.
 
 \subsection{Sample averaging}
 
-If a message rate divisor is greater than 1 then the measurements in each data message will be the average of a number of samples equal to the message rate divisor.  The timestamp of the data message will be that of the most recent sample.  For example, if the inertial message rate divisor is 8 then the measurements in each inertial message will be the average of 8 samples and the timestamp of the message will be that of the \nth{8} sample.
+If a message rate divisor is greater than 1 then the measurements in each data message will be the average of the most recent $n$ samples where $n$ equal to the message rate divisor.  The timestamp of the data message will be that of the most recent sample.  For example, if the inertial message rate divisor is 8 then the measurements in each inertial message will be the average of 8 samples and the timestamp of the message will be that of the \nth{8} sample.
 
 \subsection{Timestamps}
 

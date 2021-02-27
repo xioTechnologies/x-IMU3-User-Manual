@@ -122,20 +122,12 @@ The strobe command is sent to the device to strobe the \ac{LED} bright white for
 
 \commandMessageExample{"strobe":null}
 
-% \subsubsection{Colour command}
+\subsubsection{Colour command}
+\label{sec:colourCommand}
 
-% The colour command is sent to the device to set the \ac{LED} colour.  The key is \enquote{colour} or \enquote{color} and the value is either an \ac{RGB} hex triplet expressed as a string, or null.
-% %
-% Setting the colour will override the normal \ac{LED} behaviour.
-% %
-% A value of null will restore the normal behaviour.
-% %
-% The \enquote{\#} character is optional.  For example, \enquote{\#FF0000} for red or \enquote{\#00FFFF} for cyan.
+The colour command is sent to the device to set the \ac{LED} colour.  The key is \enquote{colour} or \enquote{color} and the value is either a \ac{RGB} hex triplet expressed as a string, or null.  Setting the colour will override the normal \ac{LED} behaviour.  A value of null will restore the normal behaviour.
 
-% % {"colour":[255 255 255]}\n
-% % {"strobe":[255 255 255]}\n
-
-% \commandMessageExample{"colour":"\#FFFFFFFF"}
+\commandMessageExample{"colour":"FFFFFF"}
 
 \subsubsection{Serial accessory command}
 
