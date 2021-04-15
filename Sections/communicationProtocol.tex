@@ -440,7 +440,7 @@ The rotation matrix message provides timestamped measurements of the orientation
 
 \subsubsection{Euler angles message}
 
-The Euler angles message provides timestamped measurements of the orientation of the device relative to the Earth.  Euler angles messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{E} and the arguments are three numerical values expressed to four decimal places.  The first byte of a binary message is 0xC5 (equal to 0x80 + \enquote{E}) and the arguments are three contiguous 32-bit floats.  The message arguments are described in \Fref{tab:eulerAnglesMessageArguments}.
+The Euler angles message provides timestamped measurements of the orientation of the device relative to the Earth.  Euler angles messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{A} and the arguments are three numerical values expressed to four decimal places.  The first byte of a binary message is 0xC1 (equal to 0x80 + \enquote{A}) and the arguments are three contiguous 32-bit floats.  The message arguments are described in \Fref{tab:eulerAnglesMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{Roll angle in degrees}
@@ -458,11 +458,11 @@ The Euler angles message provides timestamped measurements of the orientation of
     \def\tempValueA{0.0}
     \def\tempValueB{0.0}
     \def\tempValueC{0.0}
-    \def\tempAsciiFirst{E}
+    \def\tempAsciiFirst{A}
     \def\tempAsciiA{0.0000}
     \def\tempAsciiB{0.0000}
     \def\tempAsciiC{0.0000}
-    \def\tempBinaryFirst{C5}
+    \def\tempBinaryFirst{C1}
     \def\tempBinaryA{00 00 00 00}
     \def\tempBinaryB{00 00 00 00}
     \def\tempBinaryC{00 00 00 00}
