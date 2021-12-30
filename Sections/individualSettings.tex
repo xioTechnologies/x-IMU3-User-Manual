@@ -40,13 +40,13 @@
 \endgroup
 
 \begingroup
-    \def\tempSection{Battery measurement sensitivity (read-only)}
-    \def\tempLabel{sec:batteryMeasurementSensitivity}
+    \def\tempSection{Battery voltmeter sensitivity (read-only)}
+    \def\tempLabel{sec:batteryVoltmeterSensitivity}
     \def\tempDescription
     {
-        Battery measurement sensitivity.
+        Battery voltmeter sensitivity.
     }
-    \def\tempKey{batteryMeasurementSensitivity}
+    \def\tempKey{batteryVoltmeterSensitivity}
     \def\tempType{number}
     \def\tempDefault{1.0f}
     \deviceSetting
@@ -157,39 +157,39 @@
 \endgroup
 
 \begingroup
-    \def\tempSection{High-g misalignment (read-only)}
-    \def\tempLabel{sec:highGMisalignment}
+    \def\tempSection{High-g accelerometer misalignment (read-only)}
+    \def\tempLabel{sec:highGAccelerometerMisalignment}
     \def\tempDescription
     {
-        High-g misalignment.
+        High-g accelerometer misalignment.
     }
-    \def\tempKey{highGMisalignment}
+    \def\tempKey{highGAccelerometerMisalignment}
     \def\tempType{number}
     \def\tempDefault{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}
     \deviceSetting
 \endgroup
 
 \begingroup
-    \def\tempSection{High-g sensitivity (read-only)}
-    \def\tempLabel{sec:highGSensitivity}
+    \def\tempSection{High-g accelerometer sensitivity (read-only)}
+    \def\tempLabel{sec:highGAccelerometerSensitivity}
     \def\tempDescription
     {
-        High-g sensitivity.
+        High-g accelerometer sensitivity.
     }
-    \def\tempKey{highGSensitivity}
+    \def\tempKey{highGAccelerometerSensitivity}
     \def\tempType{number}
     \def\tempDefault{1.0f, 1.0f, 1.0f}
     \deviceSetting
 \endgroup
 
 \begingroup
-    \def\tempSection{High-g offset (read-only)}
-    \def\tempLabel{sec:highGOffset}
+    \def\tempSection{High-g accelerometer offset (read-only)}
+    \def\tempLabel{sec:highGAccelerometerOffset}
     \def\tempDescription
     {
-        High-g offset.
+        High-g accelerometer offset.
     }
-    \def\tempKey{highGOffset}
+    \def\tempKey{highGAccelerometerOffset}
     \def\tempType{number}
     \def\tempDefault{0.0f, 0.0f, 0.0f}
     \deviceSetting
@@ -214,7 +214,6 @@
     \def\tempDescription
     {
         Unique 64-bit serial number expressed as a string of 16 hexadecimal digits in the format \enquote{XXXX-XXXX-XXXX-XXXX}.
-        Serial number.
     }
     \def\tempKey{serialNumber}
     \def\tempType{string}
@@ -228,7 +227,6 @@
     \def\tempDescription
     {
         Current firmware version.  See \Fref{sec:updatingDeviceFirmware} for more information about updating the device firmware.
-        Firmware version.
     }
     \def\tempKey{firmwareVersion}
     \def\tempType{string}
@@ -384,7 +382,6 @@
     \def\tempDescription
     {
         Current wireless firmware version.  See \Fref{sec:updatingDeviceFirmware} for more information about updating the device firmware.
-        Wireless firmware version.
     }
     \def\tempKey{wirelessFirmwareVersion}
     \def\tempType{string}
@@ -398,7 +395,6 @@
     \def\tempDescription
     {
         Enables (true) or disables (false) the external antennae.  An antennae must be connected to the U.FL connector if the external antennae is enabled.  The internal antennae will be used if the external antennae is disabled.
-        External antennae enabled.
     }
     \def\tempKey{externalAntennaeEnabled}
     \def\tempType{true or false}
@@ -651,7 +647,7 @@
     }
     \def\tempKey{udpSendPort}
     \def\tempType{number}
-    \def\tempDefault{8000}
+    \def\tempDefault{0}
     \deviceSetting
 \endgroup
 
@@ -725,7 +721,7 @@
     \def\tempLabel{sec:bluetoothPinCode}
     \def\tempDescription
     {
-        Configures the Bluetooth pin code.  The pin code must be between 1 and 7 characters long.  See \Fref{sec:bluetooth} for more information about Bluetooth pairing.
+        Configures the Bluetooth pin code.  The pin code must be between 1 and 15 characters long.  See \Fref{sec:bluetooth} for more information about Bluetooth pairing.
     }
     \def\tempKey{bluetoothPinCode}
     \def\tempType{string}
@@ -946,13 +942,13 @@
 \endgroup
 
 \begingroup
-    \def\tempSection{Binary mode}
-    \def\tempLabel{sec:binaryMode}
+    \def\tempSection{Binary mode enabled}
+    \def\tempLabel{sec:binaryModeEnabled}
     \def\tempDescription
     {
 		Enables (true) or disables (false) binary data messages.  If binary data messages are disabled then data messages will be \ac{ASCII}.  See \Fref{sec:dataMessages} for more information.
     }
-    \def\tempKey{binaryMode}
+    \def\tempKey{binaryModeEnabled}
     \def\tempType{true or false}
     \def\tempDefault{true}
     \deviceSetting
@@ -1053,7 +1049,7 @@
             3 & Linear acceleration\\
             4 & Earth acceleration\\
         }
-        {\acs{AHRS} message types}
+        {\ac{AHRS} message types}
         {tab:ahrsMessageTypes}
     }
     \def\tempKey{ahrsMessageType}
@@ -1125,7 +1121,7 @@
     \def\tempDescription
     {
         \messageRateDivisorDescription
-        {\acs{AHRS}}
+        {\ac{AHRS}}
         {400}
         {200}
         {133.33}
@@ -1192,6 +1188,25 @@
     \def\tempKey{batteryMessageRateDivisor}
     \def\tempType{number}
     \def\tempDefault{5}
+    \deviceSetting
+\endgroup
+
+\begingroup
+    \def\tempSection{\acs{RSSI} message rate divisor}
+    \def\tempLabel{sec:rssiMessageRateDivisor}
+    \def\tempDescription
+    {
+        \messageRateDivisorDescription
+        {\ac{RSSI}}
+        {1}
+        {0.5}
+        {0.33}
+        {0.25}
+        {tab:exampleRssiMessageRates}
+    }
+    \def\tempKey{rssiMessageRateDivisor}
+    \def\tempType{number}
+    \def\tempDefault{1}
     \deviceSetting
 \endgroup
 
