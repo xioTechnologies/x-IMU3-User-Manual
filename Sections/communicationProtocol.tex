@@ -1,5 +1,4 @@
 \section{Communication protocol}
-\label{sec:communicationProtocol}
 
 All communication interfaces use the same communication protocol.  The byte stream is therefore identical for \ac{USB}, serial, \ac{TCP}, \ac{UDP}, Bluetooth, and the files created by on-board data logging.  The communication protocol consists of two message types:
 
@@ -97,14 +96,12 @@ The ping response is sent from the device to the host in response to the ping co
 \end{table}
 
 \subsubsection{Reset command}
-\label{sec:resetCommand}
 
 The reset command is sent to the device to reset the device.  The key is \enquote{reset} and the value is null.  A reset is equivalent to switching the device off and then on again.  The device will reset two seconds after receiving this command.
 
 \commandMessageExample{"reset":null}
 
 \subsubsection{Shutdown command}
-\label{sec:shutdownCommand}
 
 The shutdown command is sent to the device to switch the device off.  The key is \enquote{shutdown} and the value is null.  The device will shutdown two seconds after receiving this command.
 
@@ -123,7 +120,6 @@ The strobe command is sent to the device to strobe the \ac{LED} bright white for
 \commandMessageExample{"strobe":null}
 
 \subsubsection{Colour command}
-\label{sec:colourCommand}
 
 The colour command is sent to the device to set the \ac{LED} colour.  The key is \enquote{colour} or \enquote{color} and the value is either a \ac{RGB} hex triplet expressed as a string, or null.  Setting the colour will override the normal \ac{LED} behaviour.  A value of null will restore the normal behaviour.
 

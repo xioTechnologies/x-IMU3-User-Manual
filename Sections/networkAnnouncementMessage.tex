@@ -1,5 +1,4 @@
 \section{Network announcement message}
-\label{sec:networkAnnouncementMessage}
 
 The network announcement message is used by a host to discover and connect to devices on the same network.  The message is continuously broadcast by the device on \ac{UDP} port 10000 at a fixed rate of one message per second.  Each message provides the device name, serial number, Wi-Fi and battery status, as well as the device settings required for a host to establish a \ac{TCP} or \ac{UDP} connection.  The message is a single \ac{JSON} object.  The key/value pairs are described in \Fref{tab:networkAnnouncementMessage}.
 
