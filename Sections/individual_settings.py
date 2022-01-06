@@ -46,6 +46,12 @@ with open("DeviceSettings.json") as json_file:
         # Type
         temp_type = "number"
 
+        if "FusionMatrix" in json_object["declaration"]:
+            temp_type = "array of 9 numbers"
+
+        if "FusionVector" in json_object["declaration"]:
+            temp_type = "array of 3 numbers"
+
         for declaration in {"char name[", "RS9116IPAddress", "RS9116MacAddress"}:
             if declaration in json_object["declaration"]:
                 temp_type = "string"
@@ -54,7 +60,10 @@ with open("DeviceSettings.json") as json_file:
             temp_type = "true or false"
 
         # Default
-        temp_default = json_object["default"].replace("{", "").replace("}", "")
+        temp_default = json_object["default"].replace("{{", "[").replace("}}", "]").replace("{", "").replace("}", "")
+
+        if "number" in temp_type:
+            temp_default = temp_default.replace("f", "")
 
         if temp_default == "SerialModeDisabled":
             temp_default = "0"

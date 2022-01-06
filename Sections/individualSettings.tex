@@ -5,7 +5,7 @@
     \def\tempLabel{sec:calibrationDate}
     \def\tempDescription
     {
-        Calibration date.
+        Calibration date.  \seeSection{sec:calibration}
     }
     \def\tempKey{calibrationDate}
     \def\tempType{string}
@@ -13,16 +13,18 @@
     \deviceSetting
 \endgroup
 
+\newcommand{\clockCalibrationDescription}[1] {#1 calibration value used for clock calibration.  \seeSection{sec:systemClockAndRtc}}
+
 \begingroup
     \def\tempSection{System clock calibration (read-only)}
     \def\tempLabel{sec:systemClockCalibration}
     \def\tempDescription
     {
-        System clock calibration.
+        \clockCalibrationDescription{System clock}
     }
     \def\tempKey{systemClockCalibration}
     \def\tempType{number}
-    \def\tempDefault{0.0f}
+    \def\tempDefault{0.0}
     \deviceSetting
 \endgroup
 
@@ -31,11 +33,11 @@
     \def\tempLabel{sec:rtcCalibration}
     \def\tempDescription
     {
-        \ac{RTC} calibration.
+        \clockCalibrationDescription{\ac{RTC}}
     }
     \def\tempKey{rtcCalibration}
     \def\tempType{number}
-    \def\tempDefault{0.0f}
+    \def\tempDefault{0.0}
     \deviceSetting
 \endgroup
 
@@ -44,24 +46,30 @@
     \def\tempLabel{sec:batteryVoltmeterSensitivity}
     \def\tempDescription
     {
-        Battery voltmeter sensitivity.
+        Battery voltmeter sensitivity used for calibration.  \seeSection{sec:batteryVoltmeter}
     }
     \def\tempKey{batteryVoltmeterSensitivity}
     \def\tempType{number}
-    \def\tempDefault{1.0f}
+    \def\tempDefault{1.0}
     \deviceSetting
 \endgroup
+
+\newcommand{\inertialMisalignmentDescription}[1] {#1 misalignment matrix (in row-major order) used for inertial sensor calibration.  \seeSection{sec:inertialSensor}}
+
+\newcommand{\inertialSensitivityDescription}[1] {#1 sensitivity vector used for inertial sensor calibration.  \seeSection{sec:inertialSensor}}
+
+\newcommand{\inertialOffsetDescription}[1] {#1 offset vector used for inertial sensor calibration.  \seeSection{sec:inertialSensor}}
 
 \begingroup
     \def\tempSection{Gyroscope misalignment (read-only)}
     \def\tempLabel{sec:gyroscopeMisalignment}
     \def\tempDescription
     {
-        Gyroscope misalignment.
+        \inertialMisalignmentDescription{Gyroscope}
     }
     \def\tempKey{gyroscopeMisalignment}
-    \def\tempType{number}
-    \def\tempDefault{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}
+    \def\tempType{array of 9 numbers}
+    \def\tempDefault{[1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]}
     \deviceSetting
 \endgroup
 
@@ -70,11 +78,11 @@
     \def\tempLabel{sec:gyroscopeSensitivity}
     \def\tempDescription
     {
-        Gyroscope sensitivity.
+        \inertialSensitivityDescription{Gyroscope}
     }
     \def\tempKey{gyroscopeSensitivity}
-    \def\tempType{number}
-    \def\tempDefault{1.0f, 1.0f, 1.0f}
+    \def\tempType{array of 3 numbers}
+    \def\tempDefault{[1.0, 1.0, 1.0]}
     \deviceSetting
 \endgroup
 
@@ -83,11 +91,11 @@
     \def\tempLabel{sec:gyroscopeOffset}
     \def\tempDescription
     {
-        Gyroscope offset.
+        \inertialOffsetDescription{Gyroscope}
     }
     \def\tempKey{gyroscopeOffset}
-    \def\tempType{number}
-    \def\tempDefault{0.0f, 0.0f, 0.0f}
+    \def\tempType{array of 3 numbers}
+    \def\tempDefault{[0.0, 0.0, 0.0]}
     \deviceSetting
 \endgroup
 
@@ -96,11 +104,11 @@
     \def\tempLabel{sec:accelerometerMisalignment}
     \def\tempDescription
     {
-        Accelerometer misalignment.
+        \inertialMisalignmentDescription{Accelerometer}
     }
     \def\tempKey{accelerometerMisalignment}
-    \def\tempType{number}
-    \def\tempDefault{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}
+    \def\tempType{array of 9 numbers}
+    \def\tempDefault{[1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]}
     \deviceSetting
 \endgroup
 
@@ -109,11 +117,11 @@
     \def\tempLabel{sec:accelerometerSensitivity}
     \def\tempDescription
     {
-        Accelerometer sensitivity.
+        \inertialSensitivityDescription{Accelerometer}
     }
     \def\tempKey{accelerometerSensitivity}
-    \def\tempType{number}
-    \def\tempDefault{1.0f, 1.0f, 1.0f}
+    \def\tempType{array of 3 numbers}
+    \def\tempDefault{[1.0, 1.0, 1.0]}
     \deviceSetting
 \endgroup
 
@@ -122,11 +130,11 @@
     \def\tempLabel{sec:accelerometerOffset}
     \def\tempDescription
     {
-        Accelerometer offset.
+        \inertialOffsetDescription{Accelerometer}
     }
     \def\tempKey{accelerometerOffset}
-    \def\tempType{number}
-    \def\tempDefault{0.0f, 0.0f, 0.0f}
+    \def\tempType{array of 3 numbers}
+    \def\tempDefault{[0.0, 0.0, 0.0]}
     \deviceSetting
 \endgroup
 
@@ -135,11 +143,11 @@
     \def\tempLabel{sec:softIronMatrix}
     \def\tempDescription
     {
-        Soft iron matrix.
+        Soft iron matrix (in row-major order) used for magnetometer calibration.  \seeSection{sec:magnetometer}
     }
     \def\tempKey{softIronMatrix}
-    \def\tempType{number}
-    \def\tempDefault{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}
+    \def\tempType{array of 9 numbers}
+    \def\tempDefault{[1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]}
     \deviceSetting
 \endgroup
 
@@ -148,11 +156,11 @@
     \def\tempLabel{sec:hardIronOffset}
     \def\tempDescription
     {
-        Hard iron offset.
+        Hard iron offset vector used for magnetometer calibration.  \seeSection{sec:magnetometer}
     }
     \def\tempKey{hardIronOffset}
-    \def\tempType{number}
-    \def\tempDefault{0.0f, 0.0f, 0.0f}
+    \def\tempType{array of 3 numbers}
+    \def\tempDefault{[0.0, 0.0, 0.0]}
     \deviceSetting
 \endgroup
 
@@ -161,11 +169,11 @@
     \def\tempLabel{sec:highGAccelerometerMisalignment}
     \def\tempDescription
     {
-        High-g accelerometer misalignment.
+        \inertialMisalignmentDescription{High-g accelerometer}
     }
     \def\tempKey{highGAccelerometerMisalignment}
-    \def\tempType{number}
-    \def\tempDefault{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f}
+    \def\tempType{array of 9 numbers}
+    \def\tempDefault{[1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]}
     \deviceSetting
 \endgroup
 
@@ -174,11 +182,11 @@
     \def\tempLabel{sec:highGAccelerometerSensitivity}
     \def\tempDescription
     {
-        High-g accelerometer sensitivity.
+        \inertialSensitivityDescription{High-g accelerometer}
     }
     \def\tempKey{highGAccelerometerSensitivity}
-    \def\tempType{number}
-    \def\tempDefault{1.0f, 1.0f, 1.0f}
+    \def\tempType{array of 3 numbers}
+    \def\tempDefault{[1.0, 1.0, 1.0]}
     \deviceSetting
 \endgroup
 
@@ -187,11 +195,11 @@
     \def\tempLabel{sec:highGAccelerometerOffset}
     \def\tempDescription
     {
-        High-g accelerometer offset.
+        \inertialOffsetDescription{High-g accelerometer}
     }
     \def\tempKey{highGAccelerometerOffset}
-    \def\tempType{number}
-    \def\tempDefault{0.0f, 0.0f, 0.0f}
+    \def\tempType{array of 3 numbers}
+    \def\tempDefault{[0.0, 0.0, 0.0]}
     \deviceSetting
 \endgroup
 
@@ -356,7 +364,7 @@
     \def\tempLabel{sec:wirelessMode}
     \def\tempDescription
     {
-        Configures the wireless mode.  The possible values are listed in \Fref{tab:wirelessModes}.  The current wireless mode is indicated by the \ac{LED} colour.  See \Fref{sec:led} for more information.
+        Configures the wireless mode.  The possible values are listed in \Fref{tab:wirelessModes}.  The current wireless mode is indicated by the \ac{LED} colour.  \seeSection{sec:led}
 
         \customTable
         {c l}
@@ -924,7 +932,7 @@
     }
     \def\tempKey{ahrsGain}
     \def\tempType{number}
-    \def\tempDefault{0.5f}
+    \def\tempDefault{0.5}
     \deviceSetting
 \endgroup
 
@@ -946,7 +954,7 @@
     \def\tempLabel{sec:binaryModeEnabled}
     \def\tempDescription
     {
-		Enables (true) or disables (false) binary data messages.  If binary data messages are disabled then data messages will be \ac{ASCII}.  See \Fref{sec:dataMessages} for more information.
+		Enables (true) or disables (false) binary data messages.  If binary data messages are disabled then data messages will be \ac{ASCII}.  \seeSection{sec:dataMessages}
     }
     \def\tempKey{binaryModeEnabled}
     \def\tempType{true or false}
