@@ -114,12 +114,14 @@ The shutdown command is sent to the device to switch the device off.  The key is
 % \commandMessageExample{"heading":0}
 
 \subsubsection{Strobe command}
+\label{sec:strobeCommand}
 
-The strobe command is sent to the device to strobe the \ac{LED} bright white for 5 seconds.  The key is \enquote{strobe} and the value is null.
+The strobe command is sent to the device to strobe the \ac{LED} bright white for 5 seconds.  The key is \enquote{strobe} and the value is null.  This command can be used to quickly find a specific device when using multiple devices.
 
 \commandMessageExample{"strobe":null}
 
 \subsubsection{Colour command}
+\label{sec:colourCommand}
 
 The colour command is sent to the device to set the \ac{LED} colour.  The key is \enquote{colour} or \enquote{color} and the value is either a \ac{RGB} hex triplet expressed as a string, or null.  Setting the colour will override the normal \ac{LED} behaviour.  A value of null will restore the normal behaviour.
 
