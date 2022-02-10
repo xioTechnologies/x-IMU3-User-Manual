@@ -129,9 +129,9 @@ The colour command is sent to the device to set the \ac{LED} colour.  The key is
 
 \subsubsection{Serial accessory command}
 
-The serial accessory command is sent to the device to transmit data to a serial accessory when the serial interface is in serial accessory mode.  The key is \enquote{serial} and the value is the data expressed as a string of up to 256 characters.  Longer strings will be truncated to the maximum size.  The string escape sequence \enquote{\textbackslash u} can be used to express any byte value as per the \ac{JSON} specification.
+The serial accessory command is sent to the device to transmit data to a serial accessory when the serial interface is in serial accessory mode.  The key is \enquote{accessory} and the value is the data expressed as a string of up to 256 characters.  Longer strings will be truncated to the maximum size.  The string escape sequence \enquote{\textbackslash u} can be used to express any byte value as per the \ac{JSON} specification.
 
-\commandMessageExample{"serial":"hello \textbackslash u0077\textbackslash u006F\textbackslash u0072\textbackslash u006C\textbackslash u0064"}
+\commandMessageExample{"accessory":"hello \textbackslash u0077\textbackslash u006F\textbackslash u0072\textbackslash u006C\textbackslash u0064"}
 
 \subsubsection{Note command}
 
