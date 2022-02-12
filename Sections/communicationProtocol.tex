@@ -157,7 +157,7 @@ The self-test response is sent from the device to the host in response to the se
         & \texttt{~~~~"RTC":} & \texttt{"Passed",}\\
         & \texttt{~~~~"Inertial":} & \texttt{"Passed",}\\
         & \texttt{~~~~"Magnetometer":} & \texttt{"Passed",}\\
-        & \texttt{~~~~"High-g":} & \texttt{"Passed",}\\
+        & \texttt{~~~~"High-g Accelerometer":} & \texttt{"Passed",}\\
         & \texttt{~~~~"Battery":} & \texttt{"Passed",}\\
         & \texttt{~~~~"SD Card":} & \texttt{"Passed",}\\
         & \texttt{~~~~"Wireless":} & \texttt{"Passed",}\\
@@ -567,16 +567,16 @@ The Earth acceleration message provides timestamped measurements of Earth accele
     \dataMessageExample
 \endgroup
 
-\subsubsection{High-g message}
+\subsubsection{High-g accelerometer message}
 
-The High-g message provides timestamped high-g accelerometer measurements.  High-g messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{H} and the arguments are three numerical values expressed to four decimal places.  The first byte of a binary message is 0xC8 (equal to 0x80 + \enquote{H}) and the arguments are three contiguous 32-bit floats.  The message arguments are described in \Fref{tab:highGMessageArguments}.
+The High-g accelerometer message provides timestamped high-g accelerometer measurements.  High-g accelerometer messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{H} and the arguments are three numerical values expressed to four decimal places.  The first byte of a binary message is 0xC8 (equal to 0x80 + \enquote{H}) and the arguments are three contiguous 32-bit floats.  The message arguments are described in \Fref{tab:highGMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{High-g accelerometer X axis in g}
     \def\tempArgumentB{High-g accelerometer Y axis in g}
     \def\tempArgumentC{High-g accelerometer Z axis in g}
     \dataMessageTable
-    {High-g message arguments}
+    {High-g accelerometer message arguments}
     {tab:highGMessageArguments}
 \endgroup
 
