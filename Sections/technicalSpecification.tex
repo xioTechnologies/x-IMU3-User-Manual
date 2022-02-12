@@ -1,18 +1,36 @@
 \section{Technical specification}
 
-\newcommand{\characteristicTable}[4]{
+\newcommand{\techincalTable}[5]{
     \customTable
     {l c c}
-    {Characteristic & Value & Notes}
+    {#1 & Value & Notes}
     {
-        #1
+        #2
     }
-    {#2}
     {#3}
+    {#4}
     \textbf{Notes}
     \begin{enumerate}[nolistsep]
-        #4
+        #5
     \end{enumerate}
+}
+
+\newcommand{\characteristicTable}[4]{
+    \techincalTable
+    {Characteristic}
+    {#1}
+    {#2}
+    {#3}
+    {#4}
+}
+
+\newcommand{\conditionTable}[4]{
+    \techincalTable
+    {Condition}
+    {#1}
+    {#2}
+    {#3}
+    {#4}
 }
 
 \subsection{Temperature}
@@ -141,7 +159,7 @@
 
 \characteristicTable
 {
-    Range & -104\textdegree{}C to 150\textdegree{}C & \ref{itm:temperatureSensor1}\\\
+    Range & -104\textdegree{}C to 150\textdegree{}C & \ref{itm:temperatureSensor1}\\
     Sample rate & 5 Hz \textpm{}0.3\% & \ref{itm:temperatureSensor2}, \ref{itm:temperatureSensor3}\\
     Accuracy & \textpm{}1\textdegree{}C at 25\textdegree{}C & -\\
 }
@@ -151,4 +169,35 @@
     \item \label{itm:temperatureSensor1} The temperature sensor measurement range exceeds the device operating temperature range.  \seeSection{sec:temperature}
     \item \label{itm:temperatureSensor2} \noteSampleRate
     \item \label{itm:temperatureSensor3} The temperature sensor is oversampled and the result decimated to the specified sample rate.
+}
+
+\subsection{Data logger capacity}
+
+\newcommand{\noteBinary}{The data logging capacity is indicated for binary data messages.  Capacity will be reduced for \acs{ASCII} data messages.}
+
+\subsubsection{8 GB micro \acs{SD} card}
+
+\conditionTable
+{
+    Default message rates & 485 hours & \ref{itm:dataLoggerCapacity8GB1}\\
+    Maximum message rates & 37 hours & \ref{itm:dataLoggerCapacity8GB1}\\
+}
+{Data logger capacity for 8 GB micro \acs{SD} card}
+{tab:dataLoggerCapacity8GB1}
+{
+    \item \label{itm:dataLoggerCapacity8GB1} \noteBinary
+}
+
+\subsubsection{32 GB micro \acs{SD} card}
+
+\conditionTable
+{
+    Default message rates & 1941 hours & \ref{itm:dataLoggerCapacity32GB1}, \ref{itm:dataLoggerCapacity32GB2}\\
+    Maximum message rates & 149 hours & \ref{itm:dataLoggerCapacity32GB1}, \ref{itm:dataLoggerCapacity32GB2}\\
+}
+{Data logger capacity for 32 GB micro \acs{SD} card}
+{tab:dataLoggerCapacity32GB1}
+{
+    \item \label{itm:dataLoggerCapacity32GB1} \noteBinary
+    \item \label{itm:dataLoggerCapacity32GB2} The product is supplied with an 8 GB micro \acs{SD} card that can be upgraded by the user.  The maximum compatible micro \acs{SD} card capacity is 32 GB.
 }
