@@ -809,33 +809,33 @@
     }
     \def\tempKey{dataLoggerFileNamePrefix}
     \def\tempType{string}
-    \def\tempDefault{\enquote{File Name Prefix}}
+    \def\tempDefault{\enquote{}}
     \deviceSetting
 \endgroup
 
 \begingroup
-    \def\tempSection{Data logger file name number}
-    \def\tempLabel{sec:dataLoggerFileNameNumber}
+    \def\tempSection{Data logger file name time enabled}
+    \def\tempLabel{sec:dataLoggerFileNameTimeEnabled}
     \def\tempDescription
     {
-        Data logger file name number.
+        Data logger file name time enabled.
     }
-    \def\tempKey{dataLoggerFileNameNumber}
-    \def\tempType{number}
-    \def\tempDefault{0}
-    \deviceSetting
-\endgroup
-
-\begingroup
-    \def\tempSection{Data logger file name is time}
-    \def\tempLabel{sec:dataLoggerFileNameIsTime}
-    \def\tempDescription
-    {
-        Data logger file name is time.
-    }
-    \def\tempKey{dataLoggerFileNameIsTime}
+    \def\tempKey{dataLoggerFileNameTimeEnabled}
     \def\tempType{true or false}
     \def\tempDefault{true}
+    \deviceSetting
+\endgroup
+
+\begingroup
+    \def\tempSection{Data logger file name counter enabled}
+    \def\tempLabel{sec:dataLoggerFileNameCounterEnabled}
+    \def\tempDescription
+    {
+        Data logger file name counter enabled.
+    }
+    \def\tempKey{dataLoggerFileNameCounterEnabled}
+    \def\tempType{true or false}
+    \def\tempDefault{false}
     \deviceSetting
 \endgroup
 
