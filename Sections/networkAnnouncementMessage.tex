@@ -6,7 +6,7 @@ The network announcement message is used by a host to discover and connect to de
 {l l l}
 {Key & Value type & Description}
 {
-    \enquote{sync} & number or null & Used for synchronisation\\
+    \enquote{sync} & number & Used for synchronisation\\
     \enquote{name} & string & Device name\\
     \enquote{serial} & string & Device serial number\\
     \enquote{ip} & string & Device \acs{IP} address\\
@@ -23,7 +23,7 @@ The network announcement message is used by a host to discover and connect to de
 \begin{table}[H]
     \begin{tabular}{l l l}
         \textbf{Example}*\textbf{:} & \texttt{\{}\\
-        & \texttt{~~"sync":} & \texttt{null,}\\
+        & \texttt{~~"sync":} & \texttt{0,}\\
         & \texttt{~~"name":} & \texttt{"x-IMU3",}\\
         & \texttt{~~"serial":} & \texttt{"0123-4567-89AB-CDEF",}\\
         & \texttt{~~"ip":} & \texttt{"192.168.1.1",}\\
