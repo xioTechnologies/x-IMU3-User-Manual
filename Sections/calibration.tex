@@ -26,7 +26,7 @@ v_c = s_v v_u
 \subsection{Inertial sensors}
 \label{sec:inertialSensor}
 
-The inertial sensors are the gyroscope, accelerometer, and high-g accelerometer.  Each inertial sensor is calibrated for axis sensitivity, axis offset, inter-axis misalignment, and package misalignment.  The inertial calibration model is described by \Fref{eq:inertial} where $i_c$ is the calibrated inertial measurement obtained from the uncalibrated inertial measurement, $i_u$, given the misalignment matrix, $M$, the sensitivity vector, $s$, and the offset vector, $b$.  The inertial calibration model is expanded as \Fref{eq:inertialExpanded} to express the model as 15 scalar quantities.  The units of $i_c$, $i_u$, and $b$ are degrees per second for the gyroscope, and g for the accelerometer and high-g accelerometer.  $M$ and $s$ are ratios and therefore have no units.  The calibration parameters $M$, $s$, and $b$ for each inertial sensor can be accessed as device settings.
+The inertial sensors are the gyroscope, accelerometer, and high-g accelerometer.  Each inertial sensor is calibrated for axis sensitivity, axis offset, inter-axis misalignment, and package misalignment.  The inertial calibration model is described by \Fref{eq:inertial} where $i_c$ is the calibrated inertial measurement obtained from the uncalibrated inertial measurement, $i_u$, given the misalignment matrix, $M$, the sensitivity diagonal matrix, $s$, and the offset vector, $b$.  The inertial calibration model is expanded as \Fref{eq:inertialExpanded} to express the model as 15 scalar quantities.  The units of $i_c$, $i_u$, and $b$ are degrees per second for the gyroscope, and g for the accelerometer and high-g accelerometer.  $M$ and $s$ are ratios and therefore have no units.  The calibration parameters $M$, $s$, and $b$ for each inertial sensor can be accessed as device settings.
 
 \begin{equation}
 \label{eq:inertial}
@@ -47,9 +47,9 @@ i_c = M s (i_u - b)
         m_{zx} & m_{zy} & m_{zz}\\
     \end{bmatrix}
     \begin{bmatrix}
-        s_{x}\\
-        s_{y}\\
-        s_{z}\\
+        s_{x} & 0 & 0\\
+        0 & s_{y} & 0\\
+        0 & 0 & s_{z}\\
     \end{bmatrix}
     \left(
     \begin{bmatrix}
