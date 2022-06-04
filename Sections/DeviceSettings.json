@@ -8,13 +8,13 @@
     {
         "name": "System clock calibration",
         "declaration": "float name",
-        "default": "{0.0f}",
+        "default": "{1.0f}",
         "calibration": true
     },
     {
         "name": "RTC calibration",
         "declaration": "float name",
-        "default": "{0.0f}",
+        "default": "{1.0f}",
         "calibration": true
     },
     {
