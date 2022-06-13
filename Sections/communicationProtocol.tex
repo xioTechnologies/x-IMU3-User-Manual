@@ -179,9 +179,9 @@ The bootloader command is sent to the device to put the device in bootloader mod
 
 \subsubsection{Factory command}
 
-The factory command is sent to the device to enable factory mode.  The key is \enquote{factory} and the value is null.  In factory mode, read-only settings can be written using the write setting command, the default command will set all calibration settings to their default values, the save command will succeed when the \ac{EEPROM} \ac{CRC} has failed, and the erase command will be enabled.
+The factory command is sent to the device to enable or disable factory mode.  The key is \enquote{factory} and the value is either true (enabled) or false (disabled).  In factory mode, read-only settings can be written using the write setting command, the default command will set all calibration settings to their default values, the save command will succeed when the \ac{EEPROM} \ac{CRC} has failed, and the erase command will be enabled.
 
-\commandMessageExample{"factory":null}
+\commandMessageExample{"factory":true}
 
 \newcommand{\warning}{
     \begin{center}
