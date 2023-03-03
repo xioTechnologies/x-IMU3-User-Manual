@@ -264,7 +264,7 @@
     {
         "name": "Synchronisation network latency",
         "declaration": "uint32_t name",
-        "default": "{0}"
+        "default": "{1500}"
     },
     {
         "name": "Bluetooth address",
@@ -338,6 +338,11 @@
         "name": "Gyroscope offset correction enabled",
         "declaration": "bool name",
         "default": "{true}"
+    },
+    {
+        "name": "AHRS axes convention",
+        "declaration": "FusionConvention name",
+        "default": "{FusionConventionNwu}"
     },
     {
         "name": "AHRS gain",

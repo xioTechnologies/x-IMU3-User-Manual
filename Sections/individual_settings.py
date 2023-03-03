@@ -95,6 +95,9 @@ with open("DeviceSettings.json") as json_file:
         if temp_default == "FusionAxesAlignmentPXPYPZ":
             temp_default = "0"
 
+        if temp_default == "FusionConventionNwu":
+            temp_default = "0"
+
         if temp_default == "SendAhrsMessageTypeQuaternion":
             temp_default = "0"
 

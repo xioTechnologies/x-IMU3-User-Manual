@@ -924,6 +924,29 @@
 \endgroup
 
 \begingroup
+    \def\tempSection{\acs{AHRS} axes convention}
+    \def\tempLabel{sec:ahrsAxesConvention}
+    \def\tempDescription
+    {
+        Configures  the Earth axes convention used by the \ac{AHRS} algorithm.  The possible values are listed in \Fref{tab:axesConventions}.
+        \customTable
+        {c l}
+        {Value & Axes Convention}
+        {
+            0 & North-West-Up (NWU)\\
+            1 & East-North-Up (ENU)\\
+            2 & North-East-Down (NED)\\
+        }
+        {Axes conventions}
+        {tab:axesConventions}
+    }
+    \def\tempKey{ahrsAxesConvention}
+    \def\tempType{number}
+    \def\tempDefault{0}
+    \deviceSetting
+\endgroup
+
+\begingroup
     \def\tempSection{\acs{AHRS} gain}
     \def\tempLabel{sec:ahrsGain}
     \def\tempDescription
