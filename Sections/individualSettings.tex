@@ -13,47 +13,6 @@
     \deviceSetting
 \endgroup
 
-\newcommand{\clockCalibrationDescription}[1] {#1 calibration value used for clock calibration.  \seeSection{sec:systemClockAndRtc}}
-
-\begingroup
-    \def\tempSection{System clock calibration (read-only)}
-    \def\tempLabel{sec:systemClockCalibration}
-    \def\tempDescription
-    {
-        \clockCalibrationDescription{System clock}
-    }
-    \def\tempKey{systemClockCalibration}
-    \def\tempType{number}
-    \def\tempDefault{1.0}
-    \deviceSetting
-\endgroup
-
-\begingroup
-    \def\tempSection{\acs{RTC} calibration (read-only)}
-    \def\tempLabel{sec:rtcCalibration}
-    \def\tempDescription
-    {
-        \clockCalibrationDescription{\ac{RTC}}
-    }
-    \def\tempKey{rtcCalibration}
-    \def\tempType{number}
-    \def\tempDefault{1.0}
-    \deviceSetting
-\endgroup
-
-\begingroup
-    \def\tempSection{Battery voltmeter sensitivity (read-only)}
-    \def\tempLabel{sec:batteryVoltmeterSensitivity}
-    \def\tempDescription
-    {
-        Battery voltmeter sensitivity used for calibration.  \seeSection{sec:batteryVoltmeter}
-    }
-    \def\tempKey{batteryVoltmeterSensitivity}
-    \def\tempType{number}
-    \def\tempDefault{1.0}
-    \deviceSetting
-\endgroup
-
 \newcommand{\inertialMisalignmentDescription}[1] {#1 misalignment matrix (in row-major order) used for inertial sensor calibration.  \seeSection{sec:inertialSensor}}
 
 \newcommand{\inertialSensitivityDescription}[1] {#1 sensitivity vector used for inertial sensor calibration.  \seeSection{sec:inertialSensor}}

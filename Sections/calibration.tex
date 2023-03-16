@@ -3,26 +3,6 @@
 
 Each device is calibrated during production to achieve the specified accuracy.  The calibration process uses specialist equipment and propriety algorithms to calculate calibration parameters specific to each device.  These parameters are used by the calibration models described in the following sections to compensate for the characteristics of each measurement source.  Calibration is performed at room temperature and accuracy will be reduced for operating temperatures that deviate from this temperature.  Please refer to the calibration certificate for specific temperature values.
 
-\subsection{System clock and \acs{RTC}}
-\label{sec:systemClockAndRtc}
-
-The system clock and \ac{RTC} are calibrated for errors in each clock source.  The clock calibration model is described by \Fref{eq:clock} where $f_c$ is the calibrated clock frequency obtained from the uncalibrated clock frequency, $f_u$, given the value, $c$.  The units of $f_c$ and $f_u$ are Hz.  $c$ is a ratio and therefore has no units.  The calibration parameter $c$ for each clock can be accessed as device settings.
-
-\begin{equation}
-\label{eq:clock}
-f_c = c f_u
-\end{equation}
-
-\subsection{Battery voltmeter}
-\label{sec:batteryVoltmeter}
-
-The battery voltmeter is calibrated for the gain of the analogue front-end and accuracy of the voltage reference used by the \ac{ADC}.  The battery voltmeter calibration model is described by \Fref{eq:batteryVoltmeter} where $v_c$ is the calibrated voltage measurement obtained from the uncalibrated voltage measurement, $v_u$, given the sensitivity, $s_v$.  The units of $v_c$ and $v_u$ are volts.  $s_v$ is a ratio and therefore has no units.  The calibration parameter $s_v$ can be accessed as a device setting.
-
-\begin{equation}
-\label{eq:batteryVoltmeter}
-v_c = s_v v_u
-\end{equation}
-
 \subsection{Inertial sensors}
 \label{sec:inertialSensor}
 
