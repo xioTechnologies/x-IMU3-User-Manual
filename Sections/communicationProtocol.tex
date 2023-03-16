@@ -24,7 +24,7 @@ The first byte of a message indicates the message type.  Command messages start 
 
 \subsection{Command messages}
 
-Command messages are sent to the device to read and write settings and execute commands.  All command messages are a \ac{JSON} object containing a single key/value pair, terminated by the control character sequence: \ac{CR}, \ac{LF}.  The control character \ac{LF} must not appear anywhere else in a command message.  The device will acknowledge each received command message by sending a command message with the same key to the host.
+Command messages are sent to the device to read and write settings and execute commands.  All command messages are a \ac{JSON} object containing a single key/value pair, terminated by the control character sequence: \ac{CR}, \ac{LF}.  The control character \ac{CR} is optional.  The control character \ac{LF} must not appear anywhere else in a command message.  The device will acknowledge each received command message by sending a command message with the same key to the host.
 
 The key used by command messages sent to the device is not case sensitive and can use non-alphanumeric characters arbitrarily.  For example, \enquote{serialNumber}, \enquote{Serial Number}, and \enquote{serial\_number} are all valid keys for a command message to read the device serial number.  The key used by the acknowledgement command message sent from the device to the host will always be in camel case. For example, \enquote{serialNumber}.
 
