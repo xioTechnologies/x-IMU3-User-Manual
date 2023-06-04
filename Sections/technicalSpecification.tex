@@ -171,6 +171,34 @@
     \item \label{itm:temperatureSensor3} The temperature sensor is oversampled and the result decimated to the specified sample rate.
 }
 
+\subsection{\acs{AHRS}}
+
+\subsubsection{Update rate}
+
+\characteristicTable
+{
+    Update rate & 400 Hz \textpm{}0.3\% & \ref{itm:ahrsUpdateRate1}, \ref{itm:ahrsUpdateRate2}\\
+}
+{\acs{AHRS} update rate}
+{tab:ahrsUpdateRate}
+{
+    \item \label{itm:ahrsUpdateRate1} \noteRate{update}
+    \item \label{itm:ahrsUpdateRate2} The \ac{AHRS} update rate is fixed independent of message rate settings.  \ac{AHRS} outputs are not averaged when the message rate is less than the update rate.
+}
+
+\subsubsection{Static accuracy}
+
+\characteristicTable
+{
+    Inclination & 0.5\textdegree{} RMS & \ref{itm:ahrsStaticAccuracy1}\\
+    Heading & 1\textdegree{} RMS & \ref{itm:ahrsStaticAccuracy1}\\
+}
+{\acs{AHRS} static accuracy}
+{tab:ahrsStaticAccuracy}
+{
+    \item \label{itm:ahrsStaticAccuracy1} \noteTemperature
+}
+
 \subsection{Data logger capacity}
 
 \newcommand{\noteBinary}{The data logging capacity is indicated for binary data messages.  Capacity will be reduced for \acs{ASCII} data messages.}
