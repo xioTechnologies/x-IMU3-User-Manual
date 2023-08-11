@@ -632,6 +632,19 @@
 \endgroup
 
 \begingroup
+    \def\tempSection{\acs{UDP} low latency}
+    \def\tempLabel{sec:udpLowLatency}
+    \def\tempDescription
+    {
+        Enables (true) or disables (false) low latency \ac{UDP} performance.  Enabling low latency \ac{UDP} performance will typically result in each data message being sent as a single \ac{UDP}  packet.  This provides the best possible latency performance but will significantly limit the maximum throughput and number of devices able to stream on the same network.  It is recommended that low latency \ac{UDP} performance is disabled for most applications.
+    }
+    \def\tempKey{udpLowLatency}
+    \def\tempType{true or false}
+    \def\tempDefault{false}
+    \deviceSetting
+\endgroup
+
+\begingroup
     \def\tempSection{Synchronisation enabled}
     \def\tempLabel{sec:synchronisationEnabled}
     \def\tempDescription
