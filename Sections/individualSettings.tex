@@ -411,11 +411,11 @@
     \def\tempLabel{sec:wiFiClientSsid}
     \def\tempDescription
     {
-        Configures the \ac{SSID} in Wi-Fi client mode.  This is the name of the router that the device will connect to.  The \ac{SSID} may be up to 31 characters long.
+        Configures the \ac{SSID} in Wi-Fi client mode.  This is the name of the router that the device will connect to.  The \ac{SSID} may be up to 31 characters long.  If the \ac{SSID} is left blank then the device will use the \ac{SSID} \enquote{x-IMU3 Network}.
     }
     \def\tempKey{wiFiClientSsid}
     \def\tempType{string}
-    \def\tempDefault{\enquote{x-IMU3 Network}}
+    \def\tempDefault{\enquote{}}
     \deviceSetting
 \endgroup
 
@@ -424,11 +424,11 @@
     \def\tempLabel{sec:wiFiClientKey}
     \def\tempDescription
     {
-        Configures the security key in Wi-Fi client mode.  This is the password for the router that the device will connect to.  If the router does not require a password then this setting will be ignored.  The key may be up to 31 characters long.
+        Configures the security key in Wi-Fi client mode.  This is the password for the router that the device will connect to.  If the router does not require a password then this setting will be ignored.  The key must be between 8 and 31 characters long.  If the key is left blank then the device will use the key \enquote{xiotechnologies}.
     }
     \def\tempKey{wiFiClientKey}
     \def\tempType{string}
-    \def\tempDefault{\enquote{xiotechnologies}}
+    \def\tempDefault{\enquote{}}
     \deviceSetting
 \endgroup
 
@@ -519,7 +519,7 @@
     \def\tempLabel{sec:wiFiAPSsid}
     \def\tempDescription
     {
-		Configures the \ac{SSID} of the device in Wi-Fi \ac{AP} mode.  This is the name of the network created by the device.  The \ac{SSID} may be up to 31 characters long.  If the \ac{SSID} is left blank then the device will use an \ac{SSID} made up of the product name and the serial number in the format \enquote{x-IMU3\_XXXX-XXXX-XXXX-XXXX}.
+		Configures the \ac{SSID} of the device in Wi-Fi \ac{AP} mode.  This is the name of the network created by the device.  The \ac{SSID} may be up to 31 characters long.  If the \ac{SSID} is left blank then the device will use the \ac{SSID} \enquote{x-IMU3}.
     }
     \def\tempKey{wiFiAPSsid}
     \def\tempType{string}
@@ -532,7 +532,7 @@
     \def\tempLabel{sec:wiFiAPKey}
     \def\tempDescription
     {
-		Configures the security key in Wi-Fi \ac{AP} mode.  This is the password required to connect to the network created by the device.  The key may be up to 31 characters long.  If the key is left blank then the network will not use security and a password would not be required to connect to the device.
+		Configures the security key in Wi-Fi \ac{AP} mode.  This is the password required to connect to the network created by the device.  The key must be between 8 and 31 characters long.  If the key is left blank then the network will not use security and a password would not be required to connect to the device.
     }
     \def\tempKey{wiFiAPKey}
     \def\tempType{string}
@@ -597,11 +597,11 @@
     \def\tempLabel{sec:udpIPAddress}
     \def\tempDescription
     {
-        \ac{UDP} \ac{IP} address.
+        Configures the \ac{IP} address that the device will send to.  This should be the \ac{IP} address of the host.  If the \ac{IP} address is \enquote{0.0.0.0} then the device will send to the source \ac{IP} address of the most recent \ac{UDP} packet received by the device.
     }
     \def\tempKey{udpIPAddress}
     \def\tempType{string}
-    \def\tempDefault{0}
+    \def\tempDefault{\enquote{0.0.0.0}}
     \deviceSetting
 \endgroup
 
@@ -610,7 +610,7 @@
     \def\tempLabel{sec:udpSendPort}
     \def\tempDescription
     {
-        \ac{UDP} send port.
+        Configures the \ac{UDP} port that the device will send to.  This is the port that a host should listen to.  If the port is 0 then the device will send to the source port of the most recent \ac{UDP} packet received by the device.
     }
     \def\tempKey{udpSendPort}
     \def\tempType{number}
@@ -623,7 +623,7 @@
     \def\tempLabel{sec:udpReceivePort}
     \def\tempDescription
     {
-        \ac{UDP} receive port.
+        Configures the \ac{UDP} port that the device will listen to.  This is the port that a host should send to.
     }
     \def\tempKey{udpReceivePort}
     \def\tempType{number}
@@ -636,7 +636,7 @@
     \def\tempLabel{sec:udpLowLatency}
     \def\tempDescription
     {
-        Enables (true) or disables (false) low latency \ac{UDP} performance.  Enabling low latency \ac{UDP} performance will typically result in each data message being sent as a single \ac{UDP}  packet.  This provides the best possible latency performance but will significantly limit the maximum throughput and number of devices able to stream on the same network.  It is recommended that low latency \ac{UDP} performance is disabled for most applications.
+        Enables (true) or disables (false) low latency \ac{UDP} performance.  Enabling low latency \ac{UDP} performance will typically result in each data message being sent as a single \ac{UDP} packet.  This provides the best possible latency performance but will significantly limit the maximum throughput and number of devices able to stream on the same network.  It is recommended that low latency \ac{UDP} performance is disabled for most applications.
     }
     \def\tempKey{udpLowLatency}
     \def\tempType{true or false}
@@ -688,7 +688,7 @@
     \def\tempLabel{sec:bluetoothName}
     \def\tempDescription
     {
-        Configures the name of the device in Bluetooth mode. The name may be up to 31 characters long. If the name is left blank then the device will use a name made up of the product name and the serial number in the format \enquote{x-IMU3\_XXXX-XXXX-XXXX-XXXX}.
+        Configures the name of the device in Bluetooth mode. The name may be up to 31 characters long. If the name is left blank then the device will use the name \enquote{x-IMU3}.
     }
     \def\tempKey{bluetoothName}
     \def\tempType{string}
@@ -701,11 +701,11 @@
     \def\tempLabel{sec:bluetoothPinCode}
     \def\tempDescription
     {
-        Configures the Bluetooth pin code.  The pin code must be between 1 and 15 characters long.
+        Configures the Bluetooth pin code.  The pin code may be up to 15 characters long.  If the pin code is left blank then the device will use the name \enquote{1234}.
     }
     \def\tempKey{bluetoothPinCode}
     \def\tempType{string}
-    \def\tempDefault{\enquote{1234}}
+    \def\tempDefault{\enquote{}}
     \deviceSetting
 \endgroup
 
