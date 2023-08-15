@@ -1,16 +1,16 @@
 \section{Data logger}
+\label{sec:dataLogger}
 
 The device can function as a stand-alone data logger by streaming real-time data to a file on the \ac{microSD}.  Files created by the data logger use the .ximu3 extension and can be downloaded from the device to be converted to \ac{CSV} files using the product software.
 
-The data logger will create a new file in the \enquote{Data Logger} directory on the \ac{microSD} each time logging starts.  The data logger will never overwrite data.  If the \ac{microSD} becomes full then the data logger will stop and the device will indicate an error.
+The data logger will create a new file in the \enquote{Data Logger} directory on the \ac{microSD} each time logging starts.  The data logger will never overwrite or delete files.  If the \ac{microSD} becomes full then the data logger will stop and the device will indicate an error.
 
 \subsection{Start and stop}
 
 The data logger is enabled or disabled in the device settings.  If the data logger is enabled then logging will start when the device is switched on and stop when the device is switched off.  Alternatively, an application can start and stop logging remotely by enabling and disabling the data logger while the device is switched on.
 
-Logging will stop automatically when a \ac{USB} host is connected or when a \ac{HTTP} client connects.  The data logger will start again when the \ac{USB} host is disconnected or when the \ac{HTTP} client disconnects.  Connecting \ac{USB} power alone will not stop logging.
-
 \subsection{File name}
+\label{sec:fileName}
 
 The file name format is \enquote{prefix\_YYYY-MM-DD\_hh-mm-ss\_CCCC.ximu3} where where "prefix" is a user-defined label configured in the device settings, \enquote{YYYY-MM-DD\_hh-mm-ss} is the time that the file was created, and \enquote{CCCC} is a counter.  If the prefix is left blank then the device serial number will be used with the format \enquote{XXXX-XXXX-XXXX-XXXX}.  The time and counter parts of the file name can be individually enabled or disabled in the device settings.  For example, if the counter was disabled and the prefix left blank for a device with the serial number \enquote{0123-4567-89AB-CDEF} then a file created at 3.30 p.m. on January 20, 2025 would have the name \enquote{0123-4567-89AB-CDEF\_2025-01-20\_15-30-00.ximu3}.
 
