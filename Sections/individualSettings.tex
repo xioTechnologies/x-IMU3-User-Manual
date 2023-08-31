@@ -361,7 +361,7 @@
     \def\tempLabel{sec:wiFiRegion}
     \def\tempDescription
     {
-        Configures the region for Wi-Fi operation.  The device will operate according to the regulations of the selected region.  See \Fref{sec:wiFiClientSsid} for a list of channels available in each region.  The possible values are listed in \Fref{tab:wiFiRegions}.
+        Configures the region for Wi-Fi operation.  The x-IMU3 will operate according to the regulations of the selected region.  See \Fref{sec:wiFiClientSsid} for a list of channels available in each region.  The possible values are listed in \Fref{tab:wiFiRegions}.
 
         \customTable
         {c l}
@@ -398,7 +398,7 @@
     \def\tempLabel{sec:wiFiIPAddress}
     \def\tempDescription
     {
-        Current \ac{IP} address of the device.  A value of 0.0.0.0 indicates that the device does not yet have an \ac{IP} address.
+        Current \ac{IP} address of the x-IMU3.  A value of 0.0.0.0 indicates that the x-IMU3 does not yet have an \ac{IP} address.
     }
     \def\tempKey{wiFiIPAddress}
     \def\tempType{string}
@@ -411,7 +411,7 @@
     \def\tempLabel{sec:wiFiClientSsid}
     \def\tempDescription
     {
-        Configures the \ac{SSID} in Wi-Fi client mode.  This is the name of the router that the device will connect to.  The \ac{SSID} may be up to 31 characters long.  If the \ac{SSID} is left blank then the device will use the \ac{SSID} \enquote{x-IMU3 Network}.
+        Configures the \ac{SSID} in Wi-Fi client mode.  This is the name of the router that the x-IMU3 will connect to.  The \ac{SSID} may be up to 31 characters long.  If the \ac{SSID} is left blank then the x-IMU3 will use the \ac{SSID} \enquote{x-IMU3 Network}.
     }
     \def\tempKey{wiFiClientSsid}
     \def\tempType{string}
@@ -424,7 +424,7 @@
     \def\tempLabel{sec:wiFiClientKey}
     \def\tempDescription
     {
-        Configures the security key in Wi-Fi client mode.  This is the password for the router that the device will connect to.  If the router does not require a password then this setting will be ignored.  The key must be between 8 and 31 characters long.  If the key is left blank then the device will use the key \enquote{xiotechnologies}.
+        Configures the security key in Wi-Fi client mode.  This is the password for the router that the x-IMU3 will connect to.  If the router does not require a password then this setting will be ignored.  The key must be between 8 and 31 characters long.  If the key is left blank then the x-IMU3 will use the key \enquote{xiotechnologies}.
     }
     \def\tempKey{wiFiClientKey}
     \def\tempType{string}
@@ -437,7 +437,7 @@
     \def\tempLabel{sec:wiFiClientChannel}
     \def\tempDescription
     {
-        Configures the channel in Wi-Fi client mode.  This is the channel of the router that the device will connect to.  Setting the correct channel will decrease the time taken to connect.  If the channel is incorrect then the device will search all channels and then update this setting for the correct channel.  The possible channels are listed in \Fref{tab:wiFiClientChannels}.
+        Configures the channel in Wi-Fi client mode.  This is the channel of the router that the x-IMU3 will connect to.  Setting the correct channel will decrease the time taken to connect.  If the channel is incorrect then the x-IMU3 will search all channels and then update this setting for the correct channel.  The possible channels are listed in \Fref{tab:wiFiClientChannels}.
 
         \customTable
         {c c l}
@@ -467,7 +467,7 @@
     \def\tempLabel{sec:wiFiClientDhcpEnabled}
     \def\tempDescription
     {
-        Enables (true) or disables (false) \ac{DHCP} in Wi-Fi client mode.  If \ac{DHCP} is enabled then the device will be assigned an \ac{IP} address by the router.  This is an automatic process and the recommend mode of operation.  If \ac{DHCP} is disabled then the \ac{IP} address, netmask, and gateway must be configured by the user.
+        Enables (true) or disables (false) \ac{DHCP} in Wi-Fi client mode.  If \ac{DHCP} is enabled then the x-IMU3 will be assigned an \ac{IP} address by the router.  This is an automatic process and the recommend mode of operation.  If \ac{DHCP} is disabled then the \ac{IP} address, netmask, and gateway must be configured by the user.
     }
     \def\tempKey{wiFiClientDhcpEnabled}
     \def\tempType{true or false}
@@ -480,7 +480,7 @@
     \def\tempLabel{sec:wiFiClientIPAddress}
     \def\tempDescription
     {
-        Configures the device \ac{IP} address in Wi-Fi client mode when \ac{DHCP} is disabled.  This setting will be ignored if \ac{DHCP} is enabled.
+        Configures the x-IMU3 \ac{IP} address in Wi-Fi client mode when \ac{DHCP} is disabled.  This setting will be ignored if \ac{DHCP} is enabled.
     }
     \def\tempKey{wiFiClientIPAddress}
     \def\tempType{string}
@@ -519,7 +519,7 @@
     \def\tempLabel{sec:wiFiAPSsid}
     \def\tempDescription
     {
-		Configures the \ac{SSID} of the device in Wi-Fi \ac{AP} mode.  This is the name of the network created by the device.  The \ac{SSID} may be up to 31 characters long.  If the \ac{SSID} is left blank then the device will use the \ac{SSID} \enquote{x-IMU3}.
+		Configures the \ac{SSID} of the x-IMU3 in Wi-Fi \ac{AP} mode.  This is the name of the network created by the x-IMU3.  The \ac{SSID} may be up to 31 characters long.  If the \ac{SSID} is left blank then the x-IMU3 will use the \ac{SSID} \enquote{x-IMU3}.
     }
     \def\tempKey{wiFiAPSsid}
     \def\tempType{string}
@@ -532,7 +532,7 @@
     \def\tempLabel{sec:wiFiAPKey}
     \def\tempDescription
     {
-		Configures the security key in Wi-Fi \ac{AP} mode.  This is the password required to connect to the network created by the device.  The key must be between 8 and 31 characters long.  If the key is left blank then the network will not use security and a password would not be required to connect to the device.
+		Configures the security key in Wi-Fi \ac{AP} mode.  This is the password required to connect to the network created by the x-IMU3.  The key must be between 8 and 31 characters long.  If the key is left blank then the network will not use security and a password would not be required to connect to the x-IMU3.
     }
     \def\tempKey{wiFiAPKey}
     \def\tempType{string}
@@ -545,7 +545,7 @@
     \def\tempLabel{sec:wiFiAPChannel}
     \def\tempDescription
     {
-        Configures the channel of the device in Wi-Fi \ac{AP} mode.  This is the channel of the network created by the device.  The possible channels are listed in \Fref{tab:wiFiAPChannels}.
+        Configures the channel of the x-IMU3 in Wi-Fi \ac{AP} mode.  This is the channel of the network created by the x-IMU3.  The possible channels are listed in \Fref{tab:wiFiAPChannels}.
 
         \customTable
         {c c l}
@@ -571,7 +571,7 @@
     \def\tempLabel{sec:wiFiAPIPAddress}
     \def\tempDescription
     {
-        Configures the device \ac{IP} address in Wi-Fi \ac{AP} mode
+        Configures the x-IMU3 \ac{IP} address in Wi-Fi \ac{AP} mode
     }
     \def\tempKey{wiFiAPIPAddress}
     \def\tempType{string}
@@ -597,7 +597,7 @@
     \def\tempLabel{sec:udpIPAddress}
     \def\tempDescription
     {
-        Configures the \ac{IP} address that the device will send to.  This should be the \ac{IP} address of the host.  If the \ac{IP} address is \enquote{0.0.0.0} then the device will send to the source \ac{IP} address of the most recent \ac{UDP} packet received by the device.
+        Configures the \ac{IP} address that the x-IMU3 will send to.  This should be the \ac{IP} address of the host.  If the \ac{IP} address is \enquote{0.0.0.0} then the x-IMU3 will send to the source \ac{IP} address of the most recent \ac{UDP} packet received by the x-IMU3.
     }
     \def\tempKey{udpIPAddress}
     \def\tempType{string}
@@ -610,7 +610,7 @@
     \def\tempLabel{sec:udpSendPort}
     \def\tempDescription
     {
-        Configures the \ac{UDP} port that the device will send to.  This is the port that a host should listen to.  If the port is 0 then the device will send to the source port of the most recent \ac{UDP} packet received by the device.
+        Configures the \ac{UDP} port that the x-IMU3 will send to.  This is the port that a host should listen to.  If the port is 0 then the x-IMU3 will send to the source port of the most recent \ac{UDP} packet received by the x-IMU3.
     }
     \def\tempKey{udpSendPort}
     \def\tempType{number}
@@ -623,7 +623,7 @@
     \def\tempLabel{sec:udpReceivePort}
     \def\tempDescription
     {
-        Configures the \ac{UDP} port that the device will listen to.  This is the port that a host should send to.
+        Configures the \ac{UDP} port that the x-IMU3 will listen to.  This is the port that a host should send to.
     }
     \def\tempKey{udpReceivePort}
     \def\tempType{number}
@@ -675,7 +675,7 @@
     \def\tempLabel{sec:bluetoothAddress}
     \def\tempDescription
     {
-        Device Bluetooth address.
+        x-IMU3 Bluetooth address.
     }
     \def\tempKey{bluetoothAddress}
     \def\tempType{number}
@@ -688,7 +688,7 @@
     \def\tempLabel{sec:bluetoothName}
     \def\tempDescription
     {
-        Configures the name of the device in Bluetooth mode. The name may be up to 31 characters long. If the name is left blank then the device will use the name \enquote{x-IMU3}.
+        Configures the name of the x-IMU3 in Bluetooth mode. The name may be up to 31 characters long. If the name is left blank then the x-IMU3 will use the name \enquote{x-IMU3}.
     }
     \def\tempKey{bluetoothName}
     \def\tempType{string}
@@ -701,7 +701,7 @@
     \def\tempLabel{sec:bluetoothPinCode}
     \def\tempDescription
     {
-        Configures the Bluetooth pin code.  The pin code may be up to 15 characters long.  If the pin code is left blank then the device will use the name \enquote{1234}.
+        Configures the Bluetooth pin code.  The pin code may be up to 15 characters long.  If the pin code is left blank then the x-IMU3 will use the name \enquote{1234}.
     }
     \def\tempKey{bluetoothPinCode}
     \def\tempType{string}
@@ -738,7 +738,7 @@
     \def\tempLabel{sec:bluetoothPairedAddress}
     \def\tempDescription
     {
-        Bluetooth address of the paired device.
+        Bluetooth address of the device paired with the x-IMU3.
     }
     \def\tempKey{bluetoothPairedAddress}
     \def\tempType{number}
@@ -751,7 +751,7 @@
     \def\tempLabel{sec:bluetoothPairedLinkKey}
     \def\tempDescription
     {
-        Bluetooth link key of the paired device.
+        Bluetooth link key of device paired with the x-IMU3.
     }
     \def\tempKey{bluetoothPairedLinkKey}
     \def\tempType{number}

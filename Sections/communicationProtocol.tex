@@ -23,9 +23,9 @@ The first byte of a message indicates the message type.  Command messages start 
 
 \subsection{Command messages}
 
-Command messages are sent to the device to read and write settings and execute commands.  All command messages are a \ac{JSON} object containing a single key/value pair, terminated by the control character \ac{LF}.  The control character \ac{LF} must not appear anywhere else in a command message.  The device will acknowledge each received command message by sending a command message with the same key to the host.
+Command messages are sent to the x-IMU3 to read and write settings and execute commands.  All command messages are a \ac{JSON} object containing a single key/value pair, terminated by the control character \ac{LF}.  The control character \ac{LF} must not appear anywhere else in a command message.  The x-IMU3 will acknowledge each received command message by sending a command message with the same key to the host.
 
-The key used by command messages sent to the device is not case sensitive and can use non-alphanumeric characters arbitrarily.  For example, \enquote{serialNumber}, \enquote{Serial Number}, and \enquote{serial\_number} are all valid keys for a command message to read the device serial number.
+The key used by command messages sent to the x-IMU3 is not case sensitive and can use non-alphanumeric characters arbitrarily.  For example, \enquote{serialNumber}, \enquote{Serial Number}, and \enquote{serial\_number} are all valid keys for a command message to read the device serial number.
 
 \newcommand{\commandMessageExample}[2]{
     \begin{table}[H]
@@ -38,55 +38,55 @@ The key used by command messages sent to the device is not case sensitive and ca
 
 \subsubsection{Read setting command}
 
-The read setting command is sent to the device to read a setting value.  The key is the setting key and the value is null.  See \Fref{sec:individualSettings} for a complete list of settings.  The device will acknowledge a read setting command by sending a write setting command to the host.
+The read setting command is sent to the x-IMU3 to read a setting value.  The key is the setting key and the value is null.  See \Fref{sec:individualSettings} for a complete list of settings.  The x-IMU3 will acknowledge a read setting command by sending a write setting command to the host.
 
 \commandMessageExample{"serialNumber":null}
 
 \subsubsection{Write setting command}
 
-The write setting command is sent to the device to write a setting value, or sent from the device to the host in response to a read setting command.  The key is the setting key and the value is the setting value.  See \Fref{sec:individualSettings} for a complete list of settings.  The device will acknowledge a write setting command by sending a setting write command back to the host, indicating the new settings value.  The device will not apply new settings until two seconds after the most recent write setting command or default command was received.
+The write setting command is sent to the x-IMU3 to write a setting value, or sent from the x-IMU3 to the host in response to a read setting command.  The key is the setting key and the value is the setting value.  See \Fref{sec:individualSettings} for a complete list of settings.  The x-IMU3 will acknowledge a write setting command by sending a setting write command back to the host, indicating the new settings value.  The x-IMU3 will not apply new settings until two seconds after the most recent write setting command or default command was received.
 
 \commandMessageExample{"deviceName":"x-IMU3"}
 
 \subsubsection{Default command}
 
-The default command is sent to the device to set all settings to default values.  The key is \enquote{default} and the value is null.  The device will not apply new settings until two seconds after the most recent write setting command or default command was received.
+The default command is sent to the x-IMU3 to set all settings to default values.  The key is \enquote{default} and the value is null.  The x-IMU3 will not apply new settings until two seconds after the most recent write setting command or default command was received.
 
 \commandMessageExample{"default":null}
 
 \subsubsection{Apply command}
 
-The apply command is sent to the device to apply all settings.  The key is \enquote{apply} and the value is null.  This command can be sent after a write setting or default command to apply settings immediately instead of after a two second delay.
+The apply command is sent to the x-IMU3 to apply all settings.  The key is \enquote{apply} and the value is null.  This command can be sent after a write setting or default command to apply settings immediately instead of after a two second delay.
 
 \commandMessageExample{"apply":null}
 
 \subsubsection{Save command}
 
-The save command is sent to the device to save all settings to \ac{EEPROM}.  The key is \enquote{save} and the value is null.  The command acknowledgement will not be sent until the save is complete.  This may take up to 300 milliseconds.  The save command is unnecessary in most applications because the device will automatically save all settings on shutdown.
+The save command is sent to the x-IMU3 to save all settings to \ac{EEPROM}.  The key is \enquote{save} and the value is null.  The command acknowledgement will not be sent until the save is complete.  This may take up to 300 milliseconds.  The save command is unnecessary in most applications because the x-IMU3 will automatically save all settings on shutdown.
 
 \commandMessageExample{"save":null}
 
 \subsubsection{Read time command}
 
-The read time command is sent to the device to read the date and time of the \ac{RTC}.  The key is \enquote{time} and the value is null.  The device will acknowledge a read time command by sending a write time command to the host.
+The read time command is sent to the x-IMU3 to read the date and time of the \ac{RTC}.  The key is \enquote{time} and the value is null.  The x-IMU3 will acknowledge a read time command by sending a write time command to the host.
 
 \commandMessageExample{"time":null}
 
 \subsubsection{Write time command}
 
-The write time command is sent to the device to write the date and time of the \ac{RTC}, or sent from the device to the host in response to a read time command.  The key is \enquote{time} and the value is a string expressing the date and time in the format \enquote{YYYY-MM-DD hh:mm:ss} where each delimiter can be any non-numerical character.  The device will acknowledge a write time command by sending a write time command back to the host, indicating the new date and time.
+The write time command is sent to the x-IMU3 to write the date and time of the \ac{RTC}, or sent from the x-IMU3 to the host in response to a read time command.  The key is \enquote{time} and the value is a string expressing the date and time in the format \enquote{YYYY-MM-DD hh:mm:ss} where each delimiter can be any non-numerical character.  The x-IMU3 will acknowledge a write time command by sending a write time command back to the host, indicating the new date and time.
 
 \commandMessageExample{"time":"2020-01-01 00:00:00"}
 
 \subsubsection{Ping command}
 
-The ping command is sent to the device to trigger a ping response.  The key is \enquote{ping} and the value is null.  The device will acknowledge a ping command by sending a ping response to the host.
+The ping command is sent to the x-IMU3 to trigger a ping response.  The key is \enquote{ping} and the value is null.  The x-IMU3 will acknowledge a ping command by sending a ping response to the host.
 
 \commandMessageExample{"ping":null}
 
 \subsubsection{Ping response}
 
-The ping response is sent from the device to the host in response to the ping command.  The key is \enquote{ping} and the value is a \ac{JSON} object containing three key/value pairs indicating the communication interface, device name, and device serial number.  The keys are \enquote{interface}, \enquote{deviceName}, and \enquote{serialNumber}, respectively and all values are string types.
+The ping response is sent from the x-IMU3 to the host in response to the ping command.  The key is \enquote{ping} and the value is a \ac{JSON} object containing three key/value pairs indicating the communication interface, device name, and device serial number.  The keys are \enquote{interface}, \enquote{deviceName}, and \enquote{serialNumber}, respectively and all values are string types.
 
 \begin{table}[H]
     \begin{tabular}{l l l}
@@ -106,69 +106,69 @@ The ping response is sent from the device to the host in response to the ping co
 
 \subsubsection{Reset command}
 
-The reset command is sent to the device to reset the device.  The key is \enquote{reset} and the value is null.  A reset is equivalent to switching the device off and then on again.  The device will reset two seconds after receiving this command.
+The reset command is sent to the x-IMU3 to reset the x-IMU3.  The key is \enquote{reset} and the value is null.  A reset is equivalent to switching the x-IMU3 off and then on again.  The x-IMU3 will reset two seconds after receiving this command.
 
 \commandMessageExample{"reset":null}
 
 \subsubsection{Shutdown command}
 
-The shutdown command is sent to the device to switch the device off.  The key is \enquote{shutdown} and the value is null.  The device will shutdown two seconds after receiving this command.
+The shutdown command is sent to the x-IMU3 to switch the x-IMU3 off.  The key is \enquote{shutdown} and the value is null.  The x-IMU3 will shutdown two seconds after receiving this command.
 
 \commandMessageExample{"shutdown":null}
 
 \subsubsection{Strobe command}
 \label{sec:strobeCommand}
 
-The strobe command is sent to the device to strobe the \ac{LED} bright white for 5 seconds.  The key is \enquote{strobe} and the value is null.  This command can be used to quickly locate a specific device when using multiple devices.
+The strobe command is sent to the x-IMU3 to strobe the \ac{LED} bright white for 5 seconds.  The key is \enquote{strobe} and the value is null.  This command can be used to quickly locate a specific x-IMU3 when using multiple x-IMU3s.
 
 \commandMessageExample{"strobe":null}
 
 \subsubsection{Colour command}
 \label{sec:colourCommand}
 
-The colour command is sent to the device to set the \ac{LED} colour.  The key is \enquote{colour} or \enquote{color} and the value is either a \ac{RGB} hex triplet expressed as a string, or null.  Setting the colour will override the normal \ac{LED} behaviour.  A value of null will restore the normal behaviour.
+The colour command is sent to the x-IMU3 to set the \ac{LED} colour.  The key is \enquote{colour} or \enquote{color} and the value is either a \ac{RGB} hex triplet expressed as a string, or null.  Setting the colour will override the normal \ac{LED} behaviour.  A value of null will restore the normal behaviour.
 
 \commandMessageExample{"colour":"FFFFFF"}
 
 \subsubsection{Initialise \acs{AHRS} command}
 
-The initialise \ac{AHRS} command is sent to the device to reinitialise the \ac{AHRS} algorithm.  The key is \enquote{initialise} or \enquote{initialize} and the value is null.  This command in unnecessary for normal operation and typically only used during calibration and testing.
+The initialise \ac{AHRS} command is sent to the x-IMU3 to reinitialise the \ac{AHRS} algorithm.  The key is \enquote{initialise} or \enquote{initialize} and the value is null.  This command in unnecessary for normal operation and typically only used during calibration and testing.
 
 \commandMessageExample{"initialise":null}
 
 \subsubsection{Heading command}
 
-The heading command is sent to the device to set the heading of the orientation measurement provided by the \ac{AHRS} algorithm.  The key is \enquote{heading} and the value is a number equal to the heading in degrees.  The heading command can only be used if the magnetometer is ignored in the \ac{AHRS} settings.
+The heading command is sent to the x-IMU3 to set the heading of the orientation measurement provided by the \ac{AHRS} algorithm.  The key is \enquote{heading} and the value is a number equal to the heading in degrees.  The heading command can only be used if the magnetometer is ignored in the \ac{AHRS} settings.
 
 \commandMessageExample{"heading":0}
 
 \subsubsection{Serial accessory command}
 
-The serial accessory command is sent to the device to transmit data to a serial accessory when the serial interface is in serial accessory mode.  The key is \enquote{accessory} and the value is the data expressed as a string of up to 256 characters.  Longer strings will be truncated to the maximum size.  The string escape sequence \enquote{\textbackslash u} can be used to express any byte value as per the \ac{JSON} specification.
+The serial accessory command is sent to the x-IMU3 to transmit data to a serial accessory when the serial interface is in serial accessory mode.  The key is \enquote{accessory} and the value is the data expressed as a string of up to 256 characters.  Longer strings will be truncated to the maximum size.  The string escape sequence \enquote{\textbackslash u} can be used to express any byte value as per the \ac{JSON} specification.
 
 \commandMessageExample{"accessory":"hello \textbackslash u0077\textbackslash u006F\textbackslash u0072\textbackslash u006C\textbackslash u0064"}
 
 \subsubsection{Note command}
 
-The note command is sent to the device to generate a timestamped notification message containing a user-defined string.  The key is \enquote{note} and the value is the string of up to 127 characters.  Longer strings will be truncated to the maximum size.  This command can be used to create timestamped notes of events during data logging.
+The note command is sent to the x-IMU3 to generate a timestamped notification message containing a user-defined string.  The key is \enquote{note} and the value is the string of up to 127 characters.  Longer strings will be truncated to the maximum size.  This command can be used to create timestamped notes of events during data logging.
 
 \commandMessageExample{"note":"Something happened."}
 
 \subsubsection{Format command}
 
-The format command is sent to the device to format the \ac{microSD}.  The key is \enquote{format} and the value is null.  The command acknowledgement will not be sent until the format is complete.  This will take approximately 3 seconds for an 8 GB \ac{microSD}.  Larger SD \acp{microSD} will take longer to format.  Formatting will erase all data on the SD card.
+The format command is sent to the x-IMU3 to format the \ac{microSD}.  The key is \enquote{format} and the value is null.  The command acknowledgement will not be sent until the format is complete.  This will take approximately 3 seconds for an 8 GB \ac{microSD}.  Larger SD \acp{microSD} will take longer to format.  Formatting will erase all data on the SD card.
 
 \commandMessageExample{"format":null}
 
 \subsubsection{Self-test command}
 
-The self-test command is sent to the device to perform a self-test.  The key is \enquote{test} and the value is null.  The device will acknowledge a self-test command by sending a self-test response to the host once the self-test is complete.  This may take up to 5 seconds.  The device must be stationary during the self-test.
+The self-test command is sent to the x-IMU3 to perform a self-test.  The key is \enquote{test} and the value is null.  The x-IMU3 will acknowledge a self-test command by sending a self-test response to the host once the self-test is complete.  This may take up to 5 seconds.  The x-IMU3 must be stationary during the self-test.
 
 \commandMessageExample{"test":null}
 
 \subsubsection{Self-test response}
 
-The self-test response is sent from the device to the host in response to the self-test command.  The key is \enquote{test} and the value is a \ac{JSON} object containing multiple key/value pairs.  Each key/value pair indicates the result of a test.  Each key is the test name and the value is the string "Passed" if the test was passed.
+The self-test response is sent from the x-IMU3 to the host in response to the self-test command.  The key is \enquote{test} and the value is a \ac{JSON} object containing multiple key/value pairs.  Each key/value pair indicates the result of a test.  Each key is the test name and the value is the string "Passed" if the test was passed.
 
 \begin{table}[H]
     \begin{tabular}{l l l}
@@ -193,13 +193,13 @@ The self-test response is sent from the device to the host in response to the se
 
 \subsubsection{Bootloader command}
 
-The bootloader command is sent to the device to put the device in bootloader mode.  The key is \enquote{bootloader} and the value is null.  The device will enter bootloader mode two seconds after receiving this command.
+The bootloader command is sent to the x-IMU3 to put the x-IMU3 in bootloader mode.  The key is \enquote{bootloader} and the value is null.  The x-IMU3 will enter bootloader mode two seconds after receiving this command.
 
 \commandMessageExample{"bootloader":null}
 
 \subsubsection{Factory command}
 
-The factory command is sent to the device to enable factory mode.  The key is \enquote{factory} and the value is null.  In factory mode, read-only settings can be written using the write setting command, the save command will succeed when the \ac{EEPROM} \ac{CRC} has failed, and the erase command will be enabled.
+The factory command is sent to the x-IMU3 to enable factory mode.  The key is \enquote{factory} and the value is null.  In factory mode, read-only settings can be written using the write setting command and the erase command will be enabled.
 
 \commandMessageExample{"factory":null}
 
@@ -217,7 +217,7 @@ The factory command is sent to the device to enable factory mode.  The key is \e
 
 \subsubsection{Erase command}
 
-The erase command is sent to the device to erase the \ac{EEPROM}.  The key is \enquote{erase} and the value is null.  The command acknowledgement will not be sent until the erase is complete.  This will take approximately 700 milliseconds.  This command can only be used after the factory command.
+The erase command is sent to the x-IMU3 to erase the \ac{EEPROM}.  The key is \enquote{erase} and the value is null.  The command acknowledgement will not be sent until the erase is complete.  This will take approximately 700 milliseconds.  This command can only be used if factory mode is enabled.
 
 \commandMessageExample{"erase":null}
 
@@ -226,7 +226,7 @@ The erase command is sent to the device to erase the \ac{EEPROM}.  The key is \e
 \subsection{Data messages}
 \label{sec:dataMessages}
 
-Data messages are sent from the device to the host to provide timestamped measurements, serial accessory data, notifications, and error messages.  Data messages will be either \ac{ASCII} or binary, depending on the device settings.
+Data messages are sent from the x-IMU3 to the host to provide timestamped measurements, serial accessory data, notifications, and error messages.  Data messages will be either \ac{ASCII} or binary, depending on the device settings.
 
 \ac{ASCII} data messages consist of multiple comma-separated values terminated by the control character character \ac{LF}.  The first value is a single uppercase character indicating the message type.  The second value is the timestamp in microseconds.  The remaining values are arguments specific to the message type.
 
@@ -430,7 +430,7 @@ The magnetometer message provides timestamped magnetometer measurements.  Magnet
 
 \subsubsection{Quaternion message}
 
-The quaternion message provides timestamped measurements of the orientation of the device relative to the Earth.  Quaternion messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{Q} and the arguments are four numerical values expressed to four decimal places.  The first byte of a binary message is 0xD1 (equal to 0x80 + \enquote{Q}) and the arguments are four contiguous 32-bit floats.  The message arguments are described in \Fref{tab:quaternionMessageArguments}.
+The quaternion message provides timestamped measurements of the orientation of the x-IMU3 relative to the Earth.  Quaternion messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{Q} and the arguments are four numerical values expressed to four decimal places.  The first byte of a binary message is 0xD1 (equal to 0x80 + \enquote{Q}) and the arguments are four contiguous 32-bit floats.  The message arguments are described in \Fref{tab:quaternionMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{Quaternion W element}
@@ -468,7 +468,7 @@ The quaternion message provides timestamped measurements of the orientation of t
 
 \subsubsection{Rotation matrix message}
 
-The rotation matrix message provides timestamped measurements of the orientation of the device relative to the Earth.  Rotation matrix messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{R} and the arguments are nine numerical values expressed to four decimal places.  The first byte of a binary message is 0xD2 (equal to 0x80 + \enquote{R}) and the arguments are nine contiguous 32-bit floats.  The message arguments are described in \Fref{tab:rotationMatrixMessageArguments}.
+The rotation matrix message provides timestamped measurements of the orientation of the x-IMU3 relative to the Earth.  Rotation matrix messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{R} and the arguments are nine numerical values expressed to four decimal places.  The first byte of a binary message is 0xD2 (equal to 0x80 + \enquote{R}) and the arguments are nine contiguous 32-bit floats.  The message arguments are described in \Fref{tab:rotationMatrixMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{Rotation matrix XX element}
@@ -529,7 +529,7 @@ The rotation matrix message provides timestamped measurements of the orientation
 
 \subsubsection{Euler angles message}
 
-The Euler angles message provides timestamped measurements of the orientation of the device relative to the Earth.  Euler angles messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{A} and the arguments are three numerical values expressed to four decimal places.  The first byte of a binary message is 0xC1 (equal to 0x80 + \enquote{A}) and the arguments are three contiguous 32-bit floats.  The message arguments are described in \Fref{tab:eulerAnglesMessageArguments}.
+The Euler angles message provides timestamped measurements of the orientation of the x-IMU3 relative to the Earth.  Euler angles messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{A} and the arguments are three numerical values expressed to four decimal places.  The first byte of a binary message is 0xC1 (equal to 0x80 + \enquote{A}) and the arguments are three contiguous 32-bit floats.  The message arguments are described in \Fref{tab:eulerAnglesMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{Roll angle in degrees}
@@ -560,7 +560,7 @@ The Euler angles message provides timestamped measurements of the orientation of
 
 \subsubsection{Linear acceleration message}
 
-The linear acceleration message provides timestamped measurements of linear acceleration and the orientation of the device relative to the Earth.  Linear acceleration messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{L} and the arguments are seven numerical values expressed to four decimal places.  The first byte of a binary message is 0xCC (equal to 0x80 + \enquote{L}) and the arguments are seven contiguous 32-bit floats.  The message arguments are described in \Fref{tab:linearAccelerationMessageArguments}.
+The linear acceleration message provides timestamped measurements of linear acceleration and the orientation of the x-IMU3 relative to the Earth.  Linear acceleration messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{L} and the arguments are seven numerical values expressed to four decimal places.  The first byte of a binary message is 0xCC (equal to 0x80 + \enquote{L}) and the arguments are seven contiguous 32-bit floats.  The message arguments are described in \Fref{tab:linearAccelerationMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{Quaternion W element}
@@ -613,7 +613,7 @@ The linear acceleration message provides timestamped measurements of linear acce
 
 \subsubsection{Earth acceleration message}
 
-The Earth acceleration message provides timestamped measurements of Earth acceleration and the orientation of the device relative to the Earth.  Earth acceleration messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{E} and the arguments are seven numerical values expressed to four decimal places.  The first byte of a binary message is 0xC5 (equal to 0x80 + \enquote{E}) and the arguments are seven contiguous 32-bit floats.  The message arguments are described in \Fref{tab:earthAccelerationMessageArguments}.
+The Earth acceleration message provides timestamped measurements of Earth acceleration and the orientation of the x-IMU3 relative to the Earth.  Earth acceleration messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{E} and the arguments are seven numerical values expressed to four decimal places.  The first byte of a binary message is 0xC5 (equal to 0x80 + \enquote{E}) and the arguments are seven contiguous 32-bit floats.  The message arguments are described in \Fref{tab:earthAccelerationMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{Quaternion W element}
@@ -760,7 +760,7 @@ The battery message message provides timestamped measurements of the battery lev
 
 \subsubsection{\acs{RSSI} message}
 
-The \ac{RSSI} message provides timestamped Wi-Fi \ac{RSSI} measurements.  \ac{RSSI} messages are sent continuously at the message rate configured in the device settings.  \ac{RSSI} messages will only be sent if the device is configured as a Wi-Fi client.  The first value of an \ac{ASCII} message is the character \enquote{W} and the arguments are two numerical values expressed to four decimal places.  The first byte of a binary message is 0xD7 (equal to 0x80 + \enquote{W}) and the arguments are two contiguous 32-bit floats.  The message arguments are described in \Fref{tab:rssiMessageArguments}.
+The \ac{RSSI} message provides timestamped Wi-Fi \ac{RSSI} measurements.  \ac{RSSI} messages are sent continuously at the message rate configured in the device settings.  \ac{RSSI} messages will only be sent if the x-IMU3 is connected in Wi-Fi client mode.  The first value of an \ac{ASCII} message is the character \enquote{W} and the arguments are two numerical values expressed to four decimal places.  The first byte of a binary message is 0xD7 (equal to 0x80 + \enquote{W}) and the arguments are two contiguous 32-bit floats.  The message arguments are described in \Fref{tab:rssiMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{\acs{RSSI} percentage}
@@ -807,7 +807,7 @@ The serial accessory message provides timestamped received serial accessory data
 
 \subsubsection{Notification message}
 
-The notification message provides timestamped notifications of system events.  Notification messages may be sent by the device at any time and cannot be disabled.  The first value of an \ac{ASCII} message is the character \enquote{N}.  The first byte of a binary message is 0xCE (equal to 0x80 + \enquote{N}).  The argument of both \ac{ASCII} and binary messages is a string of printable characters.  The string is not null-terminated.  The message arguments are described in \Fref{tab:notificationMessageArguments}.
+The notification message provides timestamped notifications of system events.  Notification messages may be sent by the x-IMU3 at any time and cannot be disabled.  The first value of an \ac{ASCII} message is the character \enquote{N}.  The first byte of a binary message is 0xCE (equal to 0x80 + \enquote{N}).  The argument of both \ac{ASCII} and binary messages is a string of printable characters.  The string is not null-terminated.  The message arguments are described in \Fref{tab:notificationMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{Notification string}
@@ -828,7 +828,7 @@ The notification message provides timestamped notifications of system events.  N
 
 \subsubsection{Error message}
 
-The error message provides timestamped notifications of errors.  Error messages may be sent by the device at any time and cannot be disabled.  The first value of an \ac{ASCII} message is the character \enquote{F}.  The first byte of a binary message is 0xC6 (equal to 0x80 + \enquote{F}).  The argument of both \ac{ASCII} and binary messages is a string of printable characters.  The string is not null-terminated.  The message arguments are described in \Fref{tab:errorMessageArguments}.
+The error message provides timestamped notifications of errors.  Error messages may be sent by the x-IMU3 at any time and cannot be disabled.  The first value of an \ac{ASCII} message is the character \enquote{F}.  The first byte of a binary message is 0xC6 (equal to 0x80 + \enquote{F}).  The argument of both \ac{ASCII} and binary messages is a string of printable characters.  The string is not null-terminated.  The message arguments are described in \Fref{tab:errorMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{Error string}

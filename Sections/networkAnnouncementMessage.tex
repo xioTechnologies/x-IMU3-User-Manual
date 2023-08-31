@@ -1,6 +1,6 @@
 \section{Network announcement message}
 
-The network announcement message is used by a host to discover and connect to devices on the same network.  The message is continuously broadcast by the device on \ac{UDP} port 10000 at a fixed rate of one message per second.  Each message provides the device name, serial number, Wi-Fi and battery status, as well as the device settings required for a host to establish a \ac{TCP} or \ac{UDP} connection.  The message is a single \ac{JSON} object.  The key/value pairs are described in \Fref{tab:networkAnnouncementMessage}.
+The network announcement message is used by a host to discover and connect to x-IMU3s on the same network.  The message is continuously broadcast by the x-IMU3 on \ac{UDP} port 10000 at a fixed rate of one message per second.  Each message provides the device name, serial number, Wi-Fi and battery status, as well as the device settings required for a host to establish a \ac{TCP} or \ac{UDP} connection.  The message is a single \ac{JSON} object.  The key/value pairs are described in \Fref{tab:networkAnnouncementMessage}.
 
 \customTable
 {l l l}
@@ -9,10 +9,10 @@ The network announcement message is used by a host to discover and connect to de
     \enquote{sync} & number & Used for synchronisation\\
     \enquote{name} & string & Device name\\
     \enquote{sn} & string & Device serial number\\
-    \enquote{ip} & string & Device \acs{IP} address\\
+    \enquote{ip} & string & x-IMU3 \acs{IP} address\\
     \enquote{port} & number & \acs{TCP} port\\
-    \enquote{send} & number & \acs{UDP} send port (device sends to this port)\\
-    \enquote{receive} & number & \acs{UDP} receive port (device receives on this port)\\
+    \enquote{send} & number & \acs{UDP} send port (x-IMU3 sends to this port)\\
+    \enquote{receive} & number & \acs{UDP} receive port (x-IMU3 receives on this port)\\
     \enquote{rssi} & number & \acs{RSSI} percentage (-1 in Wi-Fi AP mode)\\
     \enquote{battery} & number & Battery percentage\\
     \enquote{status} & number & Charging status (See \Fref{tab:chargingStatusEnumeration})\\
