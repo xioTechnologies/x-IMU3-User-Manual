@@ -203,17 +203,9 @@ The factory command is sent to the x-IMU3 to enable factory mode.  The key is \e
 
 \commandMessageExample{"factory":null}
 
-\newcommand{\warning}{
-    \begin{center}
-        \begin{tabular}{ | m{0.06\linewidth} m{0.7\linewidth} | }
-            \hline
-            \includegraphics[scale=0.06]{Images/warning.png} & \textbf{Warning} - Incorrect use of this command may permanently damage the device.  Do not use this command unless instructed by customer support.\\
-            \hline
-        \end{tabular}
-    \end{center}
-}
+\newcommand{\commandWarning}{\warning{Incorrect use of this command may permanently damage the device.  Do not use this command unless instructed by customer support.}}
 
-\warning
+\commandWarning
 
 \subsubsection{Erase command}
 
@@ -221,7 +213,7 @@ The erase command is sent to the x-IMU3 to erase the \ac{EEPROM}.  The key is \e
 
 \commandMessageExample{"erase":null}
 
-\warning
+\commandWarning
 
 \subsection{Data messages}
 \label{sec:dataMessages}
