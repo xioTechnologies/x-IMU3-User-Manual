@@ -656,6 +656,54 @@ The Earth acceleration message provides timestamped measurements of Earth accele
     \dataMessageExample
 \endgroup
 
+\subsubsection{\acs{AHRS} status message}
+
+The \ac{AHRS} status message provides timestamped indications of the \ac{AHRS} status flags.  An \ac{AHRS} status message is sent each time a status flag changes.  \ac{AHRS} status messages are only sent if \ac{AHRS} messages are enabled in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{U} and the arguments are four numerical values expressed to four decimal places.  The first byte of a binary message is 0xD5 (equal to 0x80 + \enquote{U}) and the arguments are four contiguous 32-bit floats.  The message arguments are described in \Fref{tab:ahrsStatusnMessageArguments}.
+
+\begingroup
+    \def\tempArgumentA{Initialising}
+    \def\tempArgumentB{Angular rate recovery}
+    \def\tempArgumentC{Acceleration recovery}
+    \def\tempArgumentD{Magnetic recovery}
+    \def\tempCaption{\acs{AHRS} status message arguments}
+    \def\tempLabel{tab:ahrsStatusnMessageArguments}
+    \dataMessageTable
+    {\acs{AHRS} status message arguments (all arguments are Boolean, see \Fref{tab:booleanArgumentValues})}
+    {tab:ahrsStatusnMessageArguments}
+\endgroup
+
+\customTable
+{c l}
+{Value & Boolean}
+{
+    0 & False\\
+    !0 & True\\
+}
+{Boolean argument values}
+{tab:booleanArgumentValues}
+
+\begingroup
+    \def\tempNameA{Initialising}
+    \def\tempNameB{Angular rate recovery}
+    \def\tempNameC{Acceleration recovery}
+    \def\tempNameD{Magnetic recovery}
+    \def\tempValueA{1}
+    \def\tempValueB{0}
+    \def\tempValueC{0}
+    \def\tempValueD{0}
+    \def\tempAsciiFirst{U}
+    \def\tempAsciiA{1.0000}
+    \def\tempAsciiB{0.0000}
+    \def\tempAsciiC{0.0000}
+    \def\tempAsciiD{0.0000}
+    \def\tempBinaryFirst{D5}
+    \def\tempBinaryA{00 00 80 3F}
+    \def\tempBinaryB{00 00 00 00}
+    \def\tempBinaryC{00 00 00 00}
+    \def\tempBinaryD{00 00 00 00}
+    \dataMessageExample
+\endgroup
+
 \subsubsection{High-g accelerometer message}
 
 The High-g accelerometer message provides timestamped high-g accelerometer measurements.  High-g accelerometer messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{H} and the arguments are three numerical values expressed to four decimal places.  The first byte of a binary message is 0xC8 (equal to 0x80 + \enquote{H}) and the arguments are three contiguous 32-bit floats.  The message arguments are described in \Fref{tab:highGMessageArguments}.
@@ -710,7 +758,7 @@ The temperature message provides timestamped temperature measurements.  Temperat
 
 \subsubsection{Battery message}
 
-The battery message message provides timestamped measurements of the battery level, voltage, and charger status.  Battery message messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{B} and the arguments are four numerical values expressed to four decimal places.  The first byte of a binary message is 0xC2 (equal to 0x80 + \enquote{B}) and the arguments are four contiguous 32-bit floats.  The message arguments are described in \Fref{tab:batteryMessageArguments}.
+The battery message message provides timestamped measurements of the battery level and charger status.  Battery message messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{B} and the arguments are four numerical values expressed to four decimal places.  The first byte of a binary message is 0xC2 (equal to 0x80 + \enquote{B}) and the arguments are four contiguous 32-bit floats.  The message arguments are described in \Fref{tab:batteryMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{Battery percentage}
