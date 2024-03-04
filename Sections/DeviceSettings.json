@@ -425,5 +425,10 @@
         "name": "RSSI message rate divisor",
         "declaration": "uint32_t name",
         "default": "{1}"
+    },
+    {
+        "name": "USB power on enabled",
+        "declaration": "bool name",
+        "default": "{true}"
     }
 ]
