@@ -430,5 +430,10 @@
         "name": "USB power on enabled",
         "declaration": "bool name",
         "default": "{true}"
+    },
+    {
+        "name": "Shipping mode enabled",
+        "declaration": "bool name",
+        "default": "{false}"
     }
 ]

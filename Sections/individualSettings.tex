@@ -1251,3 +1251,16 @@
     \def\tempDefault{true}
     \deviceSetting
 \endgroup
+
+\begingroup
+    \def\tempSection{Shipping mode enabled}
+    \def\tempLabel{sec:shippingModeEnabled}
+    \def\tempDescription
+    {
+		Enables (true) or disables (false) shipping mode.  If shipping mode is enabled then the x-IMU3 will not switch on unless \ac{USB} power is connected.  Shipping mode is disabled automatically when the x-IMU3 is switched on.
+    }
+    \def\tempKey{shippingModeEnabled}
+    \def\tempType{true or false}
+    \def\tempDefault{false}
+    \deviceSetting
+\endgroup
