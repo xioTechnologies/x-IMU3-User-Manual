@@ -77,6 +77,9 @@ with open("DeviceSettings.json") as json_file:
         if temp_default == "WirelessWlanClientChannelAll":
             temp_default = "0"
 
+        if temp_default == "0x00000000":
+            temp_default = "\\enquote{0.0.0.0}"
+
         if temp_default == "0x0201A8C0":
             temp_default = "\\enquote{192.168.1.2}"
 
@@ -85,6 +88,9 @@ with open("DeviceSettings.json") as json_file:
 
         if temp_default == "0x0101A8C0":
             temp_default = "\\enquote{192.168.1.1}"
+
+        if temp_default == "0x0101A9C0":
+            temp_default = "\\enquote{192.169.1.1}"
 
         if temp_default == "WirelessWlanAPChannel36":
             temp_default = "36"
@@ -110,7 +116,7 @@ with open("DeviceSettings.json") as json_file:
         code += "\n\\begingroup\n"
         code += "    \\def\\tempSection{" + temp_section + read_only_string + "}\n"
         code += "    \\def\\tempLabel{sec:" + camel_case_name + "}\n"
-        code += "    \\def\\tempDescription\n    {\n        " + temp_section.replace("\\acs", "\\ac") + ".\n    }\n"
+        code += "    \\def\\tempDescription\n    {\n    }\n"
         code += "    \\def\\tempKey{" + camel_case_name + "}\n"
         code += "    \\def\\tempType{" + temp_type + "}\n"
         code += "    \\def\\tempDefault{" + temp_default + "}\n"
