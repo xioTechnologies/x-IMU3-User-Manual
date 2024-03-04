@@ -393,37 +393,37 @@
     },
     {
         "name": "Inertial message rate divisor",
-        "declaration": "uint32_t name",
+        "declaration": "SendMessageRateDivisorInertial name",
         "default": "{8}"
     },
     {
         "name": "Magnetometer message rate divisor",
-        "declaration": "uint32_t name",
+        "declaration": "SendMessageRateDivisorMagnetometer name",
         "default": "{1}"
     },
     {
         "name": "AHRS message rate divisor",
-        "declaration": "uint32_t name",
+        "declaration": "SendMessageRateDivisorAhrs name",
         "default": "{8}"
     },
     {
         "name": "High-g accelerometer message rate divisor",
-        "declaration": "uint32_t name",
+        "declaration": "SendMessageRateDivisorHighGAccelerometer name",
         "default": "{32}"
     },
     {
         "name": "Temperature message rate divisor",
-        "declaration": "uint32_t name",
+        "declaration": "SendMessageRateDivisorTemperature name",
         "default": "{5}"
     },
     {
         "name": "Battery message rate divisor",
-        "declaration": "uint32_t name",
+        "declaration": "SendMessageRateDivisorBattery name",
         "default": "{5}"
     },
     {
         "name": "RSSI message rate divisor",
-        "declaration": "uint32_t name",
+        "declaration": "SendMessageRateDivisorRssi name",
         "default": "{1}"
     },
     {
