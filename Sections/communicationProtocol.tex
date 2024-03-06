@@ -130,6 +130,24 @@ The colour command is sent to the x-IMU3 to set the \ac{LED} colour.  The key is
 
 \commandMessageExample{"colour":"\#FFFFFF"}
 
+\subsubsection{Start command}
+
+The start command is sent to the x-IMU3 to set start logging to the \ac{microSD}.  The key is \enquote{start} and the value is the file name expressed as a string.  The file name must not include spaces and may only use alpha numeric characters, hyphens, periods, and underscores.  \seeSection{sec:dataLogger}
+
+\commandMessageExample{"start":"Session-1"}
+
+\subsubsection{Stop command}
+
+The stop command is sent to the x-IMU3 to set stop logging to the \ac{microSD}.  The key is \enquote{stop} and the value is null.  \seeSection{sec:dataLogger}
+
+\commandMessageExample{"stop":null}
+
+\subsubsection{Delete command}
+
+The delete command is sent to the x-IMU3 to delete a file on the \ac{microSD}.  The key is \enquote{delete} and the value is the file name expressed as a string.  \seeSection{sec:dataLogger}
+
+\commandMessageExample{"delete":"Session-1"}
+
 \subsubsection{Initialise \acs{AHRS} command}
 
 The initialise \ac{AHRS} command is sent to the x-IMU3 to reinitialise the \ac{AHRS} algorithm.  The key is \enquote{initialise} or \enquote{initialize} and the value is null.  This command in unnecessary for normal operation and typically only used during calibration and testing.
