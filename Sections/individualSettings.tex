@@ -760,13 +760,13 @@
 \endgroup
 
 \begingroup
-    \def\tempSection{Data logger enabled}
-    \def\tempLabel{sec:dataLoggerEnabled}
+    \def\tempSection{Data logger automatic start stop enabled}
+    \def\tempLabel{sec:dataLoggerAutomaticStartStopEnabled}
     \def\tempDescription
     {
-        Enables (true) or disables (false) the data logger.  \seeSection{sec:dataLogger}
+        Enables (true) or disables (false) the data logger automatic start stop.  \seeSection{sec:automaticStartStop}
     }
-    \def\tempKey{dataLoggerEnabled}
+    \def\tempKey{dataLoggerAutomaticStartStopEnabled}
     \def\tempType{true or false}
     \def\tempDefault{false}
     \deviceSetting
@@ -777,7 +777,7 @@
     \def\tempLabel{sec:dataLoggerFileNamePrefix}
     \def\tempDescription
     {
-        Configures the prefix part of the file name used by the data logger.  Non-alphanumeric characters will not be included in the file name.  \seeSection{sec:fileName}
+        Configures the file name prefix used by the data logger when automatic start stop is enabled.  The file name prefix should not include spaces and should only use alphanumeric characters, hyphens, periods, or underscores.  Invalid characters will not be included in the file name.  The file name prefix may be left blank to simplify the file name.  \seeSection{sec:fileName}
     }
     \def\tempKey{dataLoggerFileNamePrefix}
     \def\tempType{string}
@@ -786,24 +786,11 @@
 \endgroup
 
 \begingroup
-    \def\tempSection{Data logger file name time enabled}
-    \def\tempLabel{sec:dataLoggerFileNameTimeEnabled}
-    \def\tempDescription
-    {
-        Enables (true) or disables (false) the time part of the file name used by the data logger.  \seeSection{sec:fileName}
-    }
-    \def\tempKey{dataLoggerFileNameTimeEnabled}
-    \def\tempType{true or false}
-    \def\tempDefault{true}
-    \deviceSetting
-\endgroup
-
-\begingroup
     \def\tempSection{Data logger file name counter enabled}
     \def\tempLabel{sec:dataLoggerFileNameCounterEnabled}
     \def\tempDescription
     {
-        Enables (true) or disables (false) the counter part of the file name used by the data logger.  \seeSection{sec:fileName}
+        Enables (true) or disables (false) the file name counter used by the data logger when automatic start stop is enabled.  If the file name counter is disabled then a file name will be created using the date and time.  \seeSection{sec:fileName}
     }
     \def\tempKey{dataLoggerFileNameCounterEnabled}
     \def\tempType{true or false}
@@ -816,7 +803,7 @@
     \def\tempLabel{sec:dataLoggerMaxFileSize}
     \def\tempDescription
     {
-        Configures the the maximum size (in MB) of files created by the data logger.  A value of zero will configure the maximum file size supported by \ac{FAT32} (4 GB).  \seeSection{sec:maximumFileSizeAndPeriod}
+        Configures the the maximum size (in MB) of files created by the data logger when automatic start stop is enabled.  A value of zero will configure the maximum file size supported by \ac{FAT32} (4 GB).  \seeSection{sec:maximumFileSizeAndPeriod}
     }
     \def\tempKey{dataLoggerMaxFileSize}
     \def\tempType{number}
@@ -829,7 +816,7 @@
     \def\tempLabel{sec:dataLoggerMaxFilePeriod}
     \def\tempDescription
     {
-        Configures the the maximum period (in seconds) of files created by the data logger.  A value of zero will configure an unlimited period.  \seeSection{sec:maximumFileSizeAndPeriod}
+        Configures the the maximum period (in seconds) of files created by the data logger when automatic start stop is enabled.  A value of zero will configure an unlimited period.  \seeSection{sec:maximumFileSizeAndPeriod}
     }
     \def\tempKey{dataLoggerMaxFilePeriod}
     \def\tempType{number}

@@ -131,22 +131,24 @@ The colour command is sent to the x-IMU3 to set the \ac{LED} colour.  The key is
 \commandMessageExample{"colour":"\#FFFFFF"}
 
 \subsubsection{Start command}
+\label{sec:startCommand}
 
-The start command is sent to the x-IMU3 to set start logging to the \ac{microSD}.  The key is \enquote{start} and the value is the file name expressed as a string.  The file name must not include spaces and may only use alpha numeric characters, hyphens, periods, and underscores.  \seeSection{sec:dataLogger}
+The start command is sent to the x-IMU3 to start logging to the \ac{microSD}.  The key is \enquote{start} and the value is the file name expressed as a string.  The file name must not include spaces and may only use alphanumeric characters, hyphens, periods, and underscores.  \seeSection{sec:dataLogger}
 
-\commandMessageExample{"start":"Session-1"}
+\commandMessageExample{"start":"Test"}
 
 \subsubsection{Stop command}
+\label{sec:stopCommand}
 
-The stop command is sent to the x-IMU3 to set stop logging to the \ac{microSD}.  The key is \enquote{stop} and the value is null.  \seeSection{sec:dataLogger}
+The stop command is sent to the x-IMU3 to stop logging to the \ac{microSD}.  The key is \enquote{stop} and the value is null.  \seeSection{sec:dataLogger}
 
 \commandMessageExample{"stop":null}
 
 \subsubsection{Delete command}
 
-The delete command is sent to the x-IMU3 to delete a file on the \ac{microSD}.  The key is \enquote{delete} and the value is the file name expressed as a string.  \seeSection{sec:dataLogger}
+The delete command is sent to the x-IMU3 to delete a file in the \enquote{Data Logger} directory on the \ac{microSD}.  The key is \enquote{delete} and the value is the file name expressed as a string.  \seeSection{sec:dataLogger}
 
-\commandMessageExample{"delete":"Session-1"}
+\commandMessageExample{"delete":"Test"}
 
 \subsubsection{Initialise \acs{AHRS} command}
 
