@@ -1,170 +1,168 @@
 \unnumberedSection{Document version history}
 
-\begingroup
-    \def\arraystretch{1.5}
-    \rowcolors{2}{gray!5}{white}
-    \begin{longtable}{| >{\centering}p{.1\textwidth} | p{.2\textwidth} | >{\raggedright\arraybackslash}p{.6\textwidth} |}
-        \arrayrulecolor{gray!50}\hline
-        Version & Date & Changes\\
-        \arrayrulecolor{gray!50}\hline
-        v0.0 & April 7, 2020 &
-        \begin{itemize}
-            \item Advanced release
-        \end{itemize}\\
-        v0.1 & April 14, 2020 &
-        \begin{itemize}
-            \item Add overview and hardware sections
-            \item Remove hyphenations
-            \item Add missing acronyms to glossary
-            \item Move glossary, disclaimer, and document version history to end of document
-        \end{itemize}\\
-        v0.2 & April 15, 2020 &
-        \begin{itemize}
-            \item Add missing hexadecimal notation
-            \item Add linear acceleration and Earth acceleration data messages
-            \item Remove pressure data message
-        \end{itemize}\\
-        v0.3 & April 29, 2020 &
-        \begin{itemize}
-            \item Add self-test commands
-            \item Add technical specification section
-            \item Add message rates section
-            \item Add axes alignment and data message setting descriptions
-        \end{itemize}\\
-        v0.4 & May 20, 2020 &
-        \begin{itemize}
-            \item Add Wi-Fi setting descriptions
-            \item Add Bluetooth as product feature
-        \end{itemize}\\
-        v0.5 & Jul 7, 2020 &
-        \begin{itemize}
-            \item Add instructions for updating x-IMU3 firmware
-        \end{itemize}\\
-        v0.6 & Sep 7, 2020 &
-        \begin{itemize}
-            \item Update board image
-            \item Update technical specification
-            \item Add factory and erase commands
-            \item Add Sample rates, message rates, and timestamps section
-        \end{itemize}\\
-        v0.7 & Feb 9, 2021 &
-        \begin{itemize}
-            \item Add charger status enumeration
-            \item Add power button section
-            \item Add annotated housing image
-        \end{itemize}\\
-        v0.8 & Apr 15, 2021 &
-        \begin{itemize}
-            \item Add format command
-            \item Remove result command
-            \item Add colour command
-            \item Add \ac{IP67} section
-            \item Update Euler angles message
-        \end{itemize}\\
-        v0.9 & Aug 01, 2021 &
-        \begin{itemize}
-            \item Add C\# to overview
-            \item Update board image
-        \end{itemize}\\
-        v0.10 & Jan 06, 2022 &
-        \begin{itemize}
-            \item Update device settings
-            \item Add temperature technical specification
-            \item Remove serial accessory rate divisor setting
-            \item Add calibration section
-        \end{itemize}\\
-        v0.11 & Apr 06, 2022 &
-        \begin{itemize}
-            \item Use consistent numerical formatting in examples
-            \item Add \ac{LED} section
-            \item Change serial accessory command key
-            \item Update battery life in overview
-            \item Add data logger capacity section
-            \item Use consistent terminology for high-g accelerometer
-            \item Update data logger device setting keys
-            \item Remove Bluetooth section
-            \item Add data logger section
-            \item Update network announcement message
-            \item Add AHRS device settings
-            \item Update images
-        \end{itemize}\\
-        v1.0 & Sep 26, 2022 &
-        \begin{itemize}
-            \item Express sensitivity as a diagonal matrix
-            \item Update default clock calibration settings
-            \item Update synchronisation settings
-            \item Update factory command
-            \item Update static accuracy
-            \item Remove IP67 footnote
-        \end{itemize}\\
-        v1.1 & Apr 06, 2023 &
-        \begin{itemize}
-            \item Update network announcement message
-            \item Add heading command
-            \item Add axes convention setting
-            \item Fix stylisation of \ac{microSD}
-            \item Clarify that CR in is optional in commands messages
-            \item Remove system clock and \ac{RTC} and battery voltmeter calibration
-            \item Fix high-g accelerometer sample rate error
-            \item Remove sentence stating that response is always in camel case
-            \item Remove serial accessory transmit enabled setting
-            \item Remove update device settings section
-        \end{itemize}\\
-        v1.2 & Jun 19, 2023 &
-        \begin{itemize}
-            \item Add footnote for Wi-Fi download in overview
-            \item Specify accelerometer, magnetometer, and high-g accelerometer accuracy
-            \item Add AHRS section to technical specification
-            \item Add Ubuntu support to overview
-            \item Update title page image
-        \end{itemize}\\
-        v1.3 & Jul 30, 2023 &
-        \begin{itemize}
-            \item Add Wi-Fi \ac{AP} \ac{IP} address setting
-            \item Add initialise command
-        \end{itemize}\\
-        v1.4 & Aug 30, 2023 &
-        \begin{itemize}
-            \item Update device settings
-            \item Remove optional CR from message termination
-            \item Fix use of word \ac{microSD}
-            \item Update data logger section
-            \item Add mechanical section to technical specification
-            \item Add static accuracy note about \acs{RMS} error
-            \item Use word \enquote{x-IMU3} instead of \enquote{device}
-        \end{itemize}\\
-        v1.5 & Sep 07, 2023 &
-        \begin{itemize}
-            \item Add serial header pinout
-        \end{itemize}\\
-        v1.6 & Dec 20, 2023 &
-        \begin{itemize}
-            \item Add \acs{AHRS} status data message
-            \item Update serial number format for v2 hardware
-            \item Update images for v2 hardware
-            \item Update data logger documentation
-        \end{itemize}\\
-        v1.7 & Jan 05, 2024 &
-        \begin{itemize}
-            \item Add error response to command messages
-            \item Update notification and error message examples
-        \end{itemize}\\
-        v1.8 & Mar 12, 2024 &
-        \begin{itemize}
-            \item Fix \acs{UDP} send port description
-            \item Add \ac{USB} power on enabled setting
-            \item Add shipping mode enabled setting
-            \item Update message rate divisor settings
-            \item Add \texttt{\#} to colour command
-            \item Reorder device settings
-            \item Add start, stop, and delete commands
-            \item Update data logger section and settings
-            \item Update \ac{LED} section
-        \end{itemize}\\
-        vX.X & XXX XX, XXXX &
-        \begin{itemize}
-            \item Add missing acronyms
-        \end{itemize}\\
-        \arrayrulecolor{gray!50}\hline
-    \end{longtable}
-\endgroup
+\def\arraystretch{1.5}
+\rowcolors{2}{gray!5}{white}
+\begin{longtable}{| >{\centering}p{.1\textwidth} | p{.2\textwidth} | >{\raggedright\arraybackslash}p{.6\textwidth} |}
+    \arrayrulecolor{gray!50}\hline
+    Version & Date & Changes\\
+    \arrayrulecolor{gray!50}\hline
+    v0.0 & April 7, 2020 &
+    \begin{itemize}
+        \item Advanced release
+    \end{itemize}\\
+    v0.1 & April 14, 2020 &
+    \begin{itemize}
+        \item Add overview and hardware sections
+        \item Remove hyphenations
+        \item Add missing acronyms to glossary
+        \item Move glossary, disclaimer, and document version history to end of document
+    \end{itemize}\\
+    v0.2 & April 15, 2020 &
+    \begin{itemize}
+        \item Add missing hexadecimal notation
+        \item Add linear acceleration and Earth acceleration data messages
+        \item Remove pressure data message
+    \end{itemize}\\
+    v0.3 & April 29, 2020 &
+    \begin{itemize}
+        \item Add self-test commands
+        \item Add technical specification section
+        \item Add message rates section
+        \item Add axes alignment and data message setting descriptions
+    \end{itemize}\\
+    v0.4 & May 20, 2020 &
+    \begin{itemize}
+        \item Add Wi-Fi setting descriptions
+        \item Add Bluetooth as product feature
+    \end{itemize}\\
+    v0.5 & Jul 7, 2020 &
+    \begin{itemize}
+        \item Add instructions for updating x-IMU3 firmware
+    \end{itemize}\\
+    v0.6 & Sep 7, 2020 &
+    \begin{itemize}
+        \item Update board image
+        \item Update technical specification
+        \item Add factory and erase commands
+        \item Add Sample rates, message rates, and timestamps section
+    \end{itemize}\\
+    v0.7 & Feb 9, 2021 &
+    \begin{itemize}
+        \item Add charger status enumeration
+        \item Add power button section
+        \item Add annotated housing image
+    \end{itemize}\\
+    v0.8 & Apr 15, 2021 &
+    \begin{itemize}
+        \item Add format command
+        \item Remove result command
+        \item Add colour command
+        \item Add \ac{IP67} section
+        \item Update Euler angles message
+    \end{itemize}\\
+    v0.9 & Aug 01, 2021 &
+    \begin{itemize}
+        \item Add C\# to overview
+        \item Update board image
+    \end{itemize}\\
+    v0.10 & Jan 06, 2022 &
+    \begin{itemize}
+        \item Update device settings
+        \item Add temperature technical specification
+        \item Remove serial accessory rate divisor setting
+        \item Add calibration section
+    \end{itemize}\\
+    v0.11 & Apr 06, 2022 &
+    \begin{itemize}
+        \item Use consistent numerical formatting in examples
+        \item Add \ac{LED} section
+        \item Change serial accessory command key
+        \item Update battery life in overview
+        \item Add data logger capacity section
+        \item Use consistent terminology for high-g accelerometer
+        \item Update data logger device setting keys
+        \item Remove Bluetooth section
+        \item Add data logger section
+        \item Update network announcement message
+        \item Add AHRS device settings
+        \item Update images
+    \end{itemize}\\
+    v1.0 & Sep 26, 2022 &
+    \begin{itemize}
+        \item Express sensitivity as a diagonal matrix
+        \item Update default clock calibration settings
+        \item Update synchronisation settings
+        \item Update factory command
+        \item Update static accuracy
+        \item Remove IP67 footnote
+    \end{itemize}\\
+    v1.1 & Apr 06, 2023 &
+    \begin{itemize}
+        \item Update network announcement message
+        \item Add heading command
+        \item Add axes convention setting
+        \item Fix stylisation of \ac{microSD}
+        \item Clarify that CR in is optional in commands messages
+        \item Remove system clock and \ac{RTC} and battery voltmeter calibration
+        \item Fix high-g accelerometer sample rate error
+        \item Remove sentence stating that response is always in camel case
+        \item Remove serial accessory transmit enabled setting
+        \item Remove update device settings section
+    \end{itemize}\\
+    v1.2 & Jun 19, 2023 &
+    \begin{itemize}
+        \item Add footnote for Wi-Fi download in overview
+        \item Specify accelerometer, magnetometer, and high-g accelerometer accuracy
+        \item Add AHRS section to technical specification
+        \item Add Ubuntu support to overview
+        \item Update title page image
+    \end{itemize}\\
+    v1.3 & Jul 30, 2023 &
+    \begin{itemize}
+        \item Add Wi-Fi \ac{AP} \ac{IP} address setting
+        \item Add initialise command
+    \end{itemize}\\
+    v1.4 & Aug 30, 2023 &
+    \begin{itemize}
+        \item Update device settings
+        \item Remove optional CR from message termination
+        \item Fix use of word \ac{microSD}
+        \item Update data logger section
+        \item Add mechanical section to technical specification
+        \item Add static accuracy note about \acs{RMS} error
+        \item Use word \enquote{x-IMU3} instead of \enquote{device}
+    \end{itemize}\\
+    v1.5 & Sep 07, 2023 &
+    \begin{itemize}
+        \item Add serial header pinout
+    \end{itemize}\\
+    v1.6 & Dec 20, 2023 &
+    \begin{itemize}
+        \item Add \acs{AHRS} status data message
+        \item Update serial number format for v2 hardware
+        \item Update images for v2 hardware
+        \item Update data logger documentation
+    \end{itemize}\\
+    v1.7 & Jan 05, 2024 &
+    \begin{itemize}
+        \item Add error response to command messages
+        \item Update notification and error message examples
+    \end{itemize}\\
+    v1.8 & Mar 12, 2024 &
+    \begin{itemize}
+        \item Fix \acs{UDP} send port description
+        \item Add \ac{USB} power on enabled setting
+        \item Add shipping mode enabled setting
+        \item Update message rate divisor settings
+        \item Add \texttt{\#} to colour command
+        \item Reorder device settings
+        \item Add start, stop, and delete commands
+        \item Update data logger section and settings
+        \item Update \ac{LED} section
+    \end{itemize}\\
+    vX.X & XXX XX, XXXX &
+    \begin{itemize}
+        \item Add missing acronyms
+    \end{itemize}\\
+    \arrayrulecolor{gray!50}\hline
+\end{longtable}
