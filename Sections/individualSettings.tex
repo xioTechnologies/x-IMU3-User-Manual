@@ -519,7 +519,7 @@
     \def\tempLabel{sec:wiFiAPSsid}
     \def\tempDescription
     {
-		Configures the \ac{SSID} of the x-IMU3 in Wi-Fi \ac{AP} mode.  This is the name of the network created by the x-IMU3.  The \ac{SSID} may be up to 31 characters long.  If the \ac{SSID} is left blank then the x-IMU3 will use the \ac{SSID} \enquote{x-IMU3}.
+        Configures the \ac{SSID} of the x-IMU3 in Wi-Fi \ac{AP} mode.  This is the name of the network created by the x-IMU3.  The \ac{SSID} may be up to 31 characters long.  If the \ac{SSID} is left blank then the x-IMU3 will use the \ac{SSID} \enquote{x-IMU3}.
     }
     \def\tempKey{wiFiAPSsid}
     \def\tempType{string}
@@ -532,7 +532,7 @@
     \def\tempLabel{sec:wiFiAPKey}
     \def\tempDescription
     {
-		Configures the security key in Wi-Fi \ac{AP} mode.  This is the password required to connect to the network created by the x-IMU3.  The key must be between 8 and 31 characters long.  If the key is left blank then the network will not use security and a password would not be required to connect to the x-IMU3.
+        Configures the security key in Wi-Fi \ac{AP} mode.  This is the password required to connect to the network created by the x-IMU3.  The key must be between 8 and 31 characters long.  If the key is left blank then the network will not use security and a password would not be required to connect to the x-IMU3.
     }
     \def\tempKey{wiFiAPKey}
     \def\tempType{string}
@@ -962,7 +962,7 @@
     \def\tempLabel{sec:binaryModeEnabled}
     \def\tempDescription
     {
-		Enables (true) or disables (false) binary data messages.  If binary data messages are disabled then data messages will be \ac{ASCII}.  \seeSection{sec:dataMessages}
+        Enables (true) or disables (false) binary data messages.  If binary data messages are disabled then data messages will be \ac{ASCII}.  \seeSection{sec:dataMessages}
     }
     \def\tempKey{binaryModeEnabled}
     \def\tempType{true or false}
@@ -1030,28 +1030,31 @@
             2 & 10 messages/s\\
             1 & 20 messages/s\\
         \fi
-        \ifnum #2=1600
-            1600 & 1 messages/s\\
-            800 & 2 messages/s\\
-            400 & 4 messages/s\\
-            320 & 5 messages/s\\
-            200 & 8 messages/s\\
-            160 & 10 messages/s\\
-            100 & 16 messages/s\\
-            80 & 20 messages/s\\
-            64 & 25 messages/s\\
-            50 & 32 messages/s\\
-            40 & 40 messages/s\\
-            32 & 50 messages/s\\
-            25 & 64 messages/s\\
-            20 & 80 messages/s\\
-            16 & 100 messages/s\\
-            10 & 160 messages/s\\
-            8 & 200 messages/s\\
-            5 & 320 messages/s\\
-            4 & 400 messages/s\\
-            2 & 800 messages/s\\
-            1 & 1600 messages/s\\
+        \ifnum #2=3200
+            1 & 3200 messages/s\\
+            2 & 1600 messages/s\\
+            4 & 800 messages/s\\
+            5 & 640 messages/s\\
+            8 & 400 messages/s\\
+            10 & 320 messages/s\\
+            16 & 200 messages/s\\
+            20 & 160 messages/s\\
+            25 & 128 messages/s\\
+            32 & 100 messages/s\\
+            40 & 80 messages/s\\
+            50 & 64 messages/s\\
+            64 & 50 messages/s\\
+            80 & 40 messages/s\\
+            100 & 32 messages/s\\
+            128 & 25 messages/s\\
+            160 & 20 messages/s\\
+            200 & 16 messages/s\\
+            320 & 10 messages/s\\
+            400 & 8 messages/s\\
+            640 & 5 messages/s\\
+            800 & 4 messages/s\\
+            1600 & 2 messages/s\\
+            3200 & 1 messages/s\\
         \fi
         \ifnum #2=5
         1 & 5 messages/s\\
@@ -1122,13 +1125,13 @@
     {
         \messageRateDivisorDescription
         {high-g accelerometer}
-        {1600}
+        {3200}
         {tab:exampleHighGAccelerometerMessageRates}
         {High-g accelerometer}
     }
     \def\tempKey{highGAccelerometerMessageRateDivisor}
     \def\tempType{number}
-    \def\tempDefault{32}
+    \def\tempDefault{64}
     \deviceSetting
 \endgroup
 
