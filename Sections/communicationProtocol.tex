@@ -116,10 +116,17 @@ The shutdown command is sent to the x-IMU3 to switch the x-IMU3 off.  The key is
 
 \commandMessageExample{"shutdown":null}
 
+\subsubsection{Blink command}
+\label{sec:blinkCommand}
+
+The blink command is sent to the x-IMU3 to blink the \ac{LED} bright white for 100 milliseconds.  The key is \enquote{blink} and the value is null.
+
+\commandMessageExample{"blink":null}
+
 \subsubsection{Strobe command}
 \label{sec:strobeCommand}
 
-The strobe command is sent to the x-IMU3 to strobe the \ac{LED} bright white for 5 seconds.  The key is \enquote{strobe} and the value is null.  This command can be used to quickly locate a specific x-IMU3 when using multiple x-IMU3s.
+The strobe command is sent to the x-IMU3 to strobe the \ac{LED} bright white for 5 seconds.  The key is \enquote{strobe} and the value is null.
 
 \commandMessageExample{"strobe":null}
 
