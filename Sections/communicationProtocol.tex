@@ -86,15 +86,15 @@ The ping command is sent to the x-IMU3 to trigger a ping response.  The key is \
 
 \subsubsection{Ping response}
 
-The ping response is sent from the x-IMU3 to the host in response to the ping command.  The key is \enquote{ping} and the value is a \ac{JSON} object containing three key/value pairs indicating the communication interface, device name, and device serial number.  The keys are \enquote{interface}, \enquote{deviceName}, and \enquote{serialNumber}, respectively and all values are string types.
+The ping response is sent from the x-IMU3 to the host in response to the ping command.  The key is \enquote{ping} and the value is a \ac{JSON} object containing three key/value pairs indicating the communication interface, device name, and device serial number.  The keys are \enquote{interface}, \enquote{name}, and \enquote{sn}, respectively and all values are string types.
 
 \begin{table}[H]
     \begin{tabular}{l l l}
         \textbf{Example}*\textbf{:} & \texttt{\{}\\
         & \texttt{~~"ping":~\{} &\\
         & \texttt{~~~~"interface":} & \texttt{"USB",}\\
-        & \texttt{~~~~"deviceName":} & \texttt{"x-IMU3",}\\
-        & \texttt{~~~~"serialNumber":} & \texttt{"01234567"}\\
+        & \texttt{~~~~"name":} & \texttt{"x-IMU3",}\\
+        & \texttt{~~~~"sn":} & \texttt{"01234567"}\\
         & \texttt{~~\}}\\
         & \texttt{\}\textbackslash n}\\
     \end{tabular}\\
