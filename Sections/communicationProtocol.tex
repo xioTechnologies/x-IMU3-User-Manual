@@ -183,7 +183,7 @@ The note command is sent to the x-IMU3 to generate a timestamped notification me
 
 \subsubsection{Format command}
 
-The format command is sent to the x-IMU3 to format the \ac{microSD}.  The key is \enquote{format} and the value is null.  The command acknowledgement will not be sent until the format is complete.  This will take approximately 3 seconds for an 8 GB \ac{microSD}.  Larger SD \acp{microSD} will take longer to format.  Formatting will erase all data on the SD card.
+The format command is sent to the x-IMU3 to format the \ac{microSD}.  The key is \enquote{format} and the value is null.  The command acknowledgement will not be sent until the format is complete.  This will take approximately 3 seconds for an 8 GB \ac{microSD}.  Larger \acp{microSD} will take longer to format.  Formatting will erase all data on the \acp{microSD}.
 
 \commandMessageExample{"format":null}
 
@@ -207,7 +207,7 @@ The self-test response is sent from the x-IMU3 to the host in response to the se
         & \texttt{~~~~"Magnetometer":} & \texttt{"Passed",}\\
         & \texttt{~~~~"High-g Accelerometer":} & \texttt{"Passed",}\\
         & \texttt{~~~~"Battery":} & \texttt{"Passed",}\\
-        & \texttt{~~~~"SD Card":} & \texttt{"Passed",}\\
+        & \texttt{~~~~"microSD":} & \texttt{"Passed",}\\
         & \texttt{~~~~"Wireless":} & \texttt{"Passed",}\\
         & \texttt{~~\}}\\
         & \texttt{\}\textbackslash n}\\
