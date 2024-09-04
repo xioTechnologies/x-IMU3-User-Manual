@@ -25,7 +25,7 @@ The first byte of a message indicates the message type.  Command messages start 
 
 Command messages are sent to the x-IMU3 to read and write settings and execute commands.  All command messages are a \ac{JSON} object containing a single key/value pair, terminated by the control character \ac{LF}.  The control character \ac{LF} must not appear anywhere else in a command message.  The x-IMU3 will acknowledge each received command message by sending a command message with the same key to the host.
 
-The key used by command messages sent to the x-IMU3 is not case sensitive and can use non-alphanumeric characters arbitrarily.  For example, \enquote{serialNumber}, \enquote{Serial Number}, and \enquote{serial\_number} are all valid keys for a command message to read the device serial number.
+The key used by command messages sent to the x-IMU3 is not case sensitive and can use non-alphanumeric characters arbitrarily.  For example, \enquote{serial\_number}, \enquote{Serial Number}, and \enquote{serialNumber} are all valid keys for a command message to read the device serial number.
 
 \newcommand{\commandMessageExample}[2]{
     \begin{table}[H]
@@ -40,13 +40,13 @@ The key used by command messages sent to the x-IMU3 is not case sensitive and ca
 
 The read setting command is sent to the x-IMU3 to read a setting value.  The key is the setting key and the value is null.  See \Fref{sec:individualSettings} for a complete list of settings.  The x-IMU3 will acknowledge a read setting command by sending a write setting command to the host.
 
-\commandMessageExample{"serialNumber":null}
+\commandMessageExample{"serial\_number":null}
 
 \subsubsection{Write setting command}
 
 The write setting command is sent to the x-IMU3 to write a setting value, or sent from the x-IMU3 to the host in response to a read setting command.  The key is the setting key and the value is the setting value.  See \Fref{sec:individualSettings} for a complete list of settings.  The x-IMU3 will acknowledge a write setting command by sending a setting write command back to the host, indicating the new settings value.  The x-IMU3 will not apply new settings until two seconds after the most recent write setting command or default command was received.
 
-\commandMessageExample{"deviceName":"x-IMU3"}
+\commandMessageExample{"device\_name":"x-IMU3"}
 
 \subsubsection{Default command}
 
