@@ -246,7 +246,7 @@ The erase command is sent to the x-IMU3 to erase the \ac{EEPROM}.  The key is \e
 
 An error response is sent from the x-IMU3 to the host if there is an error with the received command.  The key matches the received command and the value is a \ac{JSON} object containing a single key/value pair indicating the error.  The key is \enquote{error} and the value is a string.
 
-\commandMessageExample{"serialNumber":\{"error":"Unable to write read-only setting"\}}
+\commandMessageExample{"serial\_number":\{"error":"Unable to write read-only setting"\}}
 
 \subsection{Data messages}
 \label{sec:dataMessages}
