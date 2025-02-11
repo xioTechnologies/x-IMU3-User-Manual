@@ -791,7 +791,7 @@ The temperature message provides timestamped temperature measurements.  Temperat
 
 \subsubsection{Battery message}
 
-The battery message message provides timestamped measurements of the battery level and charger status.  Battery message messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{B} and the arguments are four numerical values expressed to four decimal places.  The first byte of a binary message is 0xC2 (equal to 0x80 + \enquote{B}) and the arguments are four contiguous 32-bit floats.  The message arguments are described in \Fref{tab:batteryMessageArguments}.
+The battery message provides timestamped measurements of the battery level and charger status.  Battery messages are sent continuously at the message rate configured in the device settings.  The first value of an \ac{ASCII} message is the character \enquote{B} and the arguments are four numerical values expressed to four decimal places.  The first byte of a binary message is 0xC2 (equal to 0x80 + \enquote{B}) and the arguments are four contiguous 32-bit floats.  The message arguments are described in \Fref{tab:batteryMessageArguments}.
 
 \begingroup
     \def\tempArgumentA{Battery percentage}
@@ -809,6 +809,7 @@ The battery message message provides timestamped measurements of the battery lev
     0 & Not connected\\
     1 & Charging\\
     2 & Charging complete\\
+    3 & Charging on hold\\
 }
 {Charging status enumeration}
 {tab:chargingStatusEnumeration}
