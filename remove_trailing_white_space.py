@@ -1,17 +1,18 @@
 import os
 
-for root, _, files in os.walk(os.path.dirname(os.path.realpath(__file__))):
-    for source_file in files:
-        _, file_extension = os.path.splitext(source_file)
+paths = []
 
-        if file_extension != ".tex" and file_extension != ".sty":
-            continue
+for root, _, file_names in os.walk(os.path.dirname(os.path.realpath(__file__))):
+    for file_name in file_names:
+        _, extension = os.path.splitext(file_name)
 
-        file_path = os.path.join(root, source_file)
+        if extension in (".tex", ".sty"):
+            paths.append(os.path.join(root, file_name))
 
-        with open(file_path) as source_file:
-            lines = source_file.readlines()
+for path in paths:
+    with open(path) as file:
+        lines = file.readlines()
 
-        with open(file_path, "w") as source_file:
-            for line in lines:
-                source_file.write(line.rstrip() + "\n")
+    with open(path, "w") as file:
+        for line in lines:
+            file.write(line.rstrip() + "\n")
