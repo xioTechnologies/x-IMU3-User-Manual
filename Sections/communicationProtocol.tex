@@ -66,6 +66,20 @@ The save command is sent to the x-IMU3 to save all settings to \ac{EEPROM}.  The
 
 \commandMessageExample{"save":null}
 
+\subsubsection{Enumerate command}
+
+The enumerate setting command is sent to the x-IMU3 to read a setting key and value by index.  The key is \enquote{enumerate}...
+%
+The value is null.
+%
+This command can be used to all setting keys and values
+
+\commandMessageExample{"enumerate 0":null}
+
+\subsubsection{Enumerate response}
+
+\commandMessageExample{"enumerate 0":\{"serial\_number":"01234567"\}}
+
 \subsubsection{Read time command}
 
 The read time command is sent to the x-IMU3 to read the date and time of the \ac{RTC}.  The key is \enquote{time} and the value is null.  The x-IMU3 will acknowledge a read time command by sending a write time command to the host.
@@ -180,6 +194,12 @@ The serial accessory command is sent to the x-IMU3 to transmit data to a serial 
 The note command is sent to the x-IMU3 to generate a timestamped notification message containing a user-defined string.  The key is \enquote{note} and the value is the string of up to 127 characters.  Longer strings will be truncated to the maximum size.  This command can be used to create timestamped notes of events during data logging.
 
 \commandMessageExample{"note":"Something happened."}
+
+\subsubsection{Timestamp command}
+
+The timestamp command is sent to the x-IMU3 to generate a timestamped notification message containing a user-defined string.  The key is \enquote{note} and the value is the string of up to 127 characters.  Longer strings will be truncated to the maximum size.  This command can be used to create timestamped notes of events during data logging.
+
+\commandMessageExample{"timestamp":1000000000}
 
 \subsubsection{Format command}
 
